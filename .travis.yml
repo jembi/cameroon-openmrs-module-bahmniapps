@@ -2,7 +2,8 @@ language: node_js
 node_js: "6"
 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_47733f2c6cc3_key -iv $encrypted_47733f2c6cc3_iv -in deploy_key.enc -out /tmp/deploy_key -d
+  # Decrypting the encrypted SSH private key and adding the key to the current ssh-agent to make any SSH-based command agnostic to the private key location
+  - openssl aes-256-cbc -K $encrypted_47733f2c6cc3_key -iv $encrypted_47733f2c6cc3_iv -in .deploy_key.enc -out /tmp/deploy_key -d
   - eval "$(ssh-agent -s)"
   - chmod 600 /tmp/deploy_key
   - ssh-add /tmp/deploy_key
@@ -24,8 +25,7 @@ install:
   - cat npm-debug.log || true
   - bower install
 
-script: 
-#grunt bundle && grunt uglify-and-rename && grunt web
+script: grunt bundle && grunt uglify-and-rename && grunt web
 
 cache:
   directories:
@@ -35,11 +35,15 @@ cache:
 addons:
   ssh_known_hosts:
     - cmr-dev.jembi.org
-#   - cmr-staging.jembi.org
+    - cmr-staging.jembi.org
     
 deploy:
   - provider: script
-    script: ssh bahmni_support@cmr-dev.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps/;git pull;cd ui/dist/;grunt compass'
+    script: ssh bahmni_support@cmr-dev.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps/;git pull;cd ui/app/;grunt compass'
+    on:
+      branch: COMRS-117
+  - provider: script
+    script: ssh bahmni_support@cmr-staging.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps/;git pull;cd ui/app/;grunt compass'
     on:
       branch: COMRS-117
 
