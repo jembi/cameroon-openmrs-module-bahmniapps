@@ -14,24 +14,25 @@ before_install:
   - sleep 3 # give xvfb some time to start
 
 install:
-  - npm install -g bower
-  - npm install -g grunt-cli
-  - gem install compass
-  - cd ui && npm install
-  - cat npm-debug.log || true
-  - bower install
+#  - npm install -g bower
+#  - npm install -g grunt-cli
+#  - gem install compass
+#  - cd ui && npm install
+#  - cat npm-debug.log || true
+#  - bower install
 
-script: grunt bundle && grunt uglify-and-rename && grunt web
+script: 
+#grunt bundle && grunt uglify-and-rename && grunt web
 
-cache:
-  directories:
-  - ui/node_modules
-  - ui/app/components
+#cache:
+#  directories:
+#  - ui/node_modules
+#  - ui/app/components
 
 addons:
   ssh_known_hosts:
     - cmr-dev.jembi.org
-    - cmr-staging.jembi.org
+#   - cmr-staging.jembi.org
     
 deploy:
   - provider: script
