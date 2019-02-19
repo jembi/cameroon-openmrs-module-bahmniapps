@@ -2,7 +2,11 @@ language: node_js
 node_js: "6"
 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_47733f2c6cc3_key -iv $encrypted_47733f2c6cc3_iv -in deploy_key.enc -out ./deploy_key -d
+  - openssl aes-256-cbc -K $encrypted_47733f2c6cc3_key -iv $encrypted_47733f2c6cc3_iv -in deploy_key.enc -out /tmp/deploy_key -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/deploy_key
+  - ssh-add /tmp/deploy_key
+
   - if [[ `npm -v` == 3.10.8 ]]; then npm i -g npm@3.10.7; fi
   - npm --version
   - npm config set spin false
@@ -35,7 +39,7 @@ addons:
     
 deploy:
   - provider: script
-    script: ssh -i ./deploy_key bahmni_support@cmr-dev.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps/;git pull;cd ui/dist/;grunt compass'
+    script: ssh bahmni_support@cmr-dev.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps/;git pull;cd ui/dist/;grunt compass'
     on:
       branch: COMRS-117
 
