@@ -17,9 +17,9 @@ install:
   - npm install -g bower
   - npm install -g grunt-cli
   - gem install compass
-#  - cd ui && npm install
-#  - cat npm-debug.log || true
-#  - bower install
+  - cd ui && npm install
+  - cat npm-debug.log || true
+  - bower install
 
 script: 
 #grunt bundle && grunt uglify-and-rename && grunt web
