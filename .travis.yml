@@ -2,6 +2,12 @@ language: node_js
 node_js: "6"
 
 before_install:
+  # decrypting the encrypted SSH private key and adding the key to the current ssh-agent to make any SSH-based command agnostic to the private key location
+  - openssl aes-256-cbc -K $encrypted_47733f2c6cc3_key -iv $encrypted_47733f2c6cc3_iv -in .deploy_key.enc -out /tmp/deploy_key -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/deploy_key
+  - ssh-add /tmp/deploy_key
+
   - if [[ `npm -v` == 3.10.8 ]]; then npm i -g npm@3.10.7; fi
   - npm --version
   - npm config set spin false
@@ -25,6 +31,21 @@ cache:
   directories:
   - ui/node_modules
   - ui/app/components
+
+addons:
+  ssh_known_hosts:
+    - cmr-dev.jembi.org
+    - cmr-staging.jembi.org
+    
+deploy:
+  - provider: script
+    script: ssh bahmni@cmr-dev.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps;git reset --hard;git checkout dev;git pull;cd ui;grunt compass'
+    on:
+      branch: dev
+  - provider: script
+    script: ssh bahmni@cmr-staging.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps;git reset --hard;git checkout staging;git pull;cd ui;grunt compass'
+    on:
+      branch: staging
 
 notifications:
   email: false
