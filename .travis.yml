@@ -45,7 +45,7 @@ deploy:
   - provider: script
     script: ssh bahmni@cmr-staging.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps/;git pull;cd ui/app/;grunt compass'
     on:
-      branch: staging
+      branch: COMRS-117
 
 notifications:
   email: false
