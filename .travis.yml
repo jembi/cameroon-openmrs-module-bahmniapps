@@ -39,11 +39,11 @@ addons:
     
 deploy:
   - provider: script
-    script: ssh bahmni@cmr-dev.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps/;git pull;cd ui/app/;grunt compass'
+    script: ssh bahmni@cmr-dev.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps;git pull;cd ui;grunt compass'
     on:
       branch: dev
   - provider: script
-    script: ssh bahmni@cmr-staging.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps/;git pull;cd ui/app/;grunt compass'
+    script: ssh bahmni@cmr-staging.jembi.org 'cd ~/git/cameroon-openmrs-module-bahmniapps;git pull;cd ui;grunt compass'
     on:
       branch: staging
 
