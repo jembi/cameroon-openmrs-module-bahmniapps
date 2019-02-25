@@ -26,8 +26,8 @@
                     <input tabindex="5" type="text" id="customAttribute" ng-model="searchParameters.customAttribute" placeholder="{{::customAttributesSearchConfig.placeholder}}">
                 </article>
                 <article class="fl" ng-if="::addressSearchConfig.show">
-                    <label for="name"><strong>{{::'REGISTRATION_SEARCH_ADDRESS_LABEL_KEY' | translate}}</strong></label>
-                    <input tabindex="6" type="text" id="addressFieldValue" ng-model="searchParameters.addressFieldValue" placeholder="{{::'REGISTRATION_SEARCH_ADDRESS_PLACEHOLDER_KEY' | translate}}">
+                    <label for="name"><strong>{{::addressSearchConfig.label | translate}}</strong></label>
+                    <input tabindex="6" type="text" id="addressFieldValue" ng-model="searchParameters.addressFieldValue" placeholder="{{::addressSearchConfig.placeholder | translate}}">
                 </article>
 
                 <article class="fl" ng-show="::programAttributesSearchConfig.show">
