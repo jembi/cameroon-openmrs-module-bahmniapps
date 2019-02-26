@@ -58,7 +58,8 @@
             <thead>
             <tr>
                 <th><strong>{{ ::'REGISTRATION_LABEL_ID' | translate}}</strong></th>
-                <th ng-repeat = "type in ::extraIdentifierTypes track by $index"><strong>{{type.name}}</strong></th>
+                <th><strong>{{ ::'REGISTRATION_IDTYPE_1_CNI_KEY' | translate}}</strong></th>
+                <th><strong>{{ ::'REGISTRATION_IDTYPE_2_ART_KEY' | translate}}</strong></th>
                 <th><strong>{{ ::'REGISTRATION_LABEL_NAME' | translate}}</strong></th>
                 <th ng-repeat = "field in ::personSearchResultsConfig.fields track by $index"><strong>{{::convertToTableHeader(field)}}</strong></th>
                 <th><strong>{{ ::'REGISTRATION_LABEL_GENDER' | translate}}</strong></th>
@@ -75,10 +76,8 @@
                         {{::result.identifier || 'Not Assigned'}}
                     </a>
                 </td>
-                <td ng-repeat = "type in ::extraIdentifierTypes track by $index">
-                    {{::result.extraIdentifiers[type.name]}}
-                </td>
-
+                <td>{{::result.extraIdentifiers["REGISTRATION_IDTYPE_1_CNI_KEY"]}}</td>
+                <td>{{::result.extraIdentifiers["REGISTRATION_IDTYPE_2_ART_KEY"]}}</td>
                 <td>{{::result.givenName}} {{::result.middleName}} {{::result.familyName}}</td>
                 <td ng-repeat = "field in ::personSearchResultsConfig.fields track by $index">{{::result.customAttribute[field] || "" | bahmniDateInStrictMode}}</td>
                 <td>{{::result.gender}}</td>
