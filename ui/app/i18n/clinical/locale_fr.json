@@ -230,5 +230,9 @@
   "OBS_BOOLEAN_NO_KEY": "Non",
   "DIAGNOSIS_INITIAL_STAGE_LABEL": "Initiale",
   "DIAGNOSIS_CURRENT_STAGE_LABEL": "Actuel",
-  "CONDITION_LIST_NO_RETRO_MODE": "<strong>Conditions cannot</strong> be edited in retrospective mode"
+  "CONDITION_LIST_NO_RETRO_MODE": "<strong>Conditions cannot</strong> be edited in retrospective mode",
+  "RETROSPECTIVE_POPUP_LOCATION_LABEL": "Emplacement",
+  "RETROSPECTIVE_POPUP_ON_BEHALF_LABEL": "Entrer au nom de",
+  "RETROSPECTIVE_POPUP_DATA_FOR_LABEL": "Entrer information pour",
+  "OKAY_LABEL": "OK"
 }
