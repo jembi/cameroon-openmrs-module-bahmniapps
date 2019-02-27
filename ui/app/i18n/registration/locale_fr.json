@@ -5,7 +5,7 @@
   "REGISTRATION_LABEL_REGISTRATION_DATE" : "date d'enregistrement",
   "REGISTRATION_LABEL_LOGOUT" : "Se déconnecter",
   "REGISTRATION_LABEL_NEW_PATIENT" : "NOUVEAU PATIENT",
-  "REGISTRATION_LABEL_PATIENT_IDENTIFIER" : "identificateur de patient",
+  "REGISTRATION_LABEL_PATIENT_IDENTIFIER" : "Identificateur de patient",
   "REGISTRATION_LABEL_ENTER_ID":"entrer ID",
   "REGISTRATION_SEARCH_CONFIG_KEY":"<u>R</u>echerche",
   "REGISTRATION_CREATE_NEW_CONFIG_KEY":"Créer <u>n</u>ouveau",
@@ -51,7 +51,7 @@
   "REGISTRATION_LABEL_PERSON_NOT_FOUND":"Personne ne trouve pas",
   "REGISTRATION_LABEL_PATIENT_ID":"Patient ID",
   "REGISTRATION_LABEL_SEARCH":"Recherche",
-  "REGISTRATION_LABEL_NAME":"nom",
+  "REGISTRATION_LABEL_NAME":"Nom",
   "REGISTRATION_LABEL_ID":"ID",
   "REGISTRATION_LABEL_NO_RESULTS":"Plus de résultats",
   "REGISTRATION_LABEL_SUMMARY":"Résumé",
@@ -80,5 +80,6 @@
   "REQUIRED_FIELD": "Veuillez remplir ce champ",
   "PRIVILEGE_REQUIRED": "L'utilisateur est connecté mais n'a pas le privilège pertinent",
   "NO_FULFILMENT_MESSAGE": "Aucune observation capturée pour cette commande.",
-  "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "Veuillez sélectionner une valeur de auto complète"
+  "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "Veuillez sélectionner une valeur de auto complète",
+  "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires"
 }

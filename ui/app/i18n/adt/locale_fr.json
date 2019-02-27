@@ -29,5 +29,13 @@
     "CONDITION_LIST_CONDITIONS_INACTIVE": "Inactive Conditions",
     "CONDITION_LIST_CREATED_BY": "par",
     "CONDITION_LIST_ACTIVE_SINCE": "condition from",
-    "CONDITION_LIST_NO_CONDITIONS": "Pas de conditions disponibles"
+    "CONDITION_LIST_NO_CONDITIONS": "Pas de conditions disponibles",
+    "WARD_LIST_LABEL": "Ward List [FR]",
+    "EMPTY_WARD_MESSAGE": "There are no patients in this ward. [FR]",
+    "TOTAL_BEDS_LABEL": "Total Beds [FR]",
+    "AVAILABLE_BEDS_LABEL": "Available Beds [FR]",
+    "BED_LABEL": "Bed [FR]",
+    "ASSIGN_BED_LABEL": "Assign [FR]",
+    "TRANSFER_BED_LABEL": "Transfer [FR]",
+    "EMPTY_WARD_MESSAGE": "There are no patients in this ward. [FR]"
 }

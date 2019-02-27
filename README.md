@@ -1,6 +1,6 @@
 # Bahmni Apps
 
-[![Build Status](https://travis-ci.org/Bahmni/openmrs-module-bahmniapps.svg?branch=master)](https://travis-ci.org/Bahmni/openmrs-module-bahmniapps)
+[![Build Status](https://travis-ci.org/jembi/cameroon-openmrs-module-bahmniapps.svg?branch=master)](https://travis-ci.org/jembi/cameroon-openmrs-module-bahmniapps)
 
 This repository acts as the front end for the **Bahmni EMR**. It is compeltely written in **AngularJS**.
 
