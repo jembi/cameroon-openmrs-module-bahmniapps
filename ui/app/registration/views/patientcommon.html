@@ -135,7 +135,7 @@
         </section>
         <span class="form-field-inline clearfix"
         ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
-           <article class="form-field" ng-repeat="attribute in ::attributeRow" ng-if = "attribute.name == 'REGISTRATION_SEARCH_PHONE_NUMBER'"
+           <article class="form-field" ng-repeat="attribute in ::attributeRow" ng-if = "attribute.name == 'PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER'"
             ng-class="::{'right-form-field' : $index%2 != 0}">
                <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
                         is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
