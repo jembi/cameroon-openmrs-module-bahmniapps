@@ -1,5 +1,5 @@
 <div class="field-attribute">
-    <label for="{{::attribute.name}}">{{::attribute.description}} <span ng-show="isForm">:</span>
+    <label for="{{::attribute.name | translate}}">{{::attribute.description | translate}} <span ng-show="isForm">:</span>
 
         <span class="asterick" ng-show="{{::attribute.required}}">*</span></label>
 </div>
@@ -12,9 +12,15 @@
                    my-autocomplete source="getAutoCompleteList" response-map="getDataResults"
                    ng-disabled="::isReadOnly(attribute.name)" ng-required="{{::attribute.required}}" ng-blur="::handleUpdate(attribute.name)">
 
+                   <input data-ng-switch-default  ng-if = "attribute.name != 'PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER'"
+                   type="text" pattern-validate id="{{::attribute.name}}"
+                   ng-model="targetModel[attribute.name]" data-item-type="personAttribute"
+                   ng-disabled="::isReadOnly(attribute.name)" ng-required="{{::attribute.required}}" ng-blur="::handleUpdate(attribute.name)">
+
             <input data-ng-switch-default
                    type="text" pattern-validate id="{{::attribute.name}}"
                    ng-model="targetModel[attribute.name]" data-item-type="personAttribute"
+                   ng-change="checkDuplicate()" ng-if = "attribute.name == 'PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER'"
                    ng-disabled="::isReadOnly(attribute.name)" ng-required="{{::attribute.required}}" ng-blur="::handleUpdate(attribute.name)">
         </span>
     </div>
