@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state',
-        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state) {
+    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state','patientService',
+        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state, patientService) {
             var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
             var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
             var personAttributes = [];
@@ -17,6 +17,10 @@ angular.module('bahmni.registration')
             $scope.readOnlyExtraIdentifiers = appService.getAppDescriptor().getConfigValue("readOnlyExtraIdentifiers");
             $scope.showSaveConfirmDialogConfig = appService.getAppDescriptor().getConfigValue("showSaveConfirmDialog");
             $scope.showSaveAndContinueButton = false;
+
+            $rootScope.patients;
+            $rootScope.countNo;
+            $rootScope.visibleData = false;
 
             var dontSaveButtonClicked = false;
 
@@ -38,6 +42,49 @@ angular.module('bahmni.registration')
                     $scope.confirmationPrompt(event, toState, toParams);
                 }
             });
+
+            $scope.checkDuplicate = function () {
+                var patientGivenName = $scope.patient.givenName || '';
+                var patientLastName = $scope.patient.familyName || '';
+                var gender = $scope.patient.gender || '';
+                var birthDate = $scope.patient.birthdate || '';
+                var contactNumber = $scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER || '';
+                if(birthDate != '') {
+                 birthDate = new Date(birthDate);
+                 birthDate = convertDate(birthDate);
+                }
+                var queryParams = patientGivenName+' '+patientLastName;
+                console.log("query",queryParams);
+
+                if( queryParams.length > 1) {
+                 patientService.searchDuplicatePatients(queryParams,gender,birthDate,contactNumber).then(function(response){
+                     console.log(response);
+                     $rootScope.patients = response.pageOfResults;
+                     $rootScope.countNo = $rootScope.patients.length;
+                     console.log($rootScope.countNo);
+                     $rootScope.visibleData = true;
+                 });
+ 
+                } else {
+                 $rootScope.visibleData = false;
+                }
+             };
+ 
+             var convertDate = function (date) {
+ 
+                 var yyyy = date.getFullYear().toString();
+                 var mm = (date.getMonth()+1).toString();
+                 var dd  = date.getDate().toString();
+ 
+                 var mmChars = mm.split('');
+                 var ddChars = dd.split('');
+ 
+                 return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+             }
+
+            $scope.resultsPresent = function () {
+                return angular.isDefined($scope.results) && $scope.results.length > 0;
+            };
 
             $scope.confirmationPrompt = function (event, toState) {
                 if (dontSaveButtonClicked === false) {
