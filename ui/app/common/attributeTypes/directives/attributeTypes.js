@@ -11,8 +11,7 @@ angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', [
             getDataResults: '&',
             handleUpdate: '&',
             isReadOnly: '&',
-            isForm: '=?',
-            checkDuplicate: '&'
+            isForm: '=?'
         },
         templateUrl: '../common/attributeTypes/views/attributeInformation.html',
         restrict: 'E',
@@ -23,7 +22,6 @@ angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', [
             $scope.isAutoComplete = $scope.isAutoComplete() || function () { return false; };
             $scope.isReadOnly = $scope.isReadOnly() || function () { return false; };
             $scope.handleUpdate = $scope.handleUpdate() || function () { return false; };
-            $scope.checkDuplicate = $scope.checkDuplicate() || function () { return false; };
 
             $scope.appendConceptNameToModel = function (attribute) {
                 var attributeValueConceptType = $scope.targetModel[attribute.name];
