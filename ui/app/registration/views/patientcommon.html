@@ -133,11 +133,11 @@
                 <ng-include src="'views/age.html'"></ng-include>
             </div>
         </section>
-        <span class="form-field-inline clearfix"
-        ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
-           <article class="form-field" ng-repeat="attribute in ::attributeRow" ng-if = "attribute.name == 'PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER'"
-            ng-class="::{'right-form-field' : $index%2 != 0}">
-               <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
+        <span class="form-field-inline clearfix" ng-repeat="attribute in ::patientConfiguration.attributeTypes">
+           <article class="form-field" ng-if="attribute.name == 'PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER'" 
+                    ng-class="::{'right-form-field' : $index%2 != 0}">
+               <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation" 
+                        ng-if = "attribute.name == 'PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER'"
                         is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
                         get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
            </article>
