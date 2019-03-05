@@ -82,5 +82,10 @@
   "NO_FULFILMENT_MESSAGE": "Aucune observation capturée pour cette commande.",
   "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "Veuillez sélectionner une valeur de auto complète",
   "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires",
-  "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Telephones"
+  "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Telephones",
+  "REGISTRATION_LABEL_SIMILAR_PATIENT_FOUND":"Similar patient found",
+  "REGISTRATION_LABEL_SYSTEM_ID":"System ID",
+  "REGISTRATION_IDTYPE_2_ART_KEY":"ART",
+  "REGISTRATION_LABEL_National_ID":"National ID",
+  "REGISTRATION_LABEL_SUB_DIVISION":"Sub-Division"
 }
