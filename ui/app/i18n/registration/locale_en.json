@@ -113,5 +113,11 @@
   "DELETE_LABEL": "Delete",
   "EDIT_LABEL": "Edit",
   "REGISTRATION_LABEL_RELATIONSHIP_EXISTS": "Given relationship already exists",
-  "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Phone Number"
+  "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Phone Number",
+  "HEART_FAILURE": "Heart Failure",
+  "HEART_FAILURE_SHORT_NAME": "Heart Failure",
+  "HEART_FAILURE_DESCRIPTION": "Death Due To Heart Failure",
+  "DEATH_NOTE_BROUGHT_DEAD": "Death Note, Brought dead",
+  "DEATH_NOTE_BROUGHT_DEAD_SHORT_NAME": "Brought dead ?",
+  "DEATH_NOTE_BROUGHT_DEAD_DESCRIPTION": "Death Note, Brought dead"
 }

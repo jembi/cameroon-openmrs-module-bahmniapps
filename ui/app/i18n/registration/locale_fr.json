@@ -37,7 +37,7 @@
   "REGISTRATION_LABEL_BIRTH_TIME":"naissance Temps",
   "REGISTRATION_LABEL_ADDRESS_INFO":"adresse de l'information",
   "REGISTRATION_LABEL_OTHER_INFO":"Autre information",
-  "REGISTRATION_LABEL_DEATH_INFO":"Death information",
+  "REGISTRATION_LABEL_DEATH_INFO":"Death information [FR]",
   "REGISTRATION_LABEL_REASON_FOR_DEATH":"raison",
   "REGISTRATION_LABEL_CHOOSE_VALUE":"Choisissez la valeur",
   "REGISTRATION_LABEL_IS_DEAD":"Est mort",
@@ -82,5 +82,11 @@
   "NO_FULFILMENT_MESSAGE": "Aucune observation capturée pour cette commande.",
   "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "Veuillez sélectionner une valeur de auto complète",
   "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires",
-  "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Téléphone"
+  "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Téléphone",
+  "HEART_FAILURE": "Heart Failure [FR]",
+  "HEART_FAILURE_SHORT_NAME": "Heart Failure [FR]",
+  "HEART_FAILURE_DESCRIPTION": "Death Due To Heart Failure [FR]",
+  "DEATH_NOTE_BROUGHT_DEAD": "Death Note, Brought dead [FR]",
+  "DEATH_NOTE_BROUGHT_DEAD_SHORT_NAME": "Brought dead ? [FR]",
+  "DEATH_NOTE_BROUGHT_DEAD_DESCRIPTION": "Death Note, Brought dead [FR]"
 }
