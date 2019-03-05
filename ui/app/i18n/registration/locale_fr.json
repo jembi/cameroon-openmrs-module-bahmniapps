@@ -81,5 +81,6 @@
   "PRIVILEGE_REQUIRED": "L'utilisateur est connecté mais n'a pas le privilège pertinent",
   "NO_FULFILMENT_MESSAGE": "Aucune observation capturée pour cette commande.",
   "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "Veuillez sélectionner une valeur de auto complète",
-  "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires"
+  "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires",
+  "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Téléphone"
 }
