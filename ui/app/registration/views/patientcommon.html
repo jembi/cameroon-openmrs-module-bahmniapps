@@ -30,12 +30,12 @@
                          my-autocomplete source="getAutoCompleteList" response-map="getDataResults"
                          data-item-type="personName"
                          placeholder="{{ ::'REGISTRATION_LABEL_PATIENT_FIRSTNAME' | translate}}"
-                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}">
+                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" focus-me="true">
 
                   <input data-ng-switch-default
                          type="text" id="givenName" ng-model="patient.givenName" non-blank pattern-validate
                          placeholder="{{ ::'REGISTRATION_LABEL_PATIENT_FIRSTNAME' | translate}}"
-                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}">
+                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" focus-me="true" ng-change="checkDuplicatePatients()">
               </span>
 
               <span data-ng-switch="::isAutoComplete('givenName')"
@@ -73,7 +73,7 @@
                          my-autocomplete source="getAutoCompleteList" response-map="getDataResults"
                          data-item-type="personName"
                          placeholder="{{ ::'REGISTRATION_LABEL_PATIENT_LAST_NAME' | translate}}"
-                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_LAST_NAME' | translate}}" ng-required="::isLastNameMandatory">
+                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_LAST_NAME' | translate}}" ng-required="::isLastNameMandatory" ng-change="checkDuplicatePatients()">
 
                   <input data-ng-switch-default
                          type="text" id="familyName" ng-model="patient.familyName"  pattern-validate
@@ -110,7 +110,7 @@
 
                 <div class="field-value">
                     <select id="gender" ng-model="patient.gender" required="required" title="{{ 'REGISTRATION_LABEL_SELECT_GENDER'|translate }}"
-                            ng-options="genderMap[genderCode] for genderCode in genderCodes track by genderCode" ng-change="handleUpdate('gender')">
+                    ng-options="genderMap[genderCode] for genderCode in genderCodes track by genderCode" ng-change="handleUpdate('gender');checkDuplicatePatients()">
                         <option value="">{{ ::'REGISTRATION_LABEL_SELECT_GENDER' | translate}}</option>
                     </select>
                     <!--<div class="selectGender">
@@ -138,7 +138,7 @@
                     ng-class="::{'right-form-field' : $index%2 != 0}">
                <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation" 
                         is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
-                        get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
+                        get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate" check-duplicate-patients="checkDuplicatePatients"></attribute-types>
            </article>
      </span>
         <legend class="registraion_legend">

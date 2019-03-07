@@ -82,5 +82,10 @@
   "NO_FULFILMENT_MESSAGE": "Aucune observation capturée pour cette commande.",
   "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "Veuillez sélectionner une valeur de auto complète",
   "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires",
-  "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Téléphone"
+  "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Téléphone",
+  "REGISTRATION_LABEL_SIMILAR_PATIENT_FOUND":"patient(s) similaire(s) trouvé(s)",
+  "REGISTRATION_LABEL_SYSTEM_ID":"ID système",
+  "REGISTRATION_IDTYPE_2_ART_KEY":"ART [FR]",
+  "REGISTRATION_IDTYPE_1_CNI_KEY":"CNI [FR]",
+  "REGISTRATION_LABEL_SUB_DIVISION":"Arrondissement"
 }

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state',
-        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state) {
+    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state', 'patientService',
+        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state, patientService) {
             var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
             var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
             var personAttributes = [];
@@ -17,6 +17,11 @@ angular.module('bahmni.registration')
             $scope.readOnlyExtraIdentifiers = appService.getAppDescriptor().getConfigValue("readOnlyExtraIdentifiers");
             $scope.showSaveConfirmDialogConfig = appService.getAppDescriptor().getConfigValue("showSaveConfirmDialog");
             $scope.showSaveAndContinueButton = false;
+            $rootScope.patients;
+            $rootScope.duplicatePatientsCount;
+            $rootScope.nationalIDs = [];
+            $rootScope.phoneNumbers = [];
+            $rootScope.isDuplicatePatientDataVisible = false;
 
             var dontSaveButtonClicked = false;
 
@@ -38,6 +43,48 @@ angular.module('bahmni.registration')
                     $scope.confirmationPrompt(event, toState, toParams);
                 }
             });
+
+            $scope.checkDuplicatePatients = function () {
+                var patientGivenName = $scope.patient.givenName || '';
+                var patientLastName = $scope.patient.familyName || '';
+                var gender = $scope.patient.gender || '';
+                var birthDate = $scope.patient.birthdate || '';
+                var contactNumber = $scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER || '';
+                if (birthDate != '') {
+                    birthDate = convertDate(new Date(birthDate));
+                }
+
+                if ((patientGivenName != '', patientLastName != '', gender != '', birthDate != '')) {
+                    var queryParams = patientGivenName + ' ' + patientLastName;
+                    if (queryParams.length > 1) {
+                        patientService.searchDuplicatePatients(queryParams, gender, birthDate, contactNumber).then(function (response) {
+                            _.map(response.pageOfResults, function (result) {
+                                result.addressFieldValue = JSON.parse(result.addressFieldValue);
+                                result.extraIdentifiers = JSON.parse(result.extraIdentifiers);
+                                result.customAttribute = JSON.parse(result.customAttribute);
+                            });
+                            $rootScope.patients = response.pageOfResults;
+                            $rootScope.duplicatePatientsCount = $rootScope.patients.length;
+                            $rootScope.isDuplicatePatientDataVisible = true;
+                            if ($rootScope.duplicatePatientsCount == 0) {
+                                $rootScope.isDuplicatePatientDataVisible = false;
+                            }
+                        });
+                    }
+                }
+                else {
+                    $rootScope.isDuplicatePatientDataVisible = false;
+                }
+            };
+
+            var convertDate = function (date) {
+                var yyyy = date.getFullYear().toString();
+                var mm = (date.getMonth() + 1).toString();
+                var dd = date.getDate().toString();
+                var mmChars = mm.split('');
+                var ddChars = dd.split('');
+                return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+            };
 
             $scope.confirmationPrompt = function (event, toState) {
                 if (dontSaveButtonClicked === false) {
