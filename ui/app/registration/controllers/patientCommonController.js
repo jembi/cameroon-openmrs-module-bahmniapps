@@ -82,7 +82,7 @@ angular.module('bahmni.registration')
                             $http.get(Bahmni.Common.Constants.conceptSearchByFullNameUrl, {
                                 params: {
                                     name: deathConcept,
-                                    v: "custom:(uuid,name,set,setMembers:(uuid,display,name:(uuid,name),retired))"
+                                    v: "bahmni"
                                 },
                                 withCredentials: true
                             }).then(function (results) {
