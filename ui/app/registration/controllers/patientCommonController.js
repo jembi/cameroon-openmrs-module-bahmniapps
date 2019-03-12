@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state','patientService',
+    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state', 'patientService',
         function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state, patientService) {
             var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
             var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
@@ -88,12 +88,12 @@ angular.module('bahmni.registration')
                         gender,
                         phoneNumber,
                         subDivision
-                    ).then(function(response) {
+                    ).then(function (response) {
                         $rootScope.numberOfDuplicatedPatients = response.length;
                         $rootScope.duplicatedPatients = response;
-                    })
+                    });
                 }
-            }
+            };
 
             $scope.confirmationPrompt = function (event, toState) {
                 if (dontSaveButtonClicked === false) {
