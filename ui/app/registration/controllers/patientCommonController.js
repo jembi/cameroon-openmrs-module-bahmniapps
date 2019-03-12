@@ -17,6 +17,7 @@ angular.module('bahmni.registration')
             $scope.readOnlyExtraIdentifiers = appService.getAppDescriptor().getConfigValue("readOnlyExtraIdentifiers");
             $scope.showSaveConfirmDialogConfig = appService.getAppDescriptor().getConfigValue("showSaveConfirmDialog");
             $scope.showSaveAndContinueButton = false;
+            $rootScope.searchActions = appService.getAppDescriptor().getExtensions("org.bahmni.registration.patient.search.result.action");
 
             var dontSaveButtonClicked = false;
 
@@ -38,6 +39,33 @@ angular.module('bahmni.registration')
                     $scope.confirmationPrompt(event, toState, toParams);
                 }
             });
+
+            $scope.forPatient = function (patient) {
+                $scope.selectedPatient = patient;
+                return $scope;
+            };
+
+            $scope.doExtensionAction = function (extension) {
+                var forwardTo = appService.getAppDescriptor().formatUrl(extension.url, { 'patientUuid': $scope.selectedPatient.uuid });
+                if (extension.label === 'Print') {
+                    var params = identifyParams(forwardTo);
+                    if (params.launch === 'dialog') {
+                        var firstChar = forwardTo.charAt(0);
+                        var prefix = firstChar === "/" ? "#" : "#/";
+                        var hiddenFrame = $("#printPatientFrame")[0];
+                        hiddenFrame.src = prefix + forwardTo;
+                        hiddenFrame.contentWindow.print();
+                    } else {
+                        $location.url(forwardTo);
+                    }
+                } else {
+                    $location.url(forwardTo);
+                }
+            };
+
+            $scope.resultsPresent = function () {
+                return angular.isDefined($scope.results) && $scope.results.length > 0;
+            };
 
             $rootScope.duplicatedPatients = [];
             $scope.checkDuplicatePatients = function () {

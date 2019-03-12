@@ -15,7 +15,11 @@
         </thead>
         <tbody>
             <tr ng-repeat="record in duplicatedPatients">
-                <td>{{record.systemIdentifier}}</td>
+                <td>
+                    <a tabindex="{{ :: 8 + $index + 1 }}" ng-click="forPatient(record).doExtensionAction(searchActions[0])">
+                        {{record.systemIdentifier}}
+                    </a>
+                </td>
                 <td>{{record.cni}}</td>
                 <td>{{record.art}}</td>
                 <td>{{record.name}}</td>
