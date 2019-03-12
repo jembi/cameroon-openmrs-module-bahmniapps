@@ -215,6 +215,12 @@ angular.module('bahmni.registration')
                 }
             });
 
+            $scope.$watch('patient.address.address3', function () {
+                if ($scope.patient.address) {
+                    $scope.checkDuplicatePatients();
+                }
+            });
+
             $scope.getAutoCompleteList = function (attributeName, query, type) {
                 return patientAttributeService.search(attributeName, query, type);
             };

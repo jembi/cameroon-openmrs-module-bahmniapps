@@ -33,7 +33,6 @@ angular.module('bahmni.registration')
         var searchDuplicatePatients = function (systemIdentifier, givenName, familyName, dateOfBirth, gender, phoneNumber, subDivision) {
             var config = {
                 params: {
-                    // systemIdentifier: systemIdentifier,
                     givenName: givenName,
                     familyName: familyName,
                     dateOfBirth: dateOfBirth,
