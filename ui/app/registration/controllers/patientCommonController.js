@@ -22,7 +22,7 @@ angular.module('bahmni.registration')
             $rootScope.nationalIDs = [];
             $rootScope.phoneNumbers = [];
             $rootScope.isDuplicatePatientDataVisible = false;
-
+            $rootScope.searchActions = appService.getAppDescriptor().getExtensions("org.bahmni.registration.patient.search.result.action");
             var dontSaveButtonClicked = false;
 
             var isHref = false;
@@ -84,6 +84,33 @@ angular.module('bahmni.registration')
                 var mmChars = mm.split('');
                 var ddChars = dd.split('');
                 return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
+            };
+
+            $scope.forPatient = function (patient) {
+                $scope.selectedPatient = patient;
+                return $scope;
+            };
+
+            $scope.doExtensionAction = function (extension) {
+                var forwardTo = appService.getAppDescriptor().formatUrl(extension.url, { 'patientUuid': $scope.selectedPatient.uuid });
+                if (extension.label === 'Print') {
+                    var params = identifyParams(forwardTo);
+                    if (params.launch === 'dialog') {
+                        var firstChar = forwardTo.charAt(0);
+                        var prefix = firstChar === "/" ? "#" : "#/";
+                        var hiddenFrame = $("#printPatientFrame")[0];
+                        hiddenFrame.src = prefix + forwardTo;
+                        hiddenFrame.contentWindow.print();
+                    } else {
+                        $location.url(forwardTo);
+                    }
+                } else {
+                    $location.url(forwardTo);
+                }
+            };
+
+            $scope.resultsPresent = function () {
+                return angular.isDefined($scope.results) && $scope.results.length > 0;
             };
 
             $scope.confirmationPrompt = function (event, toState) {
