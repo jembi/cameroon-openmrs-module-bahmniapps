@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state',
-        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state) {
+    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state','patientService',
+        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state, patientService) {
             var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
             var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
             var personAttributes = [];
@@ -38,6 +38,33 @@ angular.module('bahmni.registration')
                     $scope.confirmationPrompt(event, toState, toParams);
                 }
             });
+
+            $rootScope.duplicatedPatients = [];
+            $scope.checkDuplicatePatients = function () {
+                console.log($scope.patient);
+                var systemIdentier = ''; // FIXME
+                var givenName = $scope.patient.givenName || '';
+                var familyName = $scope.patient.familyName || '';
+                var gender = $scope.patient.gender || '';
+                var birthDate = $scope.patient.birthdate || '';
+                var phoneNumber = $scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER || '';
+                var subDivision = $scope.patient.address.address3 || '';
+
+                if ((givenName || familyName) && gender && birthDate) {
+                    patientService.searchDuplicatePatients(
+                        systemIdentier,
+                        givenName,
+                        familyName,
+                        birthDate,
+                        gender,
+                        phoneNumber,
+                        subDivision
+                    ).then(function(response) {
+                        $rootScope.numberOfDuplicatedPatients = response.length;
+                        $rootScope.duplicatedPatients = response;
+                    })
+                }
+            }
 
             $scope.confirmationPrompt = function (event, toState) {
                 if (dontSaveButtonClicked === false) {
