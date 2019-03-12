@@ -41,14 +41,15 @@ angular.module('bahmni.registration')
 
             $rootScope.duplicatedPatients = [];
             $scope.checkDuplicatePatients = function () {
-                console.log($scope.patient);
                 var systemIdentier = ''; // FIXME
                 var givenName = $scope.patient.givenName || '';
                 var familyName = $scope.patient.familyName || '';
                 var gender = $scope.patient.gender || '';
                 var birthDate = $scope.patient.birthdate || '';
                 var phoneNumber = $scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER || '';
-                var subDivision = $scope.patient.address.address3 || '';
+                if ($scope.patient.address) {
+                    var subDivision = $scope.patient.address.address3 || '';
+                }
 
                 if ((givenName || familyName) && gender && birthDate) {
                     patientService.searchDuplicatePatients(

@@ -4,6 +4,7 @@ describe('PatientCommonController', function () {
 
     var $aController, $httpBackend, scope, appService, rootScope, patientAttributeService, $state;
     var spinner = jasmine.createSpyObj('spinner', ['forPromise']);
+    var patientService = jasmine.createSpyObj('patientService', ['searchDuplicatePatients']);
     var $compile;
 
     beforeEach(module('bahmni.registration', 'ngDialog'));
@@ -42,7 +43,8 @@ describe('PatientCommonController', function () {
         $aController('PatientCommonController', {
             $scope: scope,
             $rootScope: rootScope,
-            appService: appService
+            appService: appService,
+            patientService: patientService
         });
 
         $httpBackend.whenGET(Bahmni.Common.Constants.globalPropertyUrl + '?property=concept.reasonForDeath').respond({});
@@ -56,6 +58,7 @@ describe('PatientCommonController', function () {
         $state.current.name = "patient.new";
         scope.onHomeNavigate = jasmine.createSpy("onHomeNavigate");
         scope.confirmationPrompt = jasmine.createSpy("confirmationPrompt");
+        // scope.patientService = jasmine.createSpyObj('patientService', ['searchDuplicatePatients']);
         var element = angular.element("<a ng-click='onHomeNavigate()'>");
         var compiled = $compile(element)(scope);
         compiled.triggerHandler('click');
@@ -138,7 +141,8 @@ it('checks that the confirmation popup is not prompted on the Registration secon
             http: $httpBackend,
             patientAttributeService: patientAttributeService,
             spinner: spinner,
-            appService: appService
+            appService: appService,
+            patientService: patientService
         });
         expect(scope.showBirthTime).toBe(false);
     });
@@ -224,7 +228,8 @@ it('checks that the confirmation popup is not prompted on the Registration secon
             $aController('PatientCommonController', {
                 $scope: scope,
                 $rootScope: rootScope,
-                appService: appService
+                appService: appService,
+                patientService: patientService
             });
 
             $httpBackend.whenGET(Bahmni.Common.Constants.globalPropertyUrl + '?property=concept.reasonForDeath').respond({});
