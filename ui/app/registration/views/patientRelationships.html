@@ -2,7 +2,7 @@
         <div class="history-relationship">
             <div class="row" ng-repeat="relationship in patient.relationships track by $index" ng-hide="relationship.voided">
                 <div class="col col1">
-                    <span>{{getRelationshipTypeForDisplay(relationship)}}</span>
+                    <span>{{getRelationshipTypeForDisplay(relationship) | translate}}</span>
                 </div>
                 <div class="col col2">
                     <span>{{getRelatedToPersonForDisplay(relationship)}}</span>
@@ -29,7 +29,7 @@
                         </label>
                     </div>
                     <div class="field-value">
-                        <select ng-model="newRelationship.relationshipType.uuid" ng-options="type.uuid as type.aIsToB for type in ::relationshipTypes"
+                        <select ng-model="newRelationship.relationshipType.uuid" ng-options="type.uuid as type.aIsToB | translate for type in ::relationshipTypes"
                                 ng-change="clearRelationshipRow(newRelationship, $index);">
                             <option value="">{{ ::'REGISTRATION_LABEL_SELECT_RELATIONSHIP_TYPE' | translate}}</option>
                         </select>

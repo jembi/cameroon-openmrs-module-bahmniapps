@@ -9,6 +9,7 @@ angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', [
             isAutoComplete: '&',
             getAutoCompleteList: '&',
             getDataResults: '&',
+            onChange: '&',
             handleUpdate: '&',
             isReadOnly: '&',
             isForm: '=?'
@@ -18,6 +19,11 @@ angular.module('bahmni.common.attributeTypes', []).directive('attributeTypes', [
         controller: function ($scope) {
             $scope.getAutoCompleteList = $scope.getAutoCompleteList();
             $scope.getDataResults = $scope.getDataResults();
+            $scope.onChangeEvent = function () {
+                if ($scope.onChange && typeof $scope.onChange === "function") {
+                    $scope.onChange();
+                }
+            };
             // to avoid watchers in one way binding
             $scope.isAutoComplete = $scope.isAutoComplete() || function () { return false; };
             $scope.isReadOnly = $scope.isReadOnly() || function () { return false; };

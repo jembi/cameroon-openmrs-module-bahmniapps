@@ -37,8 +37,8 @@
   "REGISTRATION_LABEL_BIRTH_TIME":"naissance Temps",
   "REGISTRATION_LABEL_ADDRESS_INFO":"adresse de l'information",
   "REGISTRATION_LABEL_OTHER_INFO":"Autre information",
-  "REGISTRATION_LABEL_DEATH_INFO":"Death information",
-  "REGISTRATION_LABEL_REASON_FOR_DEATH":"raison",
+  "REGISTRATION_LABEL_DEATH_INFO":"Information de décès",
+  "REGISTRATION_LABEL_REASON_FOR_DEATH":"Raison",
   "REGISTRATION_LABEL_CHOOSE_VALUE":"Choisissez la valeur",
   "REGISTRATION_LABEL_IS_DEAD":"Est mort",
   "REGISTRATION_LABEL_DATE_DEATH":"Date de décès",
@@ -81,5 +81,6 @@
   "PRIVILEGE_REQUIRED": "L'utilisateur est connecté mais n'a pas le privilège pertinent",
   "NO_FULFILMENT_MESSAGE": "Aucune observation capturée pour cette commande.",
   "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "Veuillez sélectionner une valeur de auto complète",
-  "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires"
+  "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires",
+  "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Téléphone"
 }
