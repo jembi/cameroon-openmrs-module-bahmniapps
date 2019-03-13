@@ -15,6 +15,7 @@
             <input data-ng-switch-default
                    type="text" pattern-validate id="{{::attribute.name}}"
                    ng-model="targetModel[attribute.name]" data-item-type="personAttribute"
+                   ng-change="onChangeEvent()"
                    ng-disabled="::isReadOnly(attribute.name)" ng-required="{{::attribute.required}}" ng-blur="::handleUpdate(attribute.name)"
                    maxlength="{{::attribute.name == 'PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER' ? '9' : ''}}">
         </span>

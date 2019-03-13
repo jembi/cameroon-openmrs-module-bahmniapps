@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.registration')
-    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state',
-        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state) {
+    .controller('PatientCommonController', ['$scope', '$rootScope', '$http', 'patientAttributeService', 'appService', 'spinner', '$location', 'ngDialog', '$window', '$state', 'patientService',
+        function ($scope, $rootScope, $http, patientAttributeService, appService, spinner, $location, ngDialog, $window, $state, patientService) {
             var autoCompleteFields = appService.getAppDescriptor().getConfigValue("autoCompleteFields", []);
             var showCasteSameAsLastNameCheckbox = appService.getAppDescriptor().getConfigValue("showCasteSameAsLastNameCheckbox");
             var personAttributes = [];
@@ -17,6 +17,7 @@ angular.module('bahmni.registration')
             $scope.readOnlyExtraIdentifiers = appService.getAppDescriptor().getConfigValue("readOnlyExtraIdentifiers");
             $scope.showSaveConfirmDialogConfig = appService.getAppDescriptor().getConfigValue("showSaveConfirmDialog");
             $scope.showSaveAndContinueButton = false;
+            $rootScope.searchActions = appService.getAppDescriptor().getExtensions("org.bahmni.registration.patient.search.result.action");
 
             var dontSaveButtonClicked = false;
 
@@ -38,6 +39,61 @@ angular.module('bahmni.registration')
                     $scope.confirmationPrompt(event, toState, toParams);
                 }
             });
+
+            $scope.forPatient = function (patient) {
+                $scope.selectedPatient = patient;
+                return $scope;
+            };
+
+            $scope.doExtensionAction = function (extension) {
+                var forwardTo = appService.getAppDescriptor().formatUrl(extension.url, { 'patientUuid': $scope.selectedPatient.uuid });
+                if (extension.label === 'Print') {
+                    var params = identifyParams(forwardTo);
+                    if (params.launch === 'dialog') {
+                        var firstChar = forwardTo.charAt(0);
+                        var prefix = firstChar === "/" ? "#" : "#/";
+                        var hiddenFrame = $("#printPatientFrame")[0];
+                        hiddenFrame.src = prefix + forwardTo;
+                        hiddenFrame.contentWindow.print();
+                    } else {
+                        $location.url(forwardTo);
+                    }
+                } else {
+                    $location.url(forwardTo);
+                }
+            };
+
+            $scope.resultsPresent = function () {
+                return angular.isDefined($scope.results) && $scope.results.length > 0;
+            };
+
+            $rootScope.duplicatedPatients = [];
+            $scope.checkDuplicatePatients = function () {
+                var systemIdentier = ''; // FIXME
+                var givenName = $scope.patient.givenName || '';
+                var familyName = $scope.patient.familyName || '';
+                var gender = $scope.patient.gender || '';
+                var birthDate = $scope.patient.birthdate || '';
+                var phoneNumber = $scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER || '';
+                if ($scope.patient.address) {
+                    var subDivision = $scope.patient.address.address3 || '';
+                }
+
+                if ((givenName || familyName) && gender && birthDate) {
+                    patientService.searchDuplicatePatients(
+                        systemIdentier,
+                        givenName,
+                        familyName,
+                        birthDate,
+                        gender,
+                        phoneNumber,
+                        subDivision
+                    ).then(function (response) {
+                        $rootScope.numberOfDuplicatedPatients = response.length;
+                        $rootScope.duplicatedPatients = response;
+                    });
+                }
+            };
 
             $scope.confirmationPrompt = function (event, toState) {
                 if (dontSaveButtonClicked === false) {
@@ -156,6 +212,12 @@ angular.module('bahmni.registration')
             $scope.$watch('patientLoaded', function () {
                 if ($scope.patientLoaded) {
                     executeShowOrHideRules();
+                }
+            });
+
+            $scope.$watch('patient.address.address3', function () {
+                if ($scope.patient.address) {
+                    $scope.checkDuplicatePatients();
                 }
             });
 
