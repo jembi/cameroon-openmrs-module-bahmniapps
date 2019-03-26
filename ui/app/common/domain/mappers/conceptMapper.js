@@ -12,7 +12,7 @@ Bahmni.Common.Domain.ConceptMapper = function () {
         var shortConceptName = _.find(openMrsConcept.names, {conceptNameType: "SHORT"});
         return {
             uuid: openMrsConcept.uuid,
-            name: openMrsConcept.name.name,
+            name: openMrsConcept.names[0].name,
             shortName: shortConceptName ? shortConceptName.name : null,
             description: openMrsDescription ? openMrsDescription.description : null,
             set: openMrsConcept.set,
