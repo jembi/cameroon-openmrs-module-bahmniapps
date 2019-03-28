@@ -1,5 +1,5 @@
 <div class="registraition-search-results-container" ng-show="duplicatedPatients.length > 0">
-    <h6>{{numberOfDuplicatedPatients}} {{::'REGISTRATION_LABEL_SIMILAR_PATIENT_FOUND' | translate}}</h6>
+    <h6 style="color: #FF0000; font-weight: 600">{{ 'REGISTRATION_LABEL_WARNING' | translate}} {{numberOfDuplicatedPatients}} {{::'REGISTRATION_LABEL_SIMILAR_PATIENT_FOUND' | translate}}</h6>
     <table class="table">
         <thead>
             <tr>
