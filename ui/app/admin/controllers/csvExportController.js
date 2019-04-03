@@ -11,7 +11,7 @@ angular.module('bahmni.admin')
             });
         };
         $scope.conceptSet = null;
-        $scope.getDataResults = function (results) {
+        $scope.getDataResults = function (results) {   
             return results.map(function (concept) {
                 return {'concept': {uuid: concept.uuid, name: concept.name.name}, 'value': concept.name.name};
             });
