@@ -362,5 +362,9 @@ it('checks that the confirmation popup is not prompted on the Registration secon
         })
     })
 
+    it("should call function for checking duplicate patient", function() {
+      expect(scope.checkDuplicatePatients()).toHaveBeenCalled();
+    });
+
 })
 
