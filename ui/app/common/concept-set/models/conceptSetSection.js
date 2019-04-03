@@ -22,7 +22,7 @@ Bahmni.ConceptSet.ConceptSetSection = function (extensions, user, config, observ
         self.alwaysShow = user.isFavouriteObsTemplate(self.conceptName);
         self.allowAddMore = config.allowAddMore;
         self.id = "concept-set-" + conceptSet.uuid;
-        if( self.uuid == "1fb2dd86-53b5-4815-9c64-edc081b908d9"){
+        if (self.uuid === "1fb2dd86-53b5-4815-9c64-edc081b908d9") {
         	self.collapseInnerSections = {value: true};
         }
     };
