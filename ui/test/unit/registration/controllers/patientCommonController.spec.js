@@ -361,6 +361,41 @@ it('checks that the confirmation popup is not prompted on the Registration secon
             expect(sections.additionalPatientInformation.canShow).toBeTruthy();
         })
     })
+    
+    describe("Call function for duplicate patients", function () {
+        it("should call function for checking duplicate patient", function() {
+         scope.patient.systemIdentier = 'BAH203007';
+         scope.patient.givenName = 'Dhruv';
+         scope.patient.familyName = 'Bhardwaj';
+         scope.patient.gender = 'M';
+         scope.patient.birthDate = '1993-12-18T00:00:00.000Z';
+         scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER = '987654321';
+         scope.patient.address = 'BAYA HADJIDA';
+         expect(scope.patient.systemIdentier).toBe('BAH203007');
+         expect(scope.patient.givenName).toBe('Dhruv');
+         expect(scope.patient.familyName).toBe('Bhardwaj');
+         expect(scope.patient.gender).toBe('M');
+         expect(scope.patient.birthDate).toBe('1993-12-18T00:00:00.000Z');
+         expect(scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER).toBe('987654321');
+         expect(scope.patient.address).toBe('BAYA HADJIDA');
+         scope.checkDuplicatePatients = jasmine.createSpy("checkDuplicatePatients");
+         scope.checkDuplicatePatients();
+         expect(scope.checkDuplicatePatients).toHaveBeenCalled();
+     });
+    })
 
+   describe("Should not call function for duplicate patients", function() {
+       it("should not call checkDuplicatePatients when input have no values", function() {
+        expect(scope.patient.systemIdentier).toBe(undefined);
+        expect(scope.patient.givenName).toBe(undefined);
+        expect(scope.patient.familyName).toBe(undefined);
+        expect(scope.patient.gender).toBe(undefined);
+        expect(scope.patient.birthDate).toBe(undefined);
+        expect(scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER).toBe(undefined);
+        expect(scope.patient.address).toBe(undefined);
+        scope.checkDuplicatePatients = jasmine.createSpy("checkDuplicatePatients");
+        expect(scope.checkDuplicatePatients).not.toHaveBeenCalled();
+       });
+   })
 })
 

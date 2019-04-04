@@ -134,6 +134,25 @@ describe('Patient resource', function () {
 
     });
 
+    it('Should call url for duplicate patient', function () {
+        var systemIdentifier = 'BAH203006';
+        var givenName = 'Kartik';
+        var familyName = 'Seth';
+        var dateOfBirth = '1993-03-18T00:00:00.000Z';
+        var gender = 'M';
+        var phoneNumber = '123456789';
+        var subDivision = 'NGAOUNDAL';
+        var results = patientService.searchDuplicatePatients(systemIdentifier, givenName, familyName, dateOfBirth, gender, phoneNumber, subDivision);
+        expect(mockHttp.get).toHaveBeenCalled();
+        expect(mockHttp.get.calls.mostRecent().args[0]).toBe(Bahmni.Common.Constants.bahmniSearchUrl + "/duplicated-patient");
+        expect(mockHttp.get.calls.mostRecent().args[1].params.givenName).toBe(givenName);
+        expect(mockHttp.get.calls.mostRecent().args[1].params.familyName).toBe(familyName);
+        expect(mockHttp.get.calls.mostRecent().args[1].params.dateOfBirth).toBe(dateOfBirth);
+        expect(mockHttp.get.calls.mostRecent().args[1].params.gender).toBe(gender);
+        expect(mockHttp.get.calls.mostRecent().args[1].params.phoneNumber).toBe(phoneNumber);
+        expect(mockHttp.get.calls.mostRecent().args[1].params.subDivision).toBe(subDivision);
+    });
+
     it('should make network call to serach by patient name or identifier for given query string and limit', function () {
         var query = "demo";
         patientService.searchByNameOrIdentifier(query, 100);
