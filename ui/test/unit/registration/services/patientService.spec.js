@@ -136,8 +136,8 @@ describe('Patient resource', function () {
 
     it('Should call url for duplicate patient', function () {
         var systemIdentifier = 'BAH203006';
-        var givenName = 'Krish';
-        var familyName = 'Menon';
+        var givenName = 'Kartik';
+        var familyName = 'Seth';
         var dateOfBirth = '1993-03-18T00:00:00.000Z';
         var gender = 'M';
         var phoneNumber = '123456789';
