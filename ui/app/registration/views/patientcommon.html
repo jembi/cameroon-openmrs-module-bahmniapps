@@ -130,8 +130,7 @@
            <article class="form-field" ng-if="attribute.name == 'PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER'" 
                     ng-class="::{'right-form-field' : $index%2 != 0}">
                <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation" 
-                        is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList" 
-                        on-change="checkDuplicatePatients()"
+                        is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
                         get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
            </article>
      </span>
