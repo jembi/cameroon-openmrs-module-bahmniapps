@@ -74,7 +74,6 @@ angular.module('bahmni.registration')
                 var familyName = $scope.patient.familyName || '';
                 var gender = $scope.patient.gender || '';
                 var birthDate = $scope.patient.birthdate || '';
-                var phoneNumber = $scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER || '';
                 if ($scope.patient.address) {
                     var subDivision = $scope.patient.address.address3 || '';
                 }
@@ -86,7 +85,6 @@ angular.module('bahmni.registration')
                         familyName,
                         birthDate,
                         gender,
-                        phoneNumber,
                         subDivision
                     ).then(function (response) {
                         $rootScope.numberOfDuplicatedPatients = response.length;
