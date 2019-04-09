@@ -182,7 +182,7 @@
   "CLINICAL_ACCEPT": "Accept",
   "CLINICAL_ACTION": "Action",
   "CLINICAL_DIAGNOSIS": "Diagnostic de la visite en cours",
-  "CONDITION_LIST_DISPLAY_CONTROL_TITLE": "Conditions",
+  "CONDITION_LIST_DISPLAY_CONTROL_TITLE": "Conditions chroniques",
   "CONDITION_LIST_ACTIVE": "Active",
   "CONDITION_LIST_INACTIVE": "Inactive",
   "CONDITION_LIST_HISTORY_OF": "History Of",
@@ -236,5 +236,6 @@
   "RETROSPECTIVE_POPUP_ON_BEHALF_LABEL": "Entrer au nom de",
   "RETROSPECTIVE_POPUP_DATA_FOR_LABEL": "Entrer information pour",
   "OKAY_LABEL": "OK",
-  "PATIENT_PROFILE_RELATIONSHIPS_LABEL": "Relation"
+  "PATIENT_PROFILE_RELATIONSHIPS_LABEL": "Relation",
+  "CLINICAL_ADD_AS_CONDITION":"Ajouter comme condition"
 }
