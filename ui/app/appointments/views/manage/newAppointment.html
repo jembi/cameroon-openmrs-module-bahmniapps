@@ -75,7 +75,7 @@
                         {{'APPOINTMENT_SERVICE_LOCATION_KEY' | translate}}
                     </label>
                     <select id="location" ng-model="appointment.location"
-                            ng-options="location.display for location in appointmentCreateConfig.locations | orderBy:'display'"
+                            ng-options="location.display | translate for location in appointmentCreateConfig.locations | orderBy:'display | translate'"
                             ng-disabled="isEditMode() && !isEditAllowed()">
                         <option value="">{{ ::'PLACEHOLDER_SERVICE_LOCATION' | translate}}
                         </option>
