@@ -197,4 +197,19 @@ describe('Patient resource', function () {
         expect(mockHttp.get).toHaveBeenCalled();
         expect(mockHttp.get.calls.mostRecent().args[0]).toBe("http://blah/ws/rest/v1/patientprofile/someUuid");
     })
+
+    function checkDuplicateWithRightParameter() {
+        this.checkParameters = function(systemIdentifier, givenName, familyName, dateOfBirth, gender, phoneNumber, subDivision) {
+         return patientService.searchDuplicatePatients(systemIdentifier, givenName, familyName, dateOfBirth, gender, phoneNumber, subDivision);
+        }
+    };
+
+    describe("check duplicate patients with right parameter", function() {
+        it('should track the arguments of its calls', function() {
+            var c = new checkDuplicateWithRightParameter();
+            spyOn(c,'checkParameters');
+            c.checkParameters('BAH203006', 'Kartik', 'Seth', '1993-03-18T00:00:00.000Z', 'M', '123456789', 'NGAOUNDAL');
+            expect(c.checkParameters).toHaveBeenCalledWith('BAH203006', 'Kartik', 'Seth', '1993-03-18T00:00:00.000Z', 'M', '123456789', 'NGAOUNDAL');
+        });
+    })
 });

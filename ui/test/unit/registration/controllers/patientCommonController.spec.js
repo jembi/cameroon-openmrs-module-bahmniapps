@@ -371,16 +371,7 @@ it('checks that the confirmation popup is not prompted on the Registration secon
          scope.patient.birthDate = '1993-12-18T00:00:00.000Z';
          scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER = '987654321';
          scope.patient.address = 'BAYA HADJIDA';
-         expect(scope.patient.systemIdentier).toBe('BAH203007');
-         expect(scope.patient.givenName).toBe('Dhruv');
-         expect(scope.patient.familyName).toBe('Bhardwaj');
-         expect(scope.patient.gender).toBe('M');
-         expect(scope.patient.birthDate).toBe('1993-12-18T00:00:00.000Z');
-         expect(scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER).toBe('987654321');
-         expect(scope.patient.address).toBe('BAYA HADJIDA');
          scope.checkDuplicatePatients = jasmine.createSpy("checkDuplicatePatients");
-         scope.checkDuplicatePatients();
-         expect(scope.checkDuplicatePatients).toHaveBeenCalled();
      });
     })
 
@@ -397,5 +388,6 @@ it('checks that the confirmation popup is not prompted on the Registration secon
         expect(scope.checkDuplicatePatients).not.toHaveBeenCalled();
        });
    })
+
 })
 
