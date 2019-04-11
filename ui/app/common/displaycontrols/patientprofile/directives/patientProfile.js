@@ -20,7 +20,7 @@
         if ($scope.config.hasOwnProperty("ageLimit") && patient.age >= $scope.config.ageLimit) {
             patient.ageText = patient.age.toString() + " <span> years </span>";
         }
-        var patientAttributeTypes = [patient.genderText, patient.ageText];
+        var patientAttributeTypes = [patient.ageText];
         if (patient.bloodGroupText) {
             patientAttributeTypes.push(patient.bloodGroupText);
         }

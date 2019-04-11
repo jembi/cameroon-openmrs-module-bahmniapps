@@ -30,22 +30,22 @@ angular.module('bahmni.registration')
             return patientServiceStrategy.search(config);
         };
 
-        var searchDuplicatePatients = function (systemIdentifier, givenName, familyName, dateOfBirth, gender, phoneNumber, subDivision) {
+        var searchDuplicatePatients = function (systemIdentifier, givenName, familyName, dateOfBirth, gender, subDivision) {
             var config = {
                 params: {
                     givenName: givenName,
                     familyName: familyName,
                     dateOfBirth: dateOfBirth,
                     gender: gender,
-                    phoneNumber: phoneNumber,
                     subDivision: subDivision
                 },
                 withCredentials: true
             };
 
-            if (!phoneNumber) {
-                delete config.params.phoneNumber;
+            if (!subDivision) {
+                delete config.params.subDivision;
             }
+
             return patientServiceStrategy.searchDuplicatePatients(config);
         };
 
