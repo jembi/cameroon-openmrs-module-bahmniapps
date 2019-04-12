@@ -84,7 +84,7 @@ describe('PatientCommonController', function () {
         expect(scope.confirmationPrompt).not.toHaveBeenCalled();
     });
 
-it('checks that the confirmation popup is not prompted on the Registration second page when the home button is clicked and the config is enabled', function () {
+    it('checks that the confirmation popup is not prompted on the Registration second page when the home button is clicked and the config is enabled', function () {
         scope.showSaveConfirmDialogConfig = true;
         $state.current.name = "patient.visit";
         scope.onHomeNavigate = jasmine.createSpy("onHomeNavigate");
@@ -361,33 +361,36 @@ it('checks that the confirmation popup is not prompted on the Registration secon
             expect(sections.additionalPatientInformation.canShow).toBeTruthy();
         })
     })
-    
-    describe("Call function for duplicate patients", function () {
-        it("should call function for checking duplicate patient", function() {
-         scope.patient.systemIdentier = 'BAH203007';
-         scope.patient.givenName = 'Dhruv';
-         scope.patient.familyName = 'Bhardwaj';
-         scope.patient.gender = 'M';
-         scope.patient.birthDate = '1993-12-18T00:00:00.000Z';
-         scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER = '987654321';
-         scope.patient.address = 'BAYA HADJIDA';
-         scope.checkDuplicatePatients = jasmine.createSpy("checkDuplicatePatients");
-     });
-    })
 
-   describe("Should not call function for duplicate patients", function() {
-       it("should not call checkDuplicatePatients when input have no values", function() {
-        expect(scope.patient.systemIdentier).toBe(undefined);
-        expect(scope.patient.givenName).toBe(undefined);
-        expect(scope.patient.familyName).toBe(undefined);
-        expect(scope.patient.gender).toBe(undefined);
-        expect(scope.patient.birthDate).toBe(undefined);
-        expect(scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER).toBe(undefined);
-        expect(scope.patient.address).toBe(undefined);
-        scope.checkDuplicatePatients = jasmine.createSpy("checkDuplicatePatients");
-        expect(scope.checkDuplicatePatients).not.toHaveBeenCalled();
+    describe("Patient duplicate check", function () {
+        it("should call patientService.searchDuplicatePatients when givenName, gender and birthDate are populated", function() {
+
+            patientService.searchDuplicatePatients = jasmine.createSpy().and.callFake(function (systemIdentifier, givenName, familyName, dateOfBirth, gender, phoneNumber, subDivision) {
+                return Promise.resolve([]);
+            });
+
+            scope.patient.givenName = 'Dhruv';
+            scope.patient.familyName = 'Bhardwaj';
+            scope.patient.gender = 'M';
+            scope.patient.birthdate = '1993-12-18T00:00:00.000Z';
+            scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER = '987654321';
+            scope.patient.address = { address3: 'BAYA HADJIDA' };
+
+            scope.checkDuplicatePatients();
+    
+            expect(patientService.searchDuplicatePatients).toHaveBeenCalledWith('', 'Dhruv', 'Bhardwaj', '1993-12-18T00:00:00.000Z', 'M', '987654321', 'BAYA HADJIDA');
+        });
+
+        it("should not call patientService.searchDuplicatePatients when givenName, gender or birthDate is not populated", function() {
+            patientService.searchDuplicatePatients = jasmine.createSpy();
+
+            scope.patient.givenName = 'Dhruv';
+
+            scope.checkDuplicatePatients();
+
+            expect(patientService.searchDuplicatePatients).not.toHaveBeenCalled();
        });
-   })
+    })
 
 })
 
