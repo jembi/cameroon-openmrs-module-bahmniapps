@@ -80,6 +80,11 @@ angular.module('bahmni.registration')
                 }
 
                 if ((givenName || familyName) && gender && birthDate) {
+                    console.log('=========================');
+                    console.log(phoneNumber);
+                    console.log('=========================');
+                    console.log(subDivision);
+                    console.log('=========================');
                     patientService.searchDuplicatePatients(
                         systemIdentier,
                         givenName,
