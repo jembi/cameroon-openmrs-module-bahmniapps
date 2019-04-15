@@ -174,5 +174,6 @@
   "LOCATION_PEDIATRIC": "Pediatric",
   "LOCATION_DESK": "Registration Desk",
   "LOCATION_SPECIALIZED_CONSULTATIONS": "Specialized Consultations",
-  "LOCATION_SURGERY_ANESTHESIA": "Surgery-Anesthesia"  
+  "LOCATION_SURGERY_ANESTHESIA": "Surgery-Anesthesia",
+  "APPOINTMENT_OPD_SPECIALITY_KEY": "OPD"
 }

@@ -37,7 +37,7 @@
                         {{'APPOINTMENT_SERVICE_SPECIALITY_KEY' | translate}}
                     </label>
                     <select id="speciality" ng-model="appointment.speciality"
-                            ng-options="speciality.name for speciality in appointmentCreateConfig.specialities | orderBy:'name'"
+                            ng-options="speciality.name | translate for speciality in appointmentCreateConfig.specialities | orderBy:'name'"
                             ng-change="onSpecialityChange()"
                             ng-disabled="isEditMode() && (!isEditAllowed() || !enableEditService)">
                         <option value="">{{ ::'PLACEHOLDER_SERVICE_SPECIALITY' | translate}}

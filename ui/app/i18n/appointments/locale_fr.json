@@ -158,5 +158,6 @@
   "LOCATION_PEDIATRIC": "Pédiatrie",
   "LOCATION_DESK": "Bureau d'Enregistrement",
   "LOCATION_SPECIALIZED_CONSULTATIONS": "Consultations spécialisées",
-  "LOCATION_SURGERY_ANESTHESIA": "Chirugie-Anesthésie"
+  "LOCATION_SURGERY_ANESTHESIA": "Chirugie-Anesthésie",
+  "APPOINTMENT_OPD_SPECIALITY_KEY": "Consultations Externes"
 }
