@@ -46,6 +46,8 @@ angular.module('bahmni.registration')
             if (!phoneNumber) {
                 delete config.params.phoneNumber;
             }
+
+            console.log('=========================>', JSON.stringify(config));
             return patientServiceStrategy.searchDuplicatePatients(config);
         };
 
