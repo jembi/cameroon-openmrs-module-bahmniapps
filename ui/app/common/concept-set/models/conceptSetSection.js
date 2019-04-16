@@ -2,7 +2,7 @@
 
 Bahmni.ConceptSet.ConceptSetSection = function (extensions, user, config, observations, conceptSet) {
     var self = this;
-
+    var collapsableFormUuids = ["1fb2dd86-53b5-4815-9c64-edc081b908d9", "41cd339f-27fb-4acb-8841-74c9ea1069f1"];
     self.clone = function () {
         var clonedConceptSetSection = new Bahmni.ConceptSet.ConceptSetSection(extensions, user, config, [], conceptSet);
         clonedConceptSetSection.isAdded = true;
@@ -22,6 +22,9 @@ Bahmni.ConceptSet.ConceptSetSection = function (extensions, user, config, observ
         self.alwaysShow = user.isFavouriteObsTemplate(self.conceptName);
         self.allowAddMore = config.allowAddMore;
         self.id = "concept-set-" + conceptSet.uuid;
+        if (collapsableFormUuids.includes(self.uuid)) {
+            self.collapseInnerSections = {value: true};
+        }
     };
 
     var getShowIfFunction = function () {

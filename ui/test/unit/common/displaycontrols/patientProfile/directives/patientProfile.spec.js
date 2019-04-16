@@ -101,7 +101,7 @@ describe("Patient Profile display control", function () {
     it("should get patient name, age, gender, identifier and address even though config is empty", function () {
         var isoScope = createIsoScope({});
         var patientAttributeTypes = isoScope.patientAttributeTypes;
-        expect(patientAttributeTypes.$$unwrapTrustedValue()).toBe("Female, 21 years");
+        expect(patientAttributeTypes.$$unwrapTrustedValue()).toBe("21 years");
     });
 
     it("should open patient dashboard with correct config Name", function () {
@@ -114,7 +114,7 @@ describe("Patient Profile display control", function () {
         patientMockData.bloodGroupText = "AB+";
         var isoScope = createIsoScope({});
         var patientAttributeTypes = isoScope.patientAttributeTypes;
-        expect(patientAttributeTypes.$$unwrapTrustedValue()).toBe("Female, 21 years, AB+");
+        expect(patientAttributeTypes.$$unwrapTrustedValue()).toBe("21 years, AB+");
     });
 
     it("should get patient address in the order of config specified", function () {

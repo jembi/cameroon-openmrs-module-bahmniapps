@@ -42,6 +42,10 @@ angular.module('bahmni.registration')
                 withCredentials: true
             };
 
+            if (!subDivision) {
+                delete config.params.subDivision;
+            }
+
             return patientServiceStrategy.searchDuplicatePatients(config);
         };
 
