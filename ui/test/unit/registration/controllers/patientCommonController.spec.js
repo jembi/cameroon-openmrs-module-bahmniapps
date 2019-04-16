@@ -365,7 +365,7 @@ describe('PatientCommonController', function () {
     describe("Patient duplicate check", function () {
         it("should call patientService.searchDuplicatePatients when givenName, gender and birthDate are populated", function() {
 
-            patientService.searchDuplicatePatients = jasmine.createSpy().and.callFake(function (systemIdentifier, givenName, familyName, dateOfBirth, gender, phoneNumber, subDivision) {
+            patientService.searchDuplicatePatients = jasmine.createSpy().and.callFake(function (systemIdentifier, givenName, familyName, dateOfBirth, gender, subDivision) {
                 return Promise.resolve([]);
             });
 
@@ -373,12 +373,11 @@ describe('PatientCommonController', function () {
             scope.patient.familyName = 'Bhardwaj';
             scope.patient.gender = 'M';
             scope.patient.birthdate = '1993-12-18T00:00:00.000Z';
-            scope.patient.PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER = '987654321';
             scope.patient.address = { address3: 'BAYA HADJIDA' };
 
             scope.checkDuplicatePatients();
     
-            expect(patientService.searchDuplicatePatients).toHaveBeenCalledWith('', 'Dhruv', 'Bhardwaj', '1993-12-18T00:00:00.000Z', 'M', '987654321', 'BAYA HADJIDA');
+            expect(patientService.searchDuplicatePatients).toHaveBeenCalledWith('', 'Dhruv', 'Bhardwaj', '1993-12-18T00:00:00.000Z', 'M', 'BAYA HADJIDA');
         });
 
         it("should not call patientService.searchDuplicatePatients when givenName, gender or birthDate is not populated", function() {
