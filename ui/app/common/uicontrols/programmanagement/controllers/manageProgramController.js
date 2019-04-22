@@ -15,7 +15,9 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             $scope.configName = $stateParams.configName;
             $scope.today = DateUtil.getDateWithoutTime(DateUtil.now());
             var id = "#programEnrollmentContainer";
-
+            (function () {
+                $scope.getLang = localStorage.getItem("NG_TRANSLATE_LANG_KEY");
+            })();
             var updateActiveProgramsList = function () {
                 spinner.forPromise(programService.getPatientPrograms($scope.patient.uuid).then(function (programs) {
                     $scope.activePrograms = programs.activePrograms;
