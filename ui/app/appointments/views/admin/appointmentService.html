@@ -57,7 +57,7 @@
                         {{'APPOINTMENT_SERVICE_SPECIALITY_KEY' | translate}}
                     </label>
                     <select id="speciality" ng-model="service.specialityUuid"
-                            ng-options="item.uuid as item.name for item in specialities | orderBy:'name'">
+                            ng-options="item.uuid as item.name | translate for item in specialities | orderBy:'name'">
                         <option value="">{{ ::'PLACEHOLDER_SERVICE_SPECIALITY' | translate}}</option>
                     </select>
                 </p>
