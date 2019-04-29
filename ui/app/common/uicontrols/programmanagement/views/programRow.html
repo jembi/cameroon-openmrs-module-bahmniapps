@@ -46,18 +46,10 @@
                     </div>
 
                     <div class="field-value" ng-show="patientProgram.editing">
-                        <span ng-show="getLang == 'fr'">
-                            <select ng-model="patientProgram.selectedState"
-                                ng-options="state.concept.names[0].display for state in ::getStates(patientProgram.program) track by state.uuid">
+                        <select ng-model="patientProgram.selectedState"
+                            ng-options="state.concept.names[0].display for state in ::getStates(patientProgram.program) track by state.uuid">
                             <option value="">{{::'PROGRAM_MANAGEMENT_CHOOSE_STATE_KEY' | translate}}</option>
-                            </select>
-                        </span>
-                        <span ng-show="getLang == 'en'">
-                                <select ng-model="patientProgram.selectedState"
-                                    ng-options="state.concept.display for state in ::getStates(patientProgram.program) track by state.uuid">
-                                <option value="">{{::'PROGRAM_MANAGEMENT_CHOOSE_STATE_KEY' | translate}}</option>
-                                </select>
-                        </span>
+                        </select>
                     </div>
                 </div>
             </div>
