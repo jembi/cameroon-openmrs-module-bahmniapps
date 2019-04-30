@@ -84,5 +84,9 @@
   "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires",
   "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Téléphone",
   "MESSAGE_DIALOG_OPTION_COPY": "Erreur de copie",
-  "MESSAGE_DIALOG_OPTION_OKAY": "D'accord"
+  "MESSAGE_DIALOG_OPTION_OKAY": "D'accord",
+  "NOTES_LABEL": "Remarques",
+  "REGISTRATON_LATEST_KEY" : "Dernier",
+  "DISPLAY_CONTROL_ERROR_MESSAGE_KEY": "Aucune dernière pour ce patient",
+  "CONCEPT_NOT_FOUND_MESSAGE": "Concept non trouvé"
 }
