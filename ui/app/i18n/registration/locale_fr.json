@@ -60,7 +60,7 @@
   "REGISTRATION_LABEL_NO":"Non",
   "REGISTRATION_LABEL_SAVE":"<u>S</u>auvegarder",
   "REGISTRATION_LABEL_BACK":"<u>A</u>rrière",
-  "REGISTRATION_LABEL_ENTER_VISIT":"Entrez <u>V</u>isitez Détails",
+  "REGISTRATION_LABEL_ENTER_VISIT":"Entrer les détails de la visite",
   "REGISTRATION_TITLE_ADDITIONAL_PATIENT":"<u>I</u>nformation pour les patients supplémentaires",
   "REGISTRATION_TITLE_RELATIONSHIPS":"<u>R</u>elation",
   "REGISTRATION_CONTENT_ENTERING_ID":"Vous entrez dans une pièce d'identité qui est <strong > {{ }} sizeOfTheJump < / strong > avant de la séquence . Il va créer un écart de {{ }} sizeOfTheJump dans la séquence . Voulez-vous continuer?",
@@ -84,5 +84,9 @@
   "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires",
   "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Téléphone",
   "MESSAGE_DIALOG_OPTION_COPY": "Erreur de copie",
-  "MESSAGE_DIALOG_OPTION_OKAY": "D'accord"
+  "MESSAGE_DIALOG_OPTION_OKAY": "D'accord",
+  "NOTES_LABEL": "Remarques",
+  "REGISTRATON_LATEST_KEY" : "Dernier",
+  "DISPLAY_CONTROL_ERROR_MESSAGE_KEY": "Aucune dernière pour ce patient",
+  "CONCEPT_NOT_FOUND_MESSAGE": "Concept non trouvé"
 }
