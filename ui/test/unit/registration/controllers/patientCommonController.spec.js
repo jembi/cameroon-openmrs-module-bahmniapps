@@ -84,7 +84,7 @@ describe('PatientCommonController', function () {
         expect(scope.confirmationPrompt).not.toHaveBeenCalled();
     });
 
-it('checks that the confirmation popup is not prompted on the Registration second page when the home button is clicked and the config is enabled', function () {
+    it('checks that the confirmation popup is not prompted on the Registration second page when the home button is clicked and the config is enabled', function () {
         scope.showSaveConfirmDialogConfig = true;
         $state.current.name = "patient.visit";
         scope.onHomeNavigate = jasmine.createSpy("onHomeNavigate");
@@ -360,6 +360,35 @@ it('checks that the confirmation popup is not prompted on the Registration secon
             scope.handleUpdate('age');
             expect(sections.additionalPatientInformation.canShow).toBeTruthy();
         })
+    })
+
+    describe("Patient duplicate check", function () {
+        it("should call patientService.searchDuplicatePatients when givenName, gender and birthDate are populated", function() {
+
+            patientService.searchDuplicatePatients = jasmine.createSpy().and.callFake(function (systemIdentifier, givenName, familyName, dateOfBirth, gender, subDivision) {
+                return Promise.resolve([]);
+            });
+
+            scope.patient.givenName = 'Dhruv';
+            scope.patient.familyName = 'Bhardwaj';
+            scope.patient.gender = 'M';
+            scope.patient.birthdate = '1993-12-18T00:00:00.000Z';
+            scope.patient.address = { address3: 'BAYA HADJIDA' };
+
+            scope.checkDuplicatePatients();
+    
+            expect(patientService.searchDuplicatePatients).toHaveBeenCalledWith('', 'Dhruv', 'Bhardwaj', '1993-12-18T00:00:00.000Z', 'M', 'BAYA HADJIDA');
+        });
+
+        it("should not call patientService.searchDuplicatePatients when givenName, gender or birthDate is not populated", function() {
+            patientService.searchDuplicatePatients = jasmine.createSpy();
+
+            scope.patient.givenName = 'Dhruv';
+
+            scope.checkDuplicatePatients();
+
+            expect(patientService.searchDuplicatePatients).not.toHaveBeenCalled();
+       });
     })
 
 })

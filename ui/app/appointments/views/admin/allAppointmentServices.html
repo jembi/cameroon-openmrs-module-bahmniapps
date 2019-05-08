@@ -15,9 +15,9 @@
             </thead>
             <tbody>
             <tr ng-repeat="service in ::appointmentServices">
-                <td>{{service.name}}</td>
-                <td>{{service.location.name}}</td>
-                <td ng-show="enableSpecialities">{{service.speciality.name}}</td>
+                <td>{{service.name | translate}}</td>
+                <td>{{service.location.name | translate}}</td>
+                <td ng-show="enableSpecialities">{{service.speciality.name | translate}}</td>
                 <td>{{service.durationMins}}</td>
                 <td class="service-disc-tablecell">{{service.description}}</td>
                 <td>
