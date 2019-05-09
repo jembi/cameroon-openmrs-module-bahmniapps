@@ -49,7 +49,7 @@
                         {{'APPOINTMENT_SERVICE' | translate}}<sup class="asterick">*</sup>
                     </label>
                     <select id="service" ng-model="appointment.service"
-                            ng-options="service.name for service in appointmentCreateConfig.services | filter: {speciality:{uuid:appointment.speciality.uuid}}:true"
+                            ng-options="service.name | translate for service in appointmentCreateConfig.services | filter: {speciality:{uuid:appointment.speciality.uuid}}:true | orderBy: 'name | translate'"
                             ng-change="onServiceChange()"
                             ng-disabled="isEditMode() && (!isEditAllowed() || !enableEditService)"
                             required>
