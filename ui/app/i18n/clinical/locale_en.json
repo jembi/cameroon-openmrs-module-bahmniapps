@@ -17,6 +17,8 @@
     "ALL_LAB_RESULTS_LABEL": "All Lab Results",
     "ACCESSION_AT_LABEL": "Accession at",
     "SAMPLE_AT_LABEL": "Sample at",
+    "HIV_PROGRAM_KEY": "HIV Program",
+    "TB_PROGRAM_KEY": "TB Program",
     "PROGRAM_MANAGEMENT_SELECT_PROGRAM_KEY": "New Program Enrollment",
     "PROGRAM_MANAGEMENT_ACTIVE_PROGRAM_KEY": "Active Programs",
     "PROGRAM_MANAGEMENT_INACTIVE_PROGRAM_KEY": "InActive Programs",
