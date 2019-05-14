@@ -1,7 +1,7 @@
 <div class="program-tile" ng-if="patientProgram.deleting">
     <div class="delete-progam-container">
         <div class="programName">
-            {{::patientProgram.display}}
+            {{::patientProgram.display | translate}}
         </div>
         <form ng-submit="confirmDeletion(patientProgram)">
             <textarea ng-model="patientProgram.voidReason" class="" required placeholder="{{ 'PROGRAM_DELETE_REASON_PLACEHOLDER'|translate }}"></textarea>
