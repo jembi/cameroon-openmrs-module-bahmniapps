@@ -242,6 +242,8 @@
   "RETROSPECTIVE_POPUP_LOCATION_LABEL": "Emplacement",
   "RETROSPECTIVE_POPUP_ON_BEHALF_LABEL": "Entrer au nom de",
   "RETROSPECTIVE_POPUP_DATA_FOR_LABEL": "Entrer information pour",
+  "DELETE_LABEL": "Supprimer",
+  "EDIT_LABEL": "Modifier",
   "OKAY_LABEL": "OK",
   "PATIENT_PROFILE_RELATIONSHIPS_LABEL": "Relation",
   "CLINICAL_ADD_AS_CONDITION":"Ajouter comme condition"
