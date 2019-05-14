@@ -8,7 +8,7 @@
         </div>
 
         <div class="programName">
-            {{::patientProgram.display}}
+            {{::patientProgram.display | translate}}
         </div>
 
         <div class="ProgramEnrollInfo clearfix">
@@ -103,7 +103,7 @@
                                dateEnrolled: patientProgram.fromDate,
                                dateCompleted: patientProgram.toDate})">
         <span class="proggram-dashboard-text">
-            <span class="patient-name">{{::patientProgram.display}} Dashboard</span>
+            <span class="patient-name">{{::patientProgram.display | translate}} Dashboard</span>
         </span>
     </a>
 </div>
