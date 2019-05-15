@@ -134,6 +134,18 @@ angular.module('bahmni.common.domain')
             });
         };
 
+        configurationFunctions.hospitalName = function () {
+            return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
+                method: "GET",
+                params: {
+                    property: 'mrs.hospitalName'
+                },
+                withCredentials: true
+            }).success(function (data) {
+                localStorage.setItem('hospitalName', JSON.stringify(data.name));
+            });
+        };
+
         configurationFunctions.relationshipTypeMap = function () {
             return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
                 method: "GET",

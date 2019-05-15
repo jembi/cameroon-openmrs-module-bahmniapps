@@ -21,6 +21,7 @@ angular.module('bahmni.registration')
                 };
 
                 $scope.print = function (option) {
+                    $scope.patient.hospitalName = JSON.parse(localStorage.getItem('hospitalName'));
                     return registrationCardPrinter.print(option.templateUrl, $scope.patient, mapRegistrationObservations(), $scope.encounterDateTime);
                 };
 
