@@ -59,6 +59,10 @@ angular.module('bahmni.common.config')
             return this.configs.genderMap;
         };
 
+        this.hospitalName = function () {
+            return JSON.parse(JSON.stringify((this.configs.hospitalName).name));
+        };
+
         this.addressLevels = function () {
             return this.configs.addressLevels;
         };

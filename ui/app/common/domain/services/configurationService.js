@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.common.domain')
-    .factory('configurationService', ['$http', '$q', function ($http, $q) {
+    .factory('configurationService', ['$log', '$http', '$q', function ($log, $http, $q) {
         var configurationFunctions = {};
 
         configurationFunctions.encounterConfig = function () {
@@ -141,8 +141,6 @@ angular.module('bahmni.common.domain')
                     property: 'mrs.hospitalName'
                 },
                 withCredentials: true
-            }).success(function (data) {
-                localStorage.setItem('hospitalName', JSON.stringify(data.name));
             });
         };
 
