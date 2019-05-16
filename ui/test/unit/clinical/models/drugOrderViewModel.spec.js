@@ -387,7 +387,7 @@ describe("drugOrderViewModel", function () {
 
             treatment.durationUnit = "Month(s)"
             treatment.calculateDurationInDays();
-            expect(treatment.durationInDays).toBe(180);
+            expect(treatment.durationInDays).toBe(184);
 
             treatment.durationUnit = "Day(s)"
             treatment.calculateDurationInDays();
