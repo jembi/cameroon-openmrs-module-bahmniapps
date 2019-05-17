@@ -396,10 +396,15 @@ Bahmni.Clinical.DrugOrderViewModel = function (config, proto, encounterDate) {
     };
 
     this.calculateDurationInDays = function () {
-        var durationUnitFromConfig = _.find(durationUnits, function (unit) {
-            return unit.name === self.durationUnit;
-        });
-        self.durationInDays = self.duration ? self.duration * (durationUnitFromConfig && durationUnitFromConfig.factor || 1) : Number.NaN;
+        if (self.durationUnit === "Month(s)") {
+            var endDate = Bahmni.Common.Util.DateUtil.addMonths(self.effectiveStartDate, self.duration);
+            self.durationInDays = self.duration ? Bahmni.Common.Util.DateUtil.diffInDaysRegardlessOfTime(self.effectiveStartDate, endDate) : Number.NaN;
+        } else {
+            var durationUnitFromConfig = _.find(durationUnits, function (unit) {
+                return unit.name === self.durationUnit;
+            });
+            self.durationInDays = self.duration ? self.duration * (durationUnitFromConfig && durationUnitFromConfig.factor || 1) : Number.NaN;
+        }
     };
 
     var quantityUnitsFrom = function (doseUnit) {
