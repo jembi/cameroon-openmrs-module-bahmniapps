@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.common.domain')
-    .factory('configurationService', ['$http', '$q', function ($http, $q) {
+    .factory('configurationService', ['$log', '$http', '$q', function ($log, $http, $q) {
         var configurationFunctions = {};
 
         configurationFunctions.encounterConfig = function () {
@@ -129,6 +129,16 @@ angular.module('bahmni.common.domain')
                 method: "GET",
                 params: {
                     property: 'mrs.genders'
+                },
+                withCredentials: true
+            });
+        };
+
+        configurationFunctions.hospitalName = function () {
+            return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
+                method: "GET",
+                params: {
+                    property: 'mrs.hospitalName'
                 },
                 withCredentials: true
             });

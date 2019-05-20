@@ -4,7 +4,7 @@ angular.module('bahmni.registration').factory('initialization',
     ['$rootScope', '$q', 'configurations', 'authenticator', 'appService', 'spinner', 'preferences', 'locationService', 'mergeService',
         function ($rootScope, $q, configurations, authenticator, appService, spinner, preferences, locationService, mergeService) {
             var getConfigs = function () {
-                var configNames = ['encounterConfig', 'patientAttributesConfig', 'identifierTypesConfig', 'addressLevels', 'genderMap', 'relationshipTypeConfig', 'relationshipTypeMap', 'loginLocationToVisitTypeMapping'];
+                var configNames = ['encounterConfig', 'patientAttributesConfig', 'identifierTypesConfig', 'addressLevels', 'genderMap', 'hospitalName', 'relationshipTypeConfig', 'relationshipTypeMap', 'loginLocationToVisitTypeMapping'];
                 return configurations.load(configNames).then(function () {
                     var mandatoryPersonAttributes = appService.getAppDescriptor().getConfigValue("mandatoryPersonAttributes");
                     var patientAttributeTypes = new Bahmni.Common.Domain.AttributeTypeMapper().mapFromOpenmrsAttributeTypes(configurations.patientAttributesConfig(), mandatoryPersonAttributes);
@@ -17,6 +17,7 @@ angular.module('bahmni.registration').factory('initialization',
                     $rootScope.addressLevels = configurations.addressLevels();
                     $rootScope.fieldValidation = appService.getAppDescriptor().getConfigValue("fieldValidation");
                     $rootScope.genderMap = configurations.genderMap();
+                    $rootScope.hospitalName = configurations.hospitalName();
                     $rootScope.relationshipTypeMap = configurations.relationshipTypeMap();
                     $rootScope.relationshipTypes = configurations.relationshipTypes();
                 });
