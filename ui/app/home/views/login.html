@@ -67,12 +67,12 @@ body {
 	<table id = "headerContent" style="width: 100%">
 		<tr>
 			<td style="width: 13%"><img class="client_logo"
-				src="/images/hospitalLogo.png" /><img class="client_logo"
+				src={{logo}} /><img class="client_logo"
 				src="/images/mohLogo.png" /></td>
 			<td><span id="mohLabel">Cameroon Ministry of Public
 					Health<br /> Ministère de la Santé Publique du Cameroun
 			</span></td>
-			<td id="hospitalName">Hopital de District de la Cité Verte</td>
+			<td id="hospitalName">{{hospitalName}}</td>
 		</tr>
 	</table>
 </div>
@@ -155,9 +155,9 @@ body {
         <p>{{warningMessage | translate :timeZoneObject}} </p>
     </div>
 
-    <div class="bottom-banner-wrapper " ng-show="bottomLogos" class="bottom-logos-wrapper">
-        <img ng-repeat="logo in bottomLogos" id="bottom-logos-image" src={{logo}}>
-    </div>
+    <div class="bottom-banner-wrapper">
+		<img id="bottom-banner-image" src={{bottomBanner}}>
+	</div>
 
 </div>
 
