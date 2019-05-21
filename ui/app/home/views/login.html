@@ -2,10 +2,10 @@
 body {
     font-family: Open Sans, Regular;
 	display: block;
-	margin: 8px;
+    margin: 0px;
 	overflow: hidden;
 	line-height: normal;
-	width: 99%;
+    background: #ffffff;
 }
 
 .clint-logo-wrapper {
@@ -13,6 +13,8 @@ body {
 	text-align: left;
 	background: #3685C2;
 	height: 110px;
+    font-size: 20px;
+    padding-top: 10px;
 }
 
 .header-menu {
@@ -33,6 +35,8 @@ body {
 #hospitalName {
 	text-align: right;
 	color: #FFFFFF;
+    font-size: 20px;
+	padding-right: 20px;
 }
 
 #headerContent tr {
@@ -55,18 +59,19 @@ body {
 	width: 100%;
 	left: 10px;
     right: 10px;
+    background: #ffffff;
 }
 
 .bottom-banner-wrapper img {
-	max-width: 35%;
-	height: 30px;
+	max-width: 500px;
 }
+
 </style>
 <body>
 <div class="clint-logo-wrapper">
 	<table id = "headerContent" style="width: 100%">
 		<tr>
-			<td style="width: 13%"><img class="client_logo"
+			<td style="width: 13%;text-align-last: right"><img class="client_logo"
 				src={{logo}} /><img class="client_logo"
 				src="/images/mohLogo.png" /></td>
 			<td><span id="mohLabel">Cameroon Ministry of Public
