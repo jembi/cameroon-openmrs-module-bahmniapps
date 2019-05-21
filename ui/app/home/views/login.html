@@ -13,7 +13,7 @@ body {
 	text-align: left;
 	background: #3685C2;
 	height: 110px;
-    font-size: 20px;
+    font-size: 16px;
     padding-top: 10px;
 }
 
@@ -28,15 +28,15 @@ body {
 	text-align: center;
 	margin: 35px auto 25px;
 	color: #646464;
-	font-size: 20px;
+	font-size: 30px;
 	width: 100%;
 }
 
 #hospitalName {
 	text-align: right;
 	color: #FFFFFF;
-    font-size: 20px;
-	padding-right: 20px;
+    font-size: 28px;
+	padding-right: 50px;
 }
 
 #headerContent tr {
@@ -50,12 +50,13 @@ body {
 
 #mohLabel {
 	color: #FFFFFF;
+    font-size: 16px;
 }
 
 .bottom-banner-wrapper {
 	position: fixed;
 	text-align: center;
-	bottom: 30px;
+	bottom: 60px;
 	width: 100%;
 	left: 10px;
     right: 10px;
@@ -66,12 +67,34 @@ body {
 	max-width: 500px;
 }
 
+.power-by {
+	position: fixed;
+	width: 100%;
+	bottom: 7px;
+	text-align: center;
+	background: #ffffff;
+	padding-bottom: 5px;
+	font-size: 12px;
+	z-index: -1;
+	color: #898989;
+}
+
+.power-by img {
+	width: 55px;
+	vertical-align: middle;
+	margin: 0 1px;
+}
+
+.power-by a {
+	color: #000;
+}
+
 </style>
 <body>
 <div class="clint-logo-wrapper">
 	<table id = "headerContent" style="width: 100%">
 		<tr>
-			<td style="width: 13%;text-align-last: right"><img class="client_logo"
+			<td style="width: 13%;text-align: right"><img class="client_logo"
 				src={{logo}} /><img class="client_logo"
 				src="/images/mohLogo.png" /></td>
 			<td><span id="mohLabel">Cameroon Ministry of Public
@@ -83,7 +106,7 @@ body {
 </div>
 <div class="header-menu"></div>
 <div class="header_text">
-	Bienvenu au<br />
+	<span style="font-size:20px;">Bienvenu au</span></br>
 	<b>Dossier Médical Electronique </b><br />du Ministère de la Santé
 	Publique du Cameroun
 </div>
@@ -206,6 +229,6 @@ body {
 
 <div class="power-by">
     <img src="./../images/bahmniLogoFull.png" alt="Bahmni" />
-    <a href={{helpLink}}> Bahmni Help</a>
+    <a href={{helpLink}}>Aide sur Bahmni</a>
 </div>
 </body>
