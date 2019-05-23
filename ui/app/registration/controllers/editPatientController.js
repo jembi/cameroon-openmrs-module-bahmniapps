@@ -11,7 +11,6 @@ angular.module('bahmni.registration')
             $scope.actions = {};
             $scope.addressHierarchyConfigs = appService.getAppDescriptor().getConfigValue("addressHierarchy");
             $scope.disablePhotoCapture = appService.getAppDescriptor().getConfigValue("disablePhotoCapture");
-
             $scope.today = dateUtil.getDateWithoutTime(dateUtil.now());
 
             var setReadOnlyFields = function () {
@@ -67,9 +66,10 @@ angular.module('bahmni.registration')
 
                 return spinner.forPromise(patientService.update($scope.patient, $scope.openMRSPatient).then(function (result) {
                     var patientProfileData = result.data;
+                    var allLocationData = $rootScope.allLocationData;
                     if (!patientProfileData.error) {
                         successCallBack(patientProfileData);
-                        $scope.actions.followUpAction(patientProfileData);
+                        $scope.actions.followUpAction(patientProfileData, allLocationData);
                     }
                 }));
             };

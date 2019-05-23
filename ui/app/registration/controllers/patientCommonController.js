@@ -18,7 +18,6 @@ angular.module('bahmni.registration')
             $scope.showSaveConfirmDialogConfig = appService.getAppDescriptor().getConfigValue("showSaveConfirmDialog");
             $scope.showSaveAndContinueButton = false;
             $rootScope.searchActions = appService.getAppDescriptor().getExtensions("org.bahmni.registration.patient.search.result.action");
-
             var dontSaveButtonClicked = false;
 
             var isHref = false;

@@ -55,6 +55,10 @@ angular.module('bahmni.common.config')
             return this.configs.identifierTypesConfig;
         };
 
+        this.locationConfig = function () {
+            return this.configs.locationConfig;
+        };
+
         this.genderMap = function () {
             return this.configs.genderMap;
         };

@@ -12,6 +12,7 @@ angular.module('bahmni.registration')
             var selectedProvider = $rootScope.currentProvider;
             var regEncounterTypeUuid = $rootScope.regEncounterConfiguration.encounterTypes[Bahmni.Registration.Constants.registrationEncounterType];
             var visitLocationUuid = $rootScope.visitLocation;
+            $scope.actualVisitLocation;
 
             var getPatient = function () {
                 var deferred = $q.defer();
@@ -30,7 +31,7 @@ angular.module('bahmni.registration')
                     "patientUuid": patientUuid,
                     "providerUuids": !_.isEmpty($scope.currentProvider.uuid) ? [$scope.currentProvider.uuid] : null,
                     "includeAll": false,
-                    locationUuid: locationUuid,
+                    locationUuid: $rootScope.actualLocationUuid,
                     encounterTypeUuids: [regEncounterTypeUuid]
                 }).then(function (response) {
                     deferred.resolve(response);
@@ -74,7 +75,7 @@ angular.module('bahmni.registration')
             var save = function () {
                 $scope.encounter = {
                     patientUuid: $scope.patient.uuid,
-                    locationUuid: locationUuid,
+                    locationUuid: $scope.actualVisitLocation[0].location.uuid,
                     encounterTypeUuid: regEncounterTypeUuid,
                     orders: [],
                     drugOrders: [],
@@ -126,9 +127,11 @@ angular.module('bahmni.registration')
                     var activeVisitForCurrentLoginLocation;
                     if (results) {
                         activeVisitForCurrentLoginLocation = _.filter(results, function (result) {
-                            return result.location.uuid === visitLocationUuid;
+                            return result.location.uuid === result.location.uuid;
                         });
                     }
+
+                    $scope.actualVisitLocation = activeVisitForCurrentLoginLocation;
 
                     var hasActiveVisit = activeVisitForCurrentLoginLocation.length > 0;
                     vm.visitUuid = hasActiveVisit ? activeVisitForCurrentLoginLocation[0].uuid : "";

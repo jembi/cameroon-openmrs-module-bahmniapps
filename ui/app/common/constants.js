@@ -56,7 +56,8 @@ Bahmni.Common = Bahmni.Common || {};
         "/openmrs/ws/rest/v1/concept?s=byFullySpecifiedName&name=Stopped+Order+Reason&v=custom:(uuid,name,answers)": "StoppedOrderReasonConfig",
         "/openmrs/ws/rest/v1/ordertype": "OrderType",
         "/openmrs/ws/rest/v1/bahmnicore/config/drugOrders": "DrugOrderConfig",
-        "/openmrs/ws/rest/v1/bahmnicore/sql/globalproperty?property=drugOrder.drugOther": "NonCodedDrugConcept"
+        "/openmrs/ws/rest/v1/bahmnicore/sql/globalproperty?property=drugOrder.drugOther": "NonCodedDrugConcept",
+        "/openmrs/ws/rest/v1/location": "allLocation"
     };
 
     authenticatedReferenceDataMap["/openmrs/ws/rest/v1/entitymapping?mappingType=location_encountertype&s=byEntityAndMappingType&entityUuid=" + (localStorage.getItem("LoginInformation") ? JSON.parse(localStorage.getItem("LoginInformation")).currentLocation.uuid : "")] = "LoginLocationToEncounterTypeMapping";
@@ -100,6 +101,7 @@ Bahmni.Common = Bahmni.Common || {};
         openmrsUrl: hostUrl + "/openmrs",
         loggingUrl: hostUrl + "/log/",
         idgenConfigurationURL: RESTWS_V1 + "/idgen/identifiertype",
+        allLocationURL: RESTWS_V1 + "/location",
         bahmniRESTBaseURL: BAHMNI_CORE + "",
         observationsUrl: BAHMNI_CORE + "/observations",
         obsRelationshipUrl: BAHMNI_CORE + "/obsrelationships",

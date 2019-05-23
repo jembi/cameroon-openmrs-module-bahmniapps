@@ -17,6 +17,7 @@ angular.module('bahmni.registration')
                 defaultVisitType = defaultVisitType || appService.getAppDescriptor().getConfigValue('defaultVisitType');
                 var showStartVisitButton = appService.getAppDescriptor().getConfigValue("showStartVisitButton");
                 var forwardUrlsForVisitTypes = appService.getAppDescriptor().getConfigValue("forwardUrlsForVisitTypes");
+                var visitTypeLocationMapping = appService.getAppDescriptor().getConfigValue("visitTypeLocationMapping");
                 showStartVisitButton = (_.isUndefined(showStartVisitButton) || _.isNull(showStartVisitButton)) ? true : showStartVisitButton;
                 var visitLocationUuid = $rootScope.visitLocation;
                 var forwardUrls = forwardUrlsForVisitTypes || false;
@@ -68,7 +69,7 @@ angular.module('bahmni.registration')
                         var activeVisitForCurrentLoginLocation;
                         if (results) {
                             activeVisitForCurrentLoginLocation = _.filter(results, function (result) {
-                                return result.location.uuid === visitLocationUuid;
+                                return result.location.uuid === result.location.uuid;
                             });
                         }
                         self.hasActiveVisit = activeVisitForCurrentLoginLocation && (activeVisitForCurrentLoginLocation.length > 0);
@@ -81,7 +82,7 @@ angular.module('bahmni.registration')
 
                 $scope.visitControl = new Bahmni.Common.VisitControl(
                     $rootScope.regEncounterConfiguration.getVisitTypesAsArray(),
-                    defaultVisitType, encounterService, $translate, visitService
+                    defaultVisitType, encounterService, $translate, visitService, $rootScope
                 );
 
                 $scope.visitControl.onStartVisit = function () {
@@ -101,13 +102,13 @@ angular.module('bahmni.registration')
                     $window.location.href = forwardUrl;
                 };
 
-                $scope.actions.followUpAction = function (patientProfileData) {
+                $scope.actions.followUpAction = function (patientProfileData, allLocationData) {
                     messagingService.clearAll();
                     switch ($scope.actions.submitSource) {
                     case 'startVisit':
                         var entry = getForwardUrlEntryForVisitFromTheConfig();
                         var forwardUrl = entry ? entry.forwardUrl : undefined;
-                        return createVisit(patientProfileData, forwardUrl);
+                        return createVisit(patientProfileData, forwardUrl, allLocationData);
                     case 'forwardAction':
                         return goToForwardUrlPage(patientProfileData);
                     case 'enterVisitDetails':
@@ -137,7 +138,6 @@ angular.module('bahmni.registration')
                 var isEmptyVisitLocation = function () {
                     return _.isEmpty($rootScope.visitLocation);
                 };
-
                 var createVisit = function (patientProfileData, forwardUrl) {
                     if (isEmptyVisitLocation()) {
                         $state.go('patient.edit', {patientUuid: $scope.patient.uuid}).then(function () {
@@ -145,7 +145,7 @@ angular.module('bahmni.registration')
                         });
                         return;
                     }
-                    spinner.forPromise($scope.visitControl.createVisitOnly(patientProfileData.patient.uuid, $rootScope.visitLocation).then(function (response) {
+                    spinner.forPromise($scope.visitControl.createVisitOnly(patientProfileData.patient.uuid, $rootScope.visitLocation, $rootScope.allLocationData, visitTypeLocationMapping).then(function (response) {
                         auditLogService.log(patientProfileData.patient.uuid, "OPEN_VISIT", {visitUuid: response.data.uuid, visitType: response.data.visitType.display}, 'MODULE_LABEL_REGISTRATION_KEY');
                         if (forwardUrl) {
                             var updatedForwardUrl = appService.getAppDescriptor().formatUrl(forwardUrl, {'patientUuid': patientProfileData.patient.uuid});

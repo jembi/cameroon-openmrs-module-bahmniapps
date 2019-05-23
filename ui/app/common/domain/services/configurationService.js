@@ -124,6 +124,12 @@ angular.module('bahmni.common.domain')
             });
         };
 
+        configurationFunctions.locationConfig = function () {
+            return $http.get(Bahmni.Common.Constants.allLocationURL, {
+                withCredentials: true
+            });
+        };
+
         configurationFunctions.genderMap = function () {
             return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
                 method: "GET",

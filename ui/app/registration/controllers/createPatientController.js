@@ -124,7 +124,8 @@ angular.module('bahmni.registration')
                 $scope.patient.isNew = true;
                 $scope.patient.registrationDate = dateUtil.now();
                 $scope.patient.newlyAddedRelationships = [{}];
-                $scope.actions.followUpAction(patientProfileData);
+                var allLocationData = $rootScope.allLocationData;
+                $scope.actions.followUpAction(patientProfileData, allLocationData);
             };
 
             var createPatient = function (jumpAccepted) {
