@@ -1,14 +1,117 @@
-<div class="clint-logo-wrapper">
-    <img class="implementor-logo" src={{logo}} >
-    <span ng-if="titleText" class="title_text"> {{'LOGIN_PAGE_TITLE_TEXT' | translate }} </span>
-</div>
+<style>
+body {
+    font-family: Open Sans, Regular;
+	display: block;
+    margin: 0px;
+	overflow: hidden;
+	line-height: normal;
+    background: #ffffff;
+}
 
+.clint-logo-wrapper {
+	display: block;
+	text-align: left;
+	background: #3685C2;
+	height: 110px;
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+.header-menu {
+	display: block;
+	text-align: center;
+	padding-top: 10px;
+	background: #BDD7EC;
+}
+
+.header_text {
+	text-align: center;
+	margin: 15px auto 15px;
+	color: #333;
+	font-size: 30px;
+	width: 100%;
+}
+
+#hospitalName {
+	text-align: right;
+	color: #FFFFFF;
+    font-size: 28px;
+	padding-right: 50px;
+}
+
+#headerContent tr {
+	background: none;
+	border: 0;
+}
+
+#headerContent td {
+	border: 0;
+}
+
+#mohLabel {
+	color: #FFFFFF;
+    font-size: 16px;
+}
+
+.bottom-banner-wrapper {
+	position: fixed;
+	text-align: center;
+	bottom: 60px;
+	width: 100%;
+	left: 10px;
+    right: 10px;
+    background: #ffffff;
+}
+
+.bottom-banner-wrapper img {
+	max-width: 500px;
+}
+
+.power-by {
+	position: fixed;
+	width: 100%;
+	bottom: 7px;
+	text-align: center;
+	background: #ffffff;
+	padding-bottom: 5px;
+	font-size: 12px;
+	z-index: -1;
+	color: #898989;
+}
+
+.power-by img {
+	width: 55px;
+	vertical-align: middle;
+	margin: 0 1px;
+}
+
+.power-by a {
+	color: #000;
+}
+
+</style>
+<body>
+<div class="clint-logo-wrapper">
+	<table id = "headerContent" style="width: 100%">
+		<tr>
+			<td style="width: 13%;text-align: right"><img class="client_logo"
+				src={{logo}} /><img class="client_logo"
+				src="/images/mohLogo.png" /></td>
+			<td><span id="mohLabel">Cameroon Ministry of Public
+					Health<br /> Ministère de la Santé Publique du Cameroun
+			</span></td>
+			<td id="hospitalName">{{hospitalName}}</td>
+		</tr>
+	</table>
+</div>
+<div class="header-menu"></div>
+<div class="header_text">
+	<span style="font-size:20px">Bienvenu au</span><br>
+	<strong>Dossier Médical Electronique </strong><br>du Ministère de la Santé Publique du Cameroun
+</div>
 <div class="login" ng-hide="showOTP">
-    <div ng-if="headerText" class="emr-login-text">
-        <b>{{'LOGIN_PAGE_HEADER_TEXT'| translate}} </b>
-    </div>
     <header class="reg-header">
-        <div class="left">{{'LOGIN_LABEL_LOGIN_KEY' | translate}}</div>
+        <div class="left">{{'LOGIN_LABEL_TITLE_KEY' | translate}}</div>
         <div class="right locale-wrapper">
             <span class="locale-text">{{'LOGIN_LABEL_SELECT_LOCALE_KEY' | translate}} </span>
             <select id="locale" ng-model="selectedLocale" ng-options="item.code as item.nativeName for item in locales" required/>
@@ -79,9 +182,9 @@
         <p>{{warningMessage | translate :timeZoneObject}} </p>
     </div>
 
-    <div ng-show="bottomLogos" class="bottom-logos-wrapper">
-        <img ng-repeat="logo in bottomLogos" id="bottom-logos-image" src={{logo}}>
-    </div>
+    <div class="bottom-banner-wrapper">
+		<img id="bottom-banner-image" src={{bottomBanner}}>
+	</div>
 
 </div>
 
@@ -125,5 +228,6 @@
 
 <div class="power-by">
     <img src="./../images/bahmniLogoFull.png" alt="Bahmni" />
-    <a href={{helpLink}}> Bahmni Help</a>
+    <a href={{helpLink}}>Aide sur Bahmni</a>
 </div>
+</body>
