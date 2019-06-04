@@ -379,7 +379,8 @@ describe("drugOrderViewModel", function () {
 
     describe("calculateDurationInDays", function () {
         it("should convert duration to days", function () {
-            var treatment = sampleTreatment(treatmentConfig, null, Bahmni.Common.Util.DateUtil.now());
+            var encounterDate = Bahmni.Common.Util.DateUtil.subtractSeconds(Bahmni.Common.Util.DateUtil.now(), 60);
+            var treatment = sampleTreatment(treatmentConfig, null, encounterDate);
             treatment.duration = 6;
             treatment.durationUnit = "Week(s)";
             treatment.calculateDurationInDays();
@@ -387,7 +388,7 @@ describe("drugOrderViewModel", function () {
 
             treatment.durationUnit = "Month(s)"
             treatment.calculateDurationInDays();
-            expect(treatment.durationInDays).toBe(184);
+            expect(treatment.durationInDays > 182 && treatment.durationInDays < 185).toBeTruthy();
 
             treatment.durationUnit = "Day(s)"
             treatment.calculateDurationInDays();
