@@ -11,12 +11,13 @@
         </select>
     </p>
     <div ng-if="appointment">
-        <p><b>{{::'APPOINTMENT_SERVICE' | translate}}:</b> {{appointment.service.name}}</p>
+        <p><b>{{::'APPOINTMENT_SERVICE' | translate}}:</b> {{appointment.service.name | translate}}</p>
         <p ng-show="appointment.serviceType"><b>{{::'APPOINTMENT_SERVICE_TYPE_FULL' |
             translate}}:</b> {{appointment.serviceType.name}}</p>
         <p ng-show="appointment.status"><b>{{::'APPOINTMENT_STATUS' | translate}}:</b>
             {{appointment.status}}</p>
     </div>
+    
     <p ng-if="scope.appointments[0].providers">
         <b>{{::'APPOINTMENT_PROVIDER' | translate}}:</b> {{getAppointmentProviderNames(scope.appointments[0])}}
     </p>
