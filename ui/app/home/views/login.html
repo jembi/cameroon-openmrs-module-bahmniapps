@@ -1,81 +1,155 @@
 <style>
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
 body {
-    font-family: Open Sans, Regular;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:400;
 	display: block;
-    margin: 0px;
+	margin: 0px;
 	overflow: hidden;
 	line-height: normal;
     background: #ffffff;
 }
 
-.clint-logo-wrapper {
+.client-logo-wrapper {
 	display: block;
-	text-align: left;
 	background: #3685C2;
-	height: 110px;
-    font-size: 16px;
-    padding-top: 10px;
+	min-height: 110px;
+    width:100%;
+    min-width:650px;
+    text-shadow: 1px 1px 16px rgba(0,0,0,0.40);
 }
+
+#headerContent {
+	position: relative;
+	width: 100%;
+    max-width: 1440px;
+    margin: auto;
+}
+
+#headerContent .logos{
+	position: relative;
+	float: left;
+	padding: 1.1em 0.5em 0 1em;
+	min-width:140px;
+}
+
+img.client_logo{height:100%; max-height:80px;}
+
+#headerContent .moh{
+	position: relative;
+	float: left;
+	height:100%;
+	padding: 2.2em 0 0;
+}
+
+#headerContent .hospitalName{
+	position: relative;
+	float: right;
+	text-align: right;
+	color: #FFFFFF;
+    font-size: 26px;
+	padding: 1.4em 0.5em 0 0;
+}
+
 
 .header-menu {
 	display: block;
 	text-align: center;
-	padding-top: 10px;
+	height: 10px;
 	background: #BDD7EC;
+	float: left;
+	width:100%;
 }
 
 .header_text {
 	text-align: center;
-	margin: 15px auto 15px;
+	margin: 30px auto 50px;
 	color: #333;
-	font-size: 30px;
 	width: 100%;
 }
 
-#hospitalName {
-	text-align: right;
-	color: #FFFFFF;
-    font-size: 28px;
-	padding-right: 50px;
+.header_text .welcome {
+	font-size: 18px;
 }
-
-#headerContent tr {
-	background: none;
-	border: 0;
+.header_text .emrs {
+	font-size: 30px;
+	font-weight: 800;
 }
-
-#headerContent td {
-	border: 0;
+.header_text .hospital {
+	font-size: 22px;
 }
 
 #mohLabel {
 	color: #FFFFFF;
-    font-size: 16px;
+	font-size: 16px;
+	line-height:24px;
+}
+
+.launch {
+	text-align: center;
+	font-size: 20px;
+}
+
+.launch img {
+	width: 190px;
+	height: 190px;
+	display: block;
+	margin: 15px auto;
+}
+
+.launch span {
+	min-height: 55px;
+	display: inline-block;
+	color: #f4834d;
+	font-weight: bold;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+.warning-message {
+	text-align: center;
+	margin: 0 auto;
+	color: #ffac2e;
+	width: 100%;
+	max-width:600px;
+	background: #ffffff;
+	padding-top: 10px;
+}
+
+.warning-message span {
+	font-weight: bolder;
+	font-size: 12px;
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.warning-message p {
+	padding: 0 50px;
+	margin: 0;
+	font-size: 12px;
 }
 
 .bottom-banner-wrapper {
 	position: fixed;
+	bottom:40px;
 	text-align: center;
-	bottom: 60px;
 	width: 100%;
-	left: 10px;
-    right: 10px;
     background: #ffffff;
 }
 
 .bottom-banner-wrapper img {
-	max-width: 500px;
+	width:100%;
+	max-width: 450px;
 }
 
 .power-by {
 	position: fixed;
 	width: 100%;
-	bottom: 7px;
+	height:30px;
+	bottom: 0px;
 	text-align: center;
 	background: #ffffff;
-	padding-bottom: 5px;
 	font-size: 12px;
-	z-index: -1;
 	color: #898989;
 }
 
@@ -87,27 +161,97 @@ body {
 
 .power-by a {
 	color: #000;
+    text-decoration: underline;
 }
+
+@media (min-width: 0px) 
+and (max-width: 799px) {
+
+    #headerContent .logos {
+        min-width: 70px;
+        padding: 2em 0.5em 0 1em;
+    }
+    img.client_logo {
+        max-height: 60px;
+    }
+    #headerContent .hospitalName{
+        font-size: 18px;
+        padding: 2.5em 0.5em 0 0;
+    }
+    #headerContent .moh {
+        padding: 2.4em 0 0;
+    }
+    #mohLabel {
+    font-size: 11px;
+    line-height:22px;
+    }
+    .header_text .welcome {
+	font-size: 16px;
+	}
+	.header_text .emrs {
+		font-size: 26px;
+		font-weight: 800;
+	}
+	.header_text .hospital {
+		font-size: 18px;
+	}
+    .warning-message p {
+        font-size: 10px;
+    }
+}
+@media (min-width: 800px) 
+  and (max-width: 1024px) {
+
+    #headerContent .logos {
+        min-width: 80px;
+        padding: 1.5em 0.5em 0 1em;
+    }
+    img.client_logo {
+        max-height: 70px;
+    }
+    #headerContent .hospitalName{
+        font-size: 22px;
+        padding: 1.7em 0.5em 0 0;
+    }
+    #mohLabel {
+    font-size: 14px;
+    line-height:24px;
+    }
+    .header_text .welcome {
+	font-size: 16px;
+	}
+	.header_text .emrs {
+		font-size: 26px;
+		font-weight: 800;
+	}
+	.header_text .hospital {
+		font-size: 18px;
+	}
+    .warning-message p {
+        font-size: 10px;
+    }
+}
+
 
 </style>
 <body>
-<div class="clint-logo-wrapper">
-	<table id = "headerContent" style="width: 100%">
-		<tr>
-			<td style="width: 13%;text-align: right"><img class="client_logo"
-				src={{logo}} /><img class="client_logo"
-				src="/images/mohLogo.png" /></td>
-			<td><span id="mohLabel">Cameroon Ministry of Public
-					Health<br /> Ministère de la Santé Publique du Cameroun
-			</span></td>
-			<td id="hospitalName">{{hospitalName}}</td>
-		</tr>
-	</table>
+<div class="client-logo-wrapper">
+	<div id = "headerContent">
+            <div class="logos">
+                <img class="client_logo"src={{logo}} />
+                <img class="client_logo"src="/images/mohLogo.png" />
+            </div>
+			<div class="moh">
+                <span id="mohLabel">Cameroon Ministry of Public Health<br />Ministère de la Santé Publique du Cameroun</span>
+            </div>
+            <div id="hospitalName" class="hospitalName">{{hospitalName}}</div>
+	</div>
 </div>
 <div class="header-menu"></div>
 <div class="header_text">
-	<span style="font-size:20px">Bienvenu au</span><br>
-	<strong>Dossier Médical Electronique </strong><br>du Ministère de la Santé Publique du Cameroun
+    <div class="welcome">Bienvenu au</div>
+    <div class="emrs">Dossier Médical Electronique</div>
+    <div class="hospital">du Ministère de la Santé Publique du Cameroun</div>
 </div>
 <div class="login" ng-hide="showOTP">
     <header class="reg-header">
@@ -181,15 +325,9 @@ body {
         <span ng-if="warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{warning}}</span>
         <p>{{warningMessage | translate :timeZoneObject}} </p>
     </div>
-
-    <div class="bottom-banner-wrapper">
-		<img id="bottom-banner-image" src={{bottomBanner}}>
-	</div>
-
 </div>
 
 <div class="login login-otp" ng-show="showOTP">
-
     <header class="reg-header">
         <div class="left">{{'LOGIN_LABEL_LOGIN_KEY' | translate}}</div>
     </header>
@@ -225,9 +363,10 @@ body {
         </div>
     </form>
 </div>
-
+<div class="bottom-banner-wrapper">
+		<img id="bottom-banner-image" src={{bottomBanner}}>
+	</div>
 <div class="power-by">
-    <img src="./../images/bahmniLogoFull.png" alt="Bahmni" />
-    <a href={{helpLink}}>Aide sur Bahmni</a>
+    <img src="./../images/bahmniLogoFull.png" alt="Bahmni" /><a href={{helpLink}}>Aide sur Bahmni</a>
 </div>
 </body>
