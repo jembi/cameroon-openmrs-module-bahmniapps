@@ -8,6 +8,7 @@ body {
 	overflow: hidden;
 	line-height: normal;
     background: #ffffff;
+
 }
 
 .client-logo-wrapper {
@@ -63,7 +64,7 @@ img.client_logo{height:100%; max-height:80px;}
 
 .header_text {
 	text-align: center;
-	margin: 30px auto 50px;
+	margin: 20px auto;
 	color: #333;
 	width: 100%;
 }
@@ -83,6 +84,20 @@ img.client_logo{height:100%; max-height:80px;}
 	color: #FFFFFF;
 	font-size: 16px;
 	line-height:24px;
+}
+
+.login {
+    height: auto; 
+    position: relative;
+    width:90%;
+    max-width:450px;
+    margin: 20px auto;
+    font-size: 0.865em;
+    max-width: 450px;
+    z-index:99;
+}
+.reg-wrapper header {
+    background: #3685C2;
 }
 
 .launch {
@@ -171,6 +186,13 @@ and (max-width: 799px) {
         min-width: 70px;
         padding: 2em 0.5em 0 1em;
     }
+
+    .client-logo-wrapper{
+        max-height: 80px;
+    }
+
+    .header_text{display:none;}
+
     img.client_logo {
         max-height: 60px;
     }
@@ -185,20 +207,11 @@ and (max-width: 799px) {
     font-size: 11px;
     line-height:22px;
     }
-    .header_text .welcome {
-	font-size: 16px;
-	}
-	.header_text .emrs {
-		font-size: 26px;
-		font-weight: 800;
-	}
-	.header_text .hospital {
-		font-size: 18px;
-	}
     .warning-message p {
         font-size: 10px;
     }
 }
+
 @media (min-width: 800px) 
   and (max-width: 1024px) {
 
@@ -217,15 +230,18 @@ and (max-width: 799px) {
     font-size: 14px;
     line-height:24px;
     }
+    .header_text {
+        margin: 20px auto 0;
+    }
     .header_text .welcome {
-	font-size: 16px;
+	font-size: 14px;
 	}
 	.header_text .emrs {
-		font-size: 26px;
+		font-size: 22px;
 		font-weight: 800;
 	}
 	.header_text .hospital {
-		font-size: 18px;
+		font-size: 14px;
 	}
     .warning-message p {
         font-size: 10px;
