@@ -1,3 +1,5 @@
+/* Custom Styles for FR long text in buttons */
+
 button.save-consultation {
     margin: 8px 5px 0;
     padding: 10px 8px 9px;
@@ -8,3 +10,27 @@ button.save-consultation {
     max-width: 350px;
     font-size: 14px;
 }
+
+
+/* Custom styles to help visibility in Long forms with multiple collapsible sections*/ 
+
+.vitals fieldset legend {
+    color: #000;
+}
+
+.vitals fieldset legend + .form-group legend {
+    color: #000;
+}
+
+.vitals fieldset.collapsible-set.collapsed legend.mylegend .fa {
+    color:#fff;
+}
+.vitals fieldset.collapsible-set.collapsed legend {
+    background-color: #5b8e8e !important;
+    color: #fff;
+}
+
+.form-group legend strong {
+    font-family: OpenSans !important;
+}  
+
