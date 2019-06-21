@@ -64,7 +64,6 @@ angular.module('bahmni.reports')
                 reportService.generateReport(report);
                 if (report.responseType === 'application/vnd.ms-excel-custom') {
                     report.reportTemplateLocation = undefined;
-                    report.responseType = _.values($scope.formats)[0];
                 }
                 log(report.name);
             }
