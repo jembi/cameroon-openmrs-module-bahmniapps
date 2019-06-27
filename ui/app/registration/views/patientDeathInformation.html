@@ -36,4 +36,16 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col col1">
+            <span ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
+     <article style="margin: 0" class="form-field" ng-repeat="attribute in ::attributeRow"
+            ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attribute.name == 'REGISTRATION_LABEL_PLACE_OF_DEATH'">
+       <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
+                        is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
+                        get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
+     </article>
+     </span>
+     </div>
+    </div>
 </article>
