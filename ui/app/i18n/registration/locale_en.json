@@ -114,5 +114,5 @@
   "EDIT_LABEL": "Edit",
   "REGISTRATION_LABEL_RELATIONSHIP_EXISTS": "Given relationship already exists",
   "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Phone Number",
-  "PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH": "Other cause of death"
+  "PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH": "Other reason"
 }
