@@ -21,6 +21,9 @@
                         ng-change="selectIsDead()" ng-required="patient.dead">
                     <option value="">{{ ::'REGISTRATION_LABEL_CHOOSE_VALUE' | translate}}</option>
                 </select>
+                <div ng-show = "patient.causeOfDeath.name.name === 'Other'">
+                    <input ng-required="patient.causeOfDeath.name.name === 'Other'" ng-model="patient.PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH" />
+                </div>
             </div>
         </div>
         <div class="col col3">
