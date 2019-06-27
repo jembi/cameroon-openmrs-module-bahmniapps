@@ -83,6 +83,7 @@
   "SELECT_VALUE_FROM_AUTOCOMPLETE_DEFAULT_MESSAGE": "Veuillez sélectionner une valeur de auto complète",
   "REGISTRATION_ADDTIONAL_IDENTIFIERS": "Identifiants supplémentaires",
   "PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER": "Téléphone",
+  "PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH": "Autre raison",
   "MESSAGE_DIALOG_OPTION_COPY": "Erreur de copie",
   "MESSAGE_DIALOG_OPTION_OKAY": "D'accord",
   "NOTES_LABEL": "Remarques",

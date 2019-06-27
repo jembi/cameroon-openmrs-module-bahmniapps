@@ -243,6 +243,9 @@ angular.module('bahmni.registration')
                 if ($scope.patient.causeOfDeath || $scope.patient.deathDate) {
                     $scope.patient.dead = true;
                 }
+                if ($scope.patient.causeOfDeath.name.name !== 'Other' && $scope.patient.PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH) {
+                    $scope.patient.PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH = null;
+                }
             };
 
             $scope.disableIsDead = function () {
