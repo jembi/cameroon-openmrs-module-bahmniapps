@@ -230,7 +230,8 @@
         <section class="form-field-inline clearfix"
                  ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
             <article class="form-field" ng-repeat="attribute in ::attributeRow"
-                     ng-class="::{'right-form-field' : $index%2 != 0}">
+                    ng-if="attribute.name !== 'PERSON_ATTRIBUTE_TYPE_PLACE_OF_DEATH'"
+                    ng-class="::{'right-form-field' : $index%2 != 0}">
                 <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
                                  is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
                                  get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
@@ -256,7 +257,7 @@
                 </legend>
                 <section class="form-field-inline clearfix" ng-show="section.expand">
                     <article class="form-field" ng-repeat="attribute in ::section.attributes"
-                             ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attribute.name != 'REGISTRATION_LABEL_PLACE_OF_DEATH'">
+                             ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attribute.name != 'PERSON_ATTRIBUTE_TYPE_PLACE_OF_DEATH'">
                         <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
                                          is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
                                          get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
