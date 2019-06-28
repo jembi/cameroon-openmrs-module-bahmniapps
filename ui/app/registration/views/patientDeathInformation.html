@@ -22,12 +22,12 @@
                     <option value="">{{ ::'REGISTRATION_LABEL_CHOOSE_VALUE' | translate}}</option>
                 </select>
             </div>
-            <div class="field-value" ng-show = "patient.causeOfDeath.name.name === 'Other'">
+            <div class="field-value" ng-show = "otherCauseOfDeathSelected()">
                 <label class="till-text">
                     {{ ::'PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH' | translate}}
-                    <span class="asterick" ng-show="patient.causeOfDeath.name.name === 'Other'">*</span>
+                    <span class="asterick" ng-show="otherCauseOfDeathSelected()">*</span>
                 </label>
-                <input ng-required="patient.causeOfDeath.name.name === 'Other'" ng-model="patient.PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH" />
+                <input ng-required="otherCauseOfDeathSelected()" ng-model="patient.PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH" />
             </div>
         </div>
         <div class="col col3">
