@@ -243,6 +243,21 @@ angular.module('bahmni.registration')
                 if ($scope.patient.causeOfDeath || $scope.patient.deathDate) {
                     $scope.patient.dead = true;
                 }
+                if (!$scope.otherCauseOfDeathSelected() && $scope.patient.PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH) {
+                    $scope.patient.PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH = null;
+                }
+            };
+
+            $scope.otherCauseOfDeathSelected = function () {
+                if ($scope.patient &&
+                    $scope.patient.causeOfDeath &&
+                    $scope.patient.causeOfDeath.name &&
+                    $scope.patient.causeOfDeath.name.name &&
+                    $scope.patient.causeOfDeath.name.name === 'Other') {
+                    return true;
+                } else {
+                    return false;
+                }
             };
 
             $scope.disableIsDead = function () {
