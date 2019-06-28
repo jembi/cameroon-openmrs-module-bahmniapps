@@ -248,7 +248,7 @@ angular.module('bahmni.registration')
                 }
             };
 
-            $scope.otherCauseOfDeathSelected = function() {
+            $scope.otherCauseOfDeathSelected = function () {
                 if ($scope.patient &&
                     $scope.patient.causeOfDeath &&
                     $scope.patient.causeOfDeath.name &&
@@ -258,7 +258,7 @@ angular.module('bahmni.registration')
                 } else {
                     return false;
                 }
-            }
+            };
 
             $scope.disableIsDead = function () {
                 return ($scope.patient.causeOfDeath || $scope.patient.deathDate) && $scope.patient.dead;
