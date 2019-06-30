@@ -44,7 +44,7 @@
                 <td>{{appointment.status}}</td>
                 <td>{{:: isWalkIn(appointment.appointmentKind)}}</td>
                 <td class="table-mid-width">{{::appointment.location.name | translate}}</td>
-                <td class="table-mid-width">{{display(appointment.additionalInfo)}}</td>
+                <td class="table-mid-width"><!-- {{display(appointment.additionalInfo)}} --></td>
                 <td>{{::appointment.comments}}</td>
             </tr>
             </tbody>
