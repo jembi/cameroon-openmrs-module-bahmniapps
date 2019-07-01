@@ -713,7 +713,11 @@ describe('AppointmentsListViewController', function () {
                 {heading: 'APPOINTMENT_STATUS', sortInfo: 'status', enable: true},
                 {heading: 'APPOINTMENT_WALK_IN', sortInfo: 'appointmentKind', enable: true},
                 {heading: 'APPOINTMENT_SERVICE_LOCATION_KEY', sortInfo: 'location.name', class: true, enable: true},
-                {heading: 'APPOINTMENT_ADDITIONAL_INFO', sortInfo: 'additionalInfo', class: true, enable: true},
+                {heading: 'APPOINTMENT_PATIENT_PHONE_NUMBER_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
+                {heading: 'APPOINTMENT_PATIENT_VILLAGE_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
+                {heading: 'APPOINTMENT_EMERGENCY_CONTACT_NAME_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
+                {heading: 'APPOINTMENT_EMERGENCY_CONTACT_NUMBER_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
+                {heading: 'APPOINTMENT_EMERGENCY_CONTACT_RELATIONSHIP_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
                 {heading: 'APPOINTMENT_CREATE_NOTES', sortInfo: 'comments', enable: true}];
                 createController();
 
