@@ -26,9 +26,6 @@ angular.module('bahmni.appointments')
                 {heading: 'APPOINTMENT_START_TIME_KEY', sortInfo: 'startDateTime', enable: true},
                 {heading: 'APPOINTMENT_END_TIME_KEY', sortInfo: 'endDateTime', enable: true},
                 {heading: 'APPOINTMENT_PROVIDER', sortInfo: 'provider.name', class: true, enable: true},
-                {heading: 'APPOINTMENT_EMERGENCY_CONTACT_NAME_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
-                {heading: 'APPOINTMENT_EMERGENCY_CONTACT_NUMBER_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
-                {heading: 'APPOINTMENT_EMERGENCY_CONTACT_RELATIONSHIP_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
                 {heading: 'APPOINTMENT_SERVICE_SPECIALITY_KEY', sortInfo: 'service.speciality.name', enable: $scope.enableSpecialities},
                 {heading: 'APPOINTMENT_SERVICE', sortInfo: 'service.name', class: true, enable: true},
                 {heading: 'APPOINTMENT_SERVICE_TYPE_FULL', sortInfo: 'serviceType.name', class: true, enable: $scope.enableServiceTypes},
@@ -36,6 +33,11 @@ angular.module('bahmni.appointments')
                 {heading: 'APPOINTMENT_WALK_IN', sortInfo: 'appointmentKind', enable: true},
                 {heading: 'APPOINTMENT_SERVICE_LOCATION_KEY', sortInfo: 'location.name', class: true, enable: true},
                 {heading: 'APPOINTMENT_ADDITIONAL_INFO', sortInfo: 'additionalInfo', class: true, enable: true},
+                {heading: 'APPOINTMENT_PATIENT_PHONE_NUMBER_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
+                {heading: 'APPOINTMENT_PATIENT_VILLAGE_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
+                {heading: 'APPOINTMENT_EMERGENCY_CONTACT_NAME_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
+                {heading: 'APPOINTMENT_EMERGENCY_CONTACT_NUMBER_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
+                {heading: 'APPOINTMENT_EMERGENCY_CONTACT_RELATIONSHIP_KEY', sortInfo: 'additionalInfo', class: true, enable: true},
                 {heading: 'APPOINTMENT_CREATE_NOTES', sortInfo: 'comments', enable: true}];
             var init = function () {
                 $scope.searchedPatient = $stateParams.isSearchEnabled && $stateParams.patient;
