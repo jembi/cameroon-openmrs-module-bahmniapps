@@ -1,14 +1,66 @@
 'use strict';
 
 angular.module('bahmni.home')
-    .controller('LoginController', ['$rootScope', '$scope', '$window', '$location', 'sessionService', 'initialData', 'spinner', '$q', '$stateParams', '$bahmniCookieStore', 'localeService', '$translate', 'userService', 'auditLogService',
-        function ($rootScope, $scope, $window, $location, sessionService, initialData, spinner, $q, $stateParams, $bahmniCookieStore, localeService, $translate, userService, auditLogService) {
+    .controller('LoginController', ['$rootScope', '$scope', '$window', '$location', 'sessionService', 'initialData', 'spinner', '$q', '$stateParams', '$bahmniCookieStore', 'localeService', '$translate', 'userService', 'auditLogService', '$http',
+        function ($rootScope, $scope, $window, $location, sessionService, initialData, spinner, $q, $stateParams, $bahmniCookieStore, localeService, $translate, userService, auditLogService, $http) {
             var redirectUrl = $location.search()['from'];
             var landingPagePath = "/dashboard";
             var loginPagePath = "/login";
             $scope.locations = initialData.locations;
             $scope.loginInfo = {};
             var localeLanguages = [];
+
+            var emailEn = function () {
+                return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
+                    method: "GET",
+                    params: {
+                        property: 'mrs.emailEn'
+                    },
+                    withCredentials: true
+                }).then(function (response) {
+                    $rootScope.emailEn = response.data.email;
+                });
+            };
+
+            var emailFr = function () {
+                return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
+                    method: "GET",
+                    params: {
+                        property: 'mrs.emailFr'
+                    },
+                    withCredentials: true
+                }).then(function (response) {
+                    $rootScope.emailFr = response.data.email;
+                });
+            };
+
+            var phoneNumberEn = function () {
+                return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
+                    method: "GET",
+                    params: {
+                        property: 'mrs.phoneNumberEn'
+                    },
+                    withCredentials: true
+                }).then(function (response) {
+                    $rootScope.phoneNumberEn = response.data.number;
+                });
+            };
+
+            var phoneNumberFr = function () {
+                return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
+                    method: "GET",
+                    params: {
+                        property: 'mrs.phoneNumberFr'
+                    },
+                    withCredentials: true
+                }).then(function (response) {
+                    $rootScope.phoneNumberFr = response.data.number;
+                });
+            };
+            emailEn();
+            emailFr();
+            phoneNumberEn();
+            phoneNumberFr();
 
             var getLocalTimeZone = function () {
                 var currentLocalTime = new Date().toString();

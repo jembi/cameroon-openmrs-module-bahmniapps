@@ -368,8 +368,10 @@ and (max-width: 768px) {
         </div>
 
     </form>
-    <p style="padding-top: 2%; text-align: center">{{'CONTACT_SYSTEM_ADMINISTRATOR_EN_KEY' | translate}}<a href=""> systemsadmin@gmail.com</a>  {{'OR_DIAL_EN_KEY' | translate}} 987654321</p>
-    <p style="text-align: center">{{'CONTACT_SYSTEM_ADMINISTRATOR_FR_KEY' | translate}}<a href=""> systemsadmin@gmail.com</a> {{'OR_DIAL_FR_KEY' | translate}} 694021547</p>
+    <h5 style="padding-top: 3%; text-align: center" ng-if="selectedLocale== 'en'">{{'CONTACT_SYSTEM_ADMINISTRATOR_KEY' | translate}}<br>
+        <a href=""> {{emailEn}}</a>  {{'OR_DIAL_KEY' | translate}} {{phoneNumberEn}}</h5>
+    <h5 style="padding-top: 3%; text-align: center" ng-if="selectedLocale== 'fr'">{{'CONTACT_SYSTEM_ADMINISTRATOR_KEY' | translate}}<br>
+        <a href=""> {{emailFr}}</a> {{'OR_DIAL_KEY' | translate}} {{phoneNumberFr}}</h5>
 
     <div class="warning-message">
         <span ng-if="warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{warning}}</span>
