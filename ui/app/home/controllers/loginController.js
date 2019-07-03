@@ -10,57 +10,32 @@ angular.module('bahmni.home')
             $scope.loginInfo = {};
             var localeLanguages = [];
 
-            var emailEn = function () {
+            var email = function () {
                 return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
                     method: "GET",
                     params: {
-                        property: 'mrs.emailEn'
+                        property: 'mrs.email'
                     },
                     withCredentials: true
                 }).then(function (response) {
-                    $rootScope.emailEn = response.data.email;
+                    $rootScope.email = response.data.email;
                 });
             };
 
-            var emailFr = function () {
+            var phoneNumber = function () {
                 return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
                     method: "GET",
                     params: {
-                        property: 'mrs.emailFr'
+                        property: 'mrs.phoneNumber'
                     },
                     withCredentials: true
                 }).then(function (response) {
-                    $rootScope.emailFr = response.data.email;
+                    $rootScope.phoneNumber = response.data.number;
                 });
             };
 
-            var phoneNumberEn = function () {
-                return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
-                    method: "GET",
-                    params: {
-                        property: 'mrs.phoneNumberEn'
-                    },
-                    withCredentials: true
-                }).then(function (response) {
-                    $rootScope.phoneNumberEn = response.data.number;
-                });
-            };
-
-            var phoneNumberFr = function () {
-                return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
-                    method: "GET",
-                    params: {
-                        property: 'mrs.phoneNumberFr'
-                    },
-                    withCredentials: true
-                }).then(function (response) {
-                    $rootScope.phoneNumberFr = response.data.number;
-                });
-            };
-            emailEn();
-            emailFr();
-            phoneNumberEn();
-            phoneNumberFr();
+            email();
+            phoneNumber();
 
             var getLocalTimeZone = function () {
                 var currentLocalTime = new Date().toString();
