@@ -396,7 +396,7 @@ Bahmni.Clinical.DrugOrderViewModel = function (config, proto, encounterDate) {
     };
 
     this.calculateDurationInDays = function () {
-        if (self.durationUnit === "Mois / Month(s)") {
+        if (self.durationUnit === "Mois") {
             var endDate = Bahmni.Common.Util.DateUtil.addMonths(self.effectiveStartDate, self.duration);
             self.durationInDays = self.duration ? Bahmni.Common.Util.DateUtil.diffInDays(self.effectiveStartDate, endDate) : Number.NaN;
         } else {
