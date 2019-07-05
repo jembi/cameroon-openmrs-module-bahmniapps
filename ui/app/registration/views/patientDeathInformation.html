@@ -1,14 +1,46 @@
 <article class="form-field death">
     <div class="row">
         <div class="col col1">
-            <div class="field-attribute">
-                <label class="till-text">{{ ::'REGISTRATION_LABEL_DATE_DEATH' | translate}}</label>
+            <div>
+                <div class="field-attribute showOn-small-screen">
+                    <label for="isDead" class="till-text"><span>{{ ::'REGISTRATION_LABEL_IS_DEAD' | translate}}</span></label>
+                </div>
+                <div class="field-value">
+                    <input type="checkbox" id="isDead" class="isDeadChkBox" ng-model="patient.dead" ng-disabled="disableIsDead()"/>
+                </div>
+
+                <div class="field-attribute showOn-desktop">
+                    <label for="isDead" class="till-text"><span>{{ ::'REGISTRATION_LABEL_IS_DEAD' | translate}}</span></label>
+                </div>
             </div>
-            <div class="field-value">
-                <input type="date" ng-model="patient.deathDate" ng-change="selectIsDead()" max="{{::today}}"/>
+            <div ng-show="patient.dead">
+                <span ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
+                    <article style="margin: 0" class="form-field" ng-repeat="attribute in ::attributeRow"
+                        ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attribute.name == 'PERSON_ATTRIBUTE_TYPE_PLACE_OF_DEATH'">
+                        <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
+                            is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
+                            get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
+                    </article>
+                </span>
             </div>
         </div>
-        <div class="col col2">
+        <div class="col col2" ng-show="patient.dead">
+            <div>
+                <div class="field-attribute">
+                    <label class="till-text">{{ ::'REGISTRATION_LABEL_DATE_DEATH' | translate}}</label>
+                </div>
+                <div class="field-value">
+                    <input type="date" ng-model="patient.deathDate" ng-change="selectIsDead()" max="{{::today}}"/>
+                </div>
+            </div>
+            <div class="field-value">
+                <label class="till-text">
+                    {{ ::'PERSON_ATTRIBUTE_TYPE_TIME_OF_DEATH' | translate}}
+                </label>
+                <input pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" placeholder="HH:mm" ng-model="patient.PERSON_ATTRIBUTE_TYPE_TIME_OF_DEATH" />
+            </div>
+        </div>
+        <div class="col col3" ng-show="patient.dead">
             <div class="field-attribute">
                 <label class="till-text">
                     {{ ::'REGISTRATION_LABEL_REASON_FOR_DEATH' | translate}}
@@ -28,18 +60,6 @@
                     <span class="asterick" ng-show="otherCauseOfDeathSelected()">*</span>
                 </label>
                 <input ng-required="otherCauseOfDeathSelected()" ng-model="patient.PERSON_ATTRIBUTE_TYPE_OTHER_CAUSE_OF_DEATH" />
-            </div>
-        </div>
-        <div class="col col3">
-            <div class="field-attribute showOn-small-screen">
-                <label for="isDead" class="till-text"><span>{{ ::'REGISTRATION_LABEL_IS_DEAD' | translate}}</span></label>
-            </div>
-            <div class="field-value">
-                <input type="checkbox" id="isDead" class="isDeadChkBox" ng-model="patient.dead" ng-disabled="disableIsDead()"/>
-            </div>
-
-            <div class="field-attribute showOn-desktop">
-                <label for="isDead" class="till-text"><span>{{ ::'REGISTRATION_LABEL_IS_DEAD' | translate}}</span></label>
             </div>
         </div>
     </div>

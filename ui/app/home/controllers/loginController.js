@@ -1,14 +1,41 @@
 'use strict';
 
 angular.module('bahmni.home')
-    .controller('LoginController', ['$rootScope', '$scope', '$window', '$location', 'sessionService', 'initialData', 'spinner', '$q', '$stateParams', '$bahmniCookieStore', 'localeService', '$translate', 'userService', 'auditLogService',
-        function ($rootScope, $scope, $window, $location, sessionService, initialData, spinner, $q, $stateParams, $bahmniCookieStore, localeService, $translate, userService, auditLogService) {
+    .controller('LoginController', ['$rootScope', '$scope', '$window', '$location', 'sessionService', 'initialData', 'spinner', '$q', '$stateParams', '$bahmniCookieStore', 'localeService', '$translate', 'userService', 'auditLogService', '$http',
+        function ($rootScope, $scope, $window, $location, sessionService, initialData, spinner, $q, $stateParams, $bahmniCookieStore, localeService, $translate, userService, auditLogService, $http) {
             var redirectUrl = $location.search()['from'];
             var landingPagePath = "/dashboard";
             var loginPagePath = "/login";
             $scope.locations = initialData.locations;
             $scope.loginInfo = {};
             var localeLanguages = [];
+
+            var email = function () {
+                return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
+                    method: "GET",
+                    params: {
+                        property: 'mrs.email'
+                    },
+                    withCredentials: true
+                }).then(function (response) {
+                    $rootScope.email = response.data.email;
+                });
+            };
+
+            var phoneNumber = function () {
+                return $http.get(Bahmni.Common.Constants.globalPropertyUrl, {
+                    method: "GET",
+                    params: {
+                        property: 'mrs.phoneNumber'
+                    },
+                    withCredentials: true
+                }).then(function (response) {
+                    $rootScope.phoneNumber = response.data.number;
+                });
+            };
+
+            email();
+            phoneNumber();
 
             var getLocalTimeZone = function () {
                 var currentLocalTime = new Date().toString();
