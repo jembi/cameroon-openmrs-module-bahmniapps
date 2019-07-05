@@ -103,9 +103,9 @@ describe('treatmentConfig', function () {
         injectTreatmentConfig("tbTab");
         treatmentConfig.then(function (data) {
             expect(data.durationUnits).toEqual([
-                {name: "Day(s)/ Jour(s)", factor: 1},
-                {name: "Week(s)/ Semaine(s)", factor: 7},
-                {name: "Month(s)/ Mois", factor: 30}
+                {name: "Day(s) / Jour(s)", factor: 1},
+                {name: "Week(s) / Semaine(s)", factor: 7},
+                {name: "Month(s) / Mois", factor: 30}
             ]);
         }).catch(notifyError).finally(done);
     });
