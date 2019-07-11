@@ -35,7 +35,7 @@ describe("Identifier Model", function () {
 
             patientIdentifier.registrationNumber = "abcd";
             patientIdentifier.generate();
-            expect(patientIdentifier.voided).toBeFalsy();
+            expect(patientIdentifier.voided).toBeTruthy();
 
         })
     });
