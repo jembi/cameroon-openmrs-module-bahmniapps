@@ -128,7 +128,7 @@
                 </p>
                 <p>
                     <label for="startTimeID">
-                        {{'APPOINTMENT_START_TIME_KEY' | translate}}<sup class="asterick">*</sup>
+                        {{'APPOINTMENT_START_TIME_KEY' | translate}}
                     </label>
                     <input type="text"
                            id="startTimeID"
@@ -144,8 +144,7 @@
                            non-blank
                            ng-pattern="timeRegex"
                            ng-model-options="{allowInvalid: true}"
-                           ng-disabled='(!appointment.date || (isEditMode() && !isEditAllowed()))'
-                           required/>
+                           ng-disabled='(!appointment.date || (isEditMode() && !isEditAllowed()))'/>
                     <i class="fa fa-search search-icon-app" aria-hidden="true"></i>
                 </p>
                 <p class="warning-message" ng-if="warning.startTime">
@@ -155,7 +154,7 @@
 
                 <p>
                     <label for="endTimeID">
-                        {{'APPOINTMENT_END_TIME_KEY' | translate}}<sup class="asterick">*</sup>
+                        {{'APPOINTMENT_END_TIME_KEY' | translate}}
                     </label>
                     <input type="text"
                            id="endTimeID"
@@ -171,8 +170,7 @@
                            non-blank
                            ng-disabled='(!appointment.date || (isEditMode() && !isEditAllowed()))'
                            ng-pattern="timeRegex"
-                           ng-model-options="{allowInvalid: true}"
-                           required/>
+                           ng-model-options="{allowInvalid: true}"/>
                     <i class="fa fa-search search-icon-app" aria-hidden="true"></i>
                 </p>
                 <p class="app-ava-slots"

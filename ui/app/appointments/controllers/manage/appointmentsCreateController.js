@@ -93,12 +93,78 @@ angular.module('bahmni.appointments')
                 }
             };
 
+            var populateAppointmentStartAndEndTimeIfEmpty = function () {
+                return new Promise(function (resolve) {
+                    // Do nothing if the appointment's start and end time are already populated
+                    if ($scope.appointment.startTime && $scope.appointment.endTime) {
+                        resolve();
+                        return;
+                    }
+
+                    // Store in an array the uuids of all the providers captured in the new appointment
+                    var newProviderUuids = $scope.appointment.providers.map(function (provider) {
+                        return provider.uuid;
+                    });
+
+                    // Retrieve all the 'scheduled' appointments from the current service
+                    var queryParameters = {
+                        serviceUuid: $scope.appointment.service.uuid,
+                        status: 'Scheduled'
+                    };
+
+                    appointmentsService.search(queryParameters).then(function (response) {
+                        // Keep only the appointments from the current date and providers
+                        var filteredAppointments = response.data.filter(function (appointment) {
+                            var isRightDate = moment(appointment.endDateTime).isSame(moment($scope.appointment.date), 'day');
+
+                            var existingProviderUuids = appointment.providers.map(function (provider) {
+                                return provider.uuid;
+                            });
+                            var isRightProvider = false;
+                            if (newProviderUuids.length === 0 && existingProviderUuids.length === 0) {
+                                isRightProvider = true;
+                            } else {
+                                isRightProvider = newProviderUuids.some(function (provider) {
+                                    return existingProviderUuids.includes(provider);
+                                });
+                            }
+                            return isRightDate && isRightProvider;
+                        });
+
+                        // Extract the appointment end times
+                        var appointmentsEndTimes = filteredAppointments.map(function (appointment) {
+                            return appointment.endDateTime;
+                        });
+
+                        // Sort the appointment end times (most recent on top)
+                        appointmentsEndTimes.sort();
+                        appointmentsEndTimes.reverse();
+
+                        if (appointmentsEndTimes.length > 0) {
+                            // If there are previous appointments for the current provider and date,
+                            // book the slot next to the last appointment
+                            $scope.appointment.startTime = moment(appointmentsEndTimes[0]).format('hh:mm a');
+                            $scope.appointment.endTime = moment(appointmentsEndTimes[0]).add($scope.minDuration, 'm').format('hh:mm a');
+                            resolve();
+                        } else {
+                            // If there is NO previous appointment for the current provider and date,
+                            // book the first slot of the day
+                            $scope.appointment.startTime = moment($scope.appointment.service.startTime, 'hh:mm:ss').format('hh:mm a');
+                            $scope.appointment.endTime = moment($scope.appointment.service.startTime, 'hh:mm:ss')
+                                .add($scope.appointment.service.durationMins, 'm').format('hh:mm a');
+                            resolve();
+                        }
+                    });
+                });
+            };
+
             $scope.save = function () {
                 var message;
                 if ($scope.createAppointmentForm.$invalid) {
                     message = $scope.createAppointmentForm.$error.pattern
                         ? 'INVALID_TIME_ERROR_MESSAGE' : 'INVALID_SERVICE_FORM_ERROR_MESSAGE';
-                } else if (!moment($scope.appointment.startTime, 'hh:mm a')
+                } else if (($scope.appointment.startTime && $scope.appointment.endTime)
+                        && !moment($scope.appointment.startTime, 'hh:mm a')
                         .isBefore(moment($scope.appointment.endTime, 'hh:mm a'), 'minutes')) {
                     message = 'TIME_SEQUENCE_ERROR_MESSAGE';
                 }
@@ -107,13 +173,16 @@ angular.module('bahmni.appointments')
                     return;
                 }
 
-                $scope.validatedAppointment = Bahmni.Appointments.Appointment.create($scope.appointment);
-                var conflictingAppointments = getConflictingAppointments($scope.validatedAppointment);
-                if (conflictingAppointments.length === 0) {
-                    return saveAppointment($scope.validatedAppointment);
-                } else {
-                    $scope.displayConflictConfirmationDialog();
-                }
+                $scope.populateStartEndTimeResult = populateAppointmentStartAndEndTimeIfEmpty();
+                $scope.populateStartEndTimeResult.then(function () {
+                    $scope.validatedAppointment = Bahmni.Appointments.Appointment.create($scope.appointment);
+                    var conflictingAppointments = getConflictingAppointments($scope.validatedAppointment);
+                    if (conflictingAppointments.length === 0) {
+                        return saveAppointment($scope.validatedAppointment);
+                    } else {
+                        $scope.displayConflictConfirmationDialog();
+                    }
+                });
             };
 
             $scope.search = function () {

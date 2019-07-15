@@ -19,6 +19,7 @@ describe("AppointmentsCreateController", function () {
         appointmentsServiceService.getServiceLoad.and.returnValue(specUtil.simplePromise({}));
         appointmentsService = jasmine.createSpyObj('appointmentsService', ['save','search']);
         appointmentsService.save.and.returnValue(specUtil.simplePromise({}));
+        appointmentsService.search.and.returnValue(specUtil.simplePromise({}));
         appService = jasmine.createSpyObj('appService', ['getAppDescriptor']);
         appDescriptor = {
             getConfigValue: function (input) {
@@ -127,7 +128,7 @@ describe("AppointmentsCreateController", function () {
             expect(ngDialog.close).toHaveBeenCalled();
         });
 
-        it('should go to previous view with appointment date after saving the appointment', function () {
+        it('should go to previous view with appointment date after saving the appointment', function (done) {
             createController();
             $scope.createAppointmentForm = {$invalid: false};
             var appointment = {
@@ -141,13 +142,17 @@ describe("AppointmentsCreateController", function () {
             $scope.patientAppointments = [];
             $state.params = {};
             $scope.save();
-            expect(appointmentsService.save).toHaveBeenCalled();
-            expect($state.go).toHaveBeenCalledWith('^', $state.params, {reload: true});
+
+            $scope.populateStartEndTimeResult.then(function () {
+                expect(appointmentsService.save).toHaveBeenCalled();
+                expect($state.go).toHaveBeenCalledWith('^', $state.params, {reload: true});
+                done();
+            })
         });
     });
 
     describe('availabilityValidations', function () {
-        it('should not check for conflicts with itself(same uuid), when editing an appointment', function () {
+        it('should not check for conflicts with itself(same uuid), when editing an appointment', function (done) {
             createController();
             $scope.createAppointmentForm = {$invalid: false};
             var appointment = {
@@ -162,10 +167,13 @@ describe("AppointmentsCreateController", function () {
             $scope.appointment = appointment;
             $scope.save();
 
-            expect(appointmentsService.save).toHaveBeenCalled();
+            $scope.populateStartEndTimeResult.then(function () {
+                expect(appointmentsService.save).toHaveBeenCalled();
+                done();
+            });
         });
 
-        it('should not check for conflicts with cancelled appointments', function () {
+        it('should not check for conflicts with cancelled appointments', function (done) {
             createController();
             $scope.createAppointmentForm = {$invalid: false};
             var cancelledAppointment = {
@@ -190,10 +198,13 @@ describe("AppointmentsCreateController", function () {
             $scope.appointment = newAppointment;
             $scope.save();
 
-            expect(appointmentsService.save).toHaveBeenCalled();
+            $scope.populateStartEndTimeResult.then(function () {
+                expect(appointmentsService.save).toHaveBeenCalled();
+                done();
+            });
         });
 
-        it('should not conflict when the same patient has another appointment at end time of previous appointment', function () {
+        it('should not conflict when the same patient has another appointment at end time of previous appointment', function (done) {
             createController();
             $scope.createAppointmentForm = {$invalid: false};
             var previousAppointment = {
@@ -219,7 +230,10 @@ describe("AppointmentsCreateController", function () {
             $scope.appointment = newAppointment;
             $scope.save();
 
-            expect(appointmentsService.save).toHaveBeenCalled();
+            $scope.populateStartEndTimeResult.then(function () {
+                expect(appointmentsService.save).toHaveBeenCalled();
+                done();
+            });
         });
 
         it('should initialize patientAppointments, if an appointment is editing', function () {
