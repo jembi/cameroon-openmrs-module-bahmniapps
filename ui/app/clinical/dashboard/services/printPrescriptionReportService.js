@@ -26,68 +26,23 @@ angular.module('bahmni.clinical')
             var patientUuid = '';
             var isTARVReport;
 
-            var arvConceptUuids = [];
-
             this.getReportModel = function (_patientUuid, _isTARVReport) {
                 patientUuid = _patientUuid;
                 isTARVReport = _isTARVReport;
 
                 return new Promise(function (resolve, reject) {
-                    retrieveArvConceptUuids().then(function (_arvConceptUuids) {
-                        arvConceptUuids = _arvConceptUuids;
+                    var p1 = populatePatientDemographics();
+                    var p2 = populatePatientWeight();
+                    var p3 = populateTARVAndTBComorbidity();
+                    var p4 = populateLocationAndDrugOrders();
+                    var p5 = populateHospitalNameAndLogo();
 
-                        var p1 = populatePatientDemographics();
-                        var p2 = populatePatientWeight();
-                        var p3 = populateTARVAndTBComorbidity();
-                        var p4 = populateLocationAndDrugOrders();
-                        var p5 = populateHospitalNameAndLogo();
-
-                        Promise.all([p1, p2, p3, p4, p5]).then(function () {
-                            resolve(reportModel);
-                        }).catch(function (error) {
-                            reject(error);
-                        });
+                    Promise.all([p1, p2, p3, p4, p5]).then(function () {
+                        resolve(reportModel);
                     }).catch(function (error) {
                         reject(error);
                     });
                 });
-            };
-
-            var retrieveArvConceptUuids = function () {
-                return new Promise(function (resolve, reject) {
-                    var result = [];
-                    var promise1 = getSetMembers('1st line protocol');
-                    var promise2 = getSetMembers('2nd line protocol');
-                    var promise3 = getSetMembers('3rd line protocol');
-
-                    Promise.all([promise1, promise2, promise3]).then(function (values) {
-                        resolve(result.concat(values[0], values[1], values[2]));
-                    }).catch(function (error) {
-                        reject(error);
-                    });
-                });
-            };
-
-            var getSetMembers = function (conceptName) {
-                return new Promise(function (resolve, reject) {
-                    conceptSetService.getConcept({
-                        name: conceptName,
-                        v: "custom:(uuid,setMembers:(uuid,name,conceptClass,answers:(uuid,name,mappings,names),setMembers:(uuid,name,conceptClass,answers:(uuid,name,mappings),setMembers:(uuid,name,conceptClass))))"
-                    }, true)
-                        .then(function (response) {
-                            var membersUuids = response.data.results[0].setMembers.map(function (member) {
-                                return member.uuid;
-                            });
-                            return resolve(membersUuids);
-                        })
-                        .catch(function (error) {
-                            return reject(error);
-                        });
-                });
-            };
-
-            var drugConceptIsARV = function (drugConceptUuid) {
-                return arvConceptUuids.includes(drugConceptUuid);
             };
 
             var populatePatientDemographics = function () {
@@ -166,11 +121,7 @@ angular.module('bahmni.clinical')
                 return new Promise(function (resolve, reject) {
                     treatmentService.getPrescribedDrugOrders(patientUuid, true).then(function (response) {
                         var currentVisitOrders = response.filter(function (order) {
-                            if (isTARVReport) {
-                                return order.visit.uuid === visitUuid && drugConceptIsARV(order.concept.uuid);
-                            } else {
-                                return order.visit.uuid === visitUuid && !drugConceptIsARV(order.concept.uuid);
-                            }
+                            return order.visit.uuid === visitUuid;
                         });
 
                         reportModel.orders = [];
