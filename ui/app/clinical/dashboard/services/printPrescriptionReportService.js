@@ -24,11 +24,9 @@ angular.module('bahmni.clinical')
             };
 
             var patientUuid = '';
-            var isTARVReport;
 
-            this.getReportModel = function (_patientUuid, _isTARVReport) {
+            this.getReportModel = function (_patientUuid) {
                 patientUuid = _patientUuid;
-                isTARVReport = _isTARVReport;
 
                 return new Promise(function (resolve, reject) {
                     var p1 = populatePatientDemographics();
