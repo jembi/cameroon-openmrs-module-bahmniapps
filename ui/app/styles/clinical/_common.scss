@@ -36,3 +36,68 @@ button.save-consultation {
     font-family: OpenSans !important;
 }  
 
+/* Custom styles for medication report */
+.prescribe-report-logo {
+    height: 80px;
+    text-align: center;
+}
+
+.prescribe-report-hospital-name {
+    font-style: italic;
+    color: #999999;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    text-transform: uppercase;
+}
+
+.prescribe-report-label {
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.prescribe-report-value {
+    color: #000088;
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.prescribe-report-title {
+    color: black;
+    font-size: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #EEEEEE;
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.prescribe-report-drug-name {
+    font-size: 23px;
+    line-height: 26px;
+    text-align: left;
+    color: black;
+}
+
+.prescribe-report-signature {
+    font-size: 18px;
+    text-align: right;
+    border-bottom: gray solid thin;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.prescribe-report-table {
+    border: none;
+}
+
+.prescribe-report-td {
+    border: none;
+    vertical-align: top;
+}
+
+.prescribe-report-button-color {
+    color:blue;
+    background-color: yellow;
+}

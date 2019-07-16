@@ -60,7 +60,7 @@
                 </div>
                 <div class="field-value">
                     <select ng-model="patientProgram.outcomeData"
-                            ng-options="outcomeSelected.display for outcomeSelected in ::patientProgram.program.outcomesConcept.setMembers">
+                            ng-options="outcomeSelected.names[0].display for outcomeSelected in ::patientProgram.program.outcomesConcept.setMembers">
                         <option value="">{{::'PROGRAM_MANAGEMENT_LABEL_CHOOSE_OUTCOME' | translate}}</option>
                     </select>
                 </div>

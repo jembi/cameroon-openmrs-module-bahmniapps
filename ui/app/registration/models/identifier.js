@@ -48,6 +48,9 @@ prototype.generate = function () {
     } else if (this.uuid) {
         this.voided = true;
     }
+    if (!this.registrationNumber) {
+        this.voided = true;
+    }
 };
 
 prototype.clearRegistrationNumber = function () {
