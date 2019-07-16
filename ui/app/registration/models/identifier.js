@@ -42,12 +42,13 @@ prototype.isIdentifierRequired = function () {
 };
 
 prototype.generate = function () {
-    this.identifier = this.selectedIdentifierSource ? this.selectedIdentifierSource.prefix + this.registrationNumber : this.registrationNumber;
-    if (this.identifier == "") {
-        this.identifier = undefined;
+    if (this.registrationNumber && this.registrationNumber.length > 0) {
+        this.identifier = this.selectedIdentifierSource ? this.selectedIdentifierSource.prefix + this.registrationNumber : this.registrationNumber;
+        this.voided = false;
+    } else if (this.uuid) {
+        this.voided = true;
     }
-    this.voided = false;
-    if (this.uuid) {
+    if (!this.registrationNumber) {
         this.voided = true;
     }
 };
