@@ -94,7 +94,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                         $rootScope.isTarvReport = true;
                     }
 
-                    printPrescriptionReportService.getReportModel($stateParams.patientUuid, $rootScope.isTarvReport)
+                    printPrescriptionReportService.getReportModel($stateParams.patientUuid)
                     .then(function (reportData) {
                         $rootScope.prescriptionReportData = reportData;
                         printer.printFromScope("dashboard/views/printPrescriptionReport.html", $scope, function () { });
