@@ -131,20 +131,23 @@ angular.module('bahmni.appointments')
                             return isRightDate && isRightProvider;
                         });
 
-                        // Extract the appointment end times
-                        var appointmentsEndTimes = filteredAppointments.map(function (appointment) {
-                            return appointment.endDateTime;
+                        // Extract the appointment start and end times
+                        var existingAppointmentsStartAndEndTimes = filteredAppointments.map(function (appointment) {
+                            return {
+                                startTime: moment(appointment.startDateTime),
+                                endTime: moment(appointment.endDateTime)
+                            };
                         });
 
-                        // Sort the appointment end times (most recent on top)
-                        appointmentsEndTimes.sort();
-                        appointmentsEndTimes.reverse();
+                        // Order the appointments
+                        existingAppointmentsStartAndEndTimes.sort(function (a, b) {
+                            return a.startTime.valueOf() > b.startTime.valueOf() ? 1 : -1;
+                        });
 
-                        if (appointmentsEndTimes.length > 0) {
+                        if (existingAppointmentsStartAndEndTimes.length > 0) {
                             // If there are previous appointments for the current provider and date,
-                            // book the slot next to the last appointment
-                            $scope.appointment.startTime = moment(appointmentsEndTimes[0]).format('hh:mm a');
-                            $scope.appointment.endTime = moment(appointmentsEndTimes[0]).add($scope.minDuration, 'm').format('hh:mm a');
+                            // book the first available slot
+                            bookFirstAvailableSlot(existingAppointmentsStartAndEndTimes);
                             resolve();
                         } else {
                             // If there is NO previous appointment for the current provider and date,
@@ -156,6 +159,50 @@ angular.module('bahmni.appointments')
                         }
                     });
                 });
+            };
+
+            var bookFirstAvailableSlot = function (existingAppointments) {
+                var startTime = moment($scope.appointment.service.startTime, 'hh:mm:ss');
+                var endTime = startTime.clone().add($scope.appointment.service.durationMins, 'm');
+
+                var slotToBookFound = false;
+                var freeSlotAvailable = true;
+
+                var appointmentIndex = 0;
+                var appointmentCount = existingAppointments.length;
+
+                while (!slotToBookFound && freeSlotAvailable) {
+                    var existingStartTime = existingAppointments[appointmentIndex].startTime;
+                    var existingEndTime = existingAppointments[appointmentIndex].endTime;
+
+                    if (timeSlotsNotClashing(startTime, endTime, existingStartTime, existingEndTime)) {
+                        slotToBookFound = true;
+                    } else {
+                        startTime = existingEndTime;
+                        endTime = startTime.clone().add($scope.appointment.service.durationMins, 'm');
+                        appointmentIndex++;
+                    }
+
+                    if (appointmentIndex === appointmentCount) {
+                        if (endTime.isSameOrBefore(moment($scope.appointment.service.endTime, 'hh:mm:ss'))) {
+                            slotToBookFound = true;
+                        } else {
+                            freeSlotAvailable = false;
+                        }
+                    }
+                }
+
+                if (slotToBookFound) {
+                    $scope.appointment.startTime = startTime.format('hh:mm a');
+                    $scope.appointment.endTime = endTime.format('hh:mm a');
+                }
+            };
+
+            var timeSlotsNotClashing = function (startTime1, endTime1, startTime2, endTime2) {
+                var condition1 = startTime1.isBefore(startTime2, 'minutes') && endTime1.isSameOrBefore(startTime2, 'minutes');
+                var condition2 = startTime1.isSameOrAfter(endTime2, 'minutes') && endTime1.isAfter(endTime2, 'minutes');
+
+                return condition1 || condition2;
             };
 
             $scope.save = function () {
@@ -175,6 +222,11 @@ angular.module('bahmni.appointments')
 
                 $scope.populateStartEndTimeResult = populateAppointmentStartAndEndTimeIfEmpty();
                 $scope.populateStartEndTimeResult.then(function () {
+                    if (!$scope.appointment.startTime || !$scope.appointment.endTime) {
+                        messagingService.showMessage('error', 'NO_SLOT_AVAILABLE_ERROR_MESSAGE');
+                        return;
+                    }
+
                     $scope.validatedAppointment = Bahmni.Appointments.Appointment.create($scope.appointment);
                     var conflictingAppointments = getConflictingAppointments($scope.validatedAppointment);
                     if (conflictingAppointments.length === 0) {
