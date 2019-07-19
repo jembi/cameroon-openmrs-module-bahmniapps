@@ -162,8 +162,16 @@ angular.module('bahmni.appointments')
             };
 
             var bookFirstAvailableSlot = function (existingAppointments) {
-                var startTime = moment($scope.appointment.service.startTime, 'hh:mm:ss');
+                var appoitmentDate = moment($scope.appointment.date);
+                var startTime = appoitmentDate.clone().set({
+                    'hour': moment($scope.appointment.service.startTime, 'hh:mm:ss').get('hour'),
+                    'minute': moment($scope.appointment.service.startTime, 'hh:mm:ss').get('minute')
+                });
                 var endTime = startTime.clone().add($scope.appointment.service.durationMins, 'm');
+                var endTimeLastAppointmentForTheDay = appoitmentDate.clone().set({
+                    'hour': moment($scope.appointment.service.endTime, 'hh:mm:ss').get('hour'),
+                    'minute': moment($scope.appointment.service.endTime, 'hh:mm:ss').get('minute')
+                });
 
                 var slotToBookFound = false;
                 var freeSlotAvailable = true;
@@ -184,7 +192,7 @@ angular.module('bahmni.appointments')
                     }
 
                     if (appointmentIndex === appointmentCount) {
-                        if (endTime.isSameOrBefore(moment($scope.appointment.service.endTime, 'hh:mm:ss'))) {
+                        if (endTime.isSameOrBefore(endTimeLastAppointmentForTheDay)) {
                             slotToBookFound = true;
                         } else {
                             freeSlotAvailable = false;
