@@ -145,6 +145,7 @@
   "LOCATION_DESK": "Bureau d'Enregistrement",
   "LOCATION_OPD": "Consultations Externes",
   "LOCATION_EMERGENCY": "Urgence",
+  "LOCATION_RECEPTION_DESK": "Enregistrement",
   "LOCATION_DRUGSTORE": "Pharmacie",
   "LOCATION_LABORATORY": "Laboratoire",
   "LOCATION_GENERAL_WARD": "Pavillon Général",

@@ -161,6 +161,7 @@
   "LOCATION_DESK": "Registration Desk",
   "LOCATION_OPD": "OPD",
   "LOCATION_EMERGENCY": "Emergency",
+  "LOCATION_RECEPTION_DESK": "Registration Desk",
   "LOCATION_DRUGSTORE": "DrugStore",
   "LOCATION_LABORATORY": "Laboratory",
   "LOCATION_GENERAL_WARD": "General Ward",
