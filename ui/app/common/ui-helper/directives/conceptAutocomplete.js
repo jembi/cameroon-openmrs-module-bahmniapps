@@ -11,11 +11,11 @@
             });
         }
         return {
-            label: matchingName ? matchingName + " => " + conceptName : conceptName,
-            value: conceptName,
+            label: concept.displayString,
+            value: concept.displayString,
             concept: concept,
             uuid: concept.uuid,
-            name: conceptName
+            name: concept.displayString
         };
     };
 

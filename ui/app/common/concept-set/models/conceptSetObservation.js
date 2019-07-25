@@ -39,6 +39,9 @@ Bahmni.ConceptSet.Observation = function (observation, savedObs, conceptUIConfig
                     savedObs.value['displayString'] = (savedObs.value.shortName ? savedObs.value.shortName : savedObs.value.name);
                 }
             }
+            if (savedObs && savedObs.value && savedObs.value.name && savedObs && savedObs.valueAsString) {
+                savedObs.value.name = savedObs.valueAsString;
+            }
             return savedObs ? savedObs.value : undefined;
         },
         set: function (newValue) {
