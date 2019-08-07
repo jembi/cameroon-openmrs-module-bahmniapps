@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bahmni.common.patient')
-.filter('ageLabels', ['$translate', function ($translate) {
+.filter('ageWithLabels', ['$translate', function ($translate) {
     return function (age) {
         if (age.years) {
             return age.years + " " + $translate.instant("REGISTRATION_YEARS_TRANSLATION_KEY");
