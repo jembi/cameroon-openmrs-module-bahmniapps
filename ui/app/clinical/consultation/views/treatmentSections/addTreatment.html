@@ -83,7 +83,8 @@
                                     <select id="uniform-dose-unit" class="form-field freq-choose-units" ng-model="treatment.uniformDosingType.doseUnits"
                                             ng-options="item.name as item.name for item in treatmentConfig.getDoseUnits()"
                                             ng-required="treatment.isUniformDoseUnitRequired()"
-                                            ng-class="{'noFractionOptions' : !isDoseFractionsAvailable()}">
+                                            ng-class="{'noFractionOptions' : !isDoseFractionsAvailable()}"
+                                            ng-change="getSelectedDosingUnits(treatment.uniformDosingType.doseUnits)">
                                         <option value="">{{ ::treatmentConfig.translate('doseUnitsPlaceHolder', 'MEDICATION_DOSE_UNIT_PLACEHOLDER') }} </option>
                                     </select>
                                 </div>

@@ -29,6 +29,14 @@ angular.module('bahmni.clinical')
                 }
             };
 
+            $scope.getSelectedDosingUnits = function (value) {
+                if(value == 'Capsule(s)' || value == 'Comprimé(s)' || value == 'ml') {
+                    $scope.treatment.route = 'Par voie orale';
+                } else {
+                    $scope.treatment.route = '';
+                }
+            }
+
             $scope.treatmentActionLinks = clinicalAppConfigService.getTreatmentActionLink();
 
             var preFetchDrugsForGivenConceptSet = function () {
