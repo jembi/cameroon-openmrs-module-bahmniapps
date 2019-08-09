@@ -3,7 +3,7 @@
 
     <p>
         <label for="appointment">
-            <b>{{::'APPOINTMENT_CREATE_PATIENT_NAME' |translate}}:</b> <span ng-if="scope.appointments.length === 1">{{ appointment.patient.name }} ({{ appointment.patient.identifier }})</span>
+            <b>{{::'APPOINTMENT_CREATE_PATIENT_NAME' |translate}}:</b> <span ng-if="scope.appointments.length === 1">{{ appointment.patient.name.split(" ")[1] + " " + appointment.patient.name.split(" ")[0] }} ({{ appointment.patient.identifier }})</span>
         </label>
         <select id="appointment" ng-model="appointment" ng-show="scope.appointments.length > 1"
                 ng-options="appointment as appointment.patient.name + ' (' + appointment.patient.identifier + ')' for appointment in scope.appointments">

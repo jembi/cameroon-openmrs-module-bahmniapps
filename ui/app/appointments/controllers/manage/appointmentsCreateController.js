@@ -272,6 +272,7 @@ angular.module('bahmni.appointments')
             };
 
             $scope.onSelectPatient = function (data) {
+                $scope.appointment.patient.label = data.label.split(" ")[1] + " " + data.label.split(" ")[0] + " (" + data.label.split(" ")[2] + ")";
                 $scope.appointment.patient = data;
                 return spinner.forPromise(appointmentsService.search({patientUuid: data.uuid}).then(function (oldAppointments) {
                     $scope.patientAppointments = oldAppointments.data;
@@ -410,7 +411,7 @@ angular.module('bahmni.appointments')
 
             $scope.responseMap = function (data) {
                 return _.map(data, function (patientInfo) {
-                    patientInfo.label = patientInfo.givenName + (patientInfo.familyName ? " " + patientInfo.familyName : "") + " " + "(" + patientInfo.identifier + ")";
+                    patientInfo.label = (patientInfo.familyName ? patientInfo.familyName : "") + " " + patientInfo.givenName + " " + "(" + patientInfo.identifier + ")";
                     return patientInfo;
                 });
             };

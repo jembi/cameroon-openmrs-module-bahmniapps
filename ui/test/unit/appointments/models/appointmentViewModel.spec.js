@@ -8,7 +8,7 @@ describe('AppointmentViewModel', function () {
         appointmentNumber: '0000',
         patient: {
             identifier: 'GAN203008',
-            name: 'test validation',
+            name: 'validation test',
             uuid: 'a1cec3d9-aaab-4cbc-89c1-2e96bb202b9a'
         },
         service: {

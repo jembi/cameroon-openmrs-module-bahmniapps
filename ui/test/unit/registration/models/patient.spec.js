@@ -47,21 +47,21 @@ describe("Patient", function () {
             patient.givenNameLocal = "राम";
             patient.familyNameLocal = "कुमार";
 
-            expect(patient.fullNameLocal()).toBe("राम कुमार");
+            expect(patient.fullNameLocal()).toBe("कुमार राम");
         });
 
         it("should not have extra whitespaces when there is whitespace around givenNameLocal", function () {
             patient.givenNameLocal = " राम   ";
             patient.familyNameLocal = "कुमार";
 
-            expect(patient.fullNameLocal()).toBe("राम कुमार");
+            expect(patient.fullNameLocal()).toBe("कुमार राम");
         });
 
         it("should not have extra whitespaces when there is whitespace around familyNameLocal", function () {
             patient.givenNameLocal = "राम";
             patient.familyNameLocal = "  कुमार ";
 
-            expect(patient.fullNameLocal()).toBe("राम कुमार");
+            expect(patient.fullNameLocal()).toBe("कुमार राम");
         });
 
         it("should be empty when givenNameLocal and familyNameHindi is not available", function () {
