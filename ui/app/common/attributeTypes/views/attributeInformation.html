@@ -1,9 +1,4 @@
-<div class="field-attribute" ng-if="::attribute.name != 'PROGRAM_MANAGEMENT_LABEL_THERAPEUTIC_LINE'">
-    <label for="{{::attribute.name | translate}}">{{::attribute.description | translate}} <span ng-show="isForm">:</span>
-
-        <span class="asterick" ng-show="{{::attribute.required}}">*</span></label>
-</div>
-<div class="field-attribute" ng-if="$root.therapeutic && attribute.name == 'PROGRAM_MANAGEMENT_LABEL_THERAPEUTIC_LINE'">
+<div class="field-attribute">
     <label for="{{::attribute.name | translate}}">{{::attribute.description | translate}} <span ng-show="isForm">:</span>
 
         <span class="asterick" ng-show="{{::attribute.required}}">*</span></label>
@@ -31,14 +26,7 @@
             <option value=""></option>
         </select>
     </div>
-    <div class="left" ng-if="$root.therapeutic && attribute.name == 'PROGRAM_MANAGEMENT_LABEL_THERAPEUTIC_LINE'" data-ng-switch-when="org.bahmni.module.bahmnicore.customdatatype.datatype.CodedConceptDatatype">
-        <select id="{{::attribute.name}}" ng-model="targetModel[attribute.name]"
-                ng-options="a.conceptId as a.description for a in ::attribute.answers"
-                ng-disabled="::isReadOnly(attribute.name)" ng-required="{{::attribute.required}}" ng-blur="::handleUpdate(attribute.name)">
-            <option value=""></option>
-        </select>
-    </div>
-    <div class="left" ng-if="::attribute.name != 'PROGRAM_MANAGEMENT_LABEL_THERAPEUTIC_LINE'" data-ng-switch-when="org.bahmni.module.bahmnicore.customdatatype.datatype.CodedConceptDatatype">
+    <div class="left" data-ng-switch-when="org.bahmni.module.bahmnicore.customdatatype.datatype.CodedConceptDatatype">
         <select id="{{::attribute.name}}" ng-model="targetModel[attribute.name]"
                 ng-options="a.conceptId as a.description for a in ::attribute.answers"
                 ng-disabled="::isReadOnly(attribute.name)" ng-required="{{::attribute.required}}" ng-blur="::handleUpdate(attribute.name)">
