@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('bahmni.common.uicontrols.programmanagment')
-    .controller('ManageProgramController', ['$scope', 'retrospectiveEntryService', '$window', 'programService',
+    .controller('ManageProgramController', ['$rootScope', '$scope', 'retrospectiveEntryService', '$window', 'programService',
         'spinner', 'messagingService', '$stateParams', '$q', 'confirmBox',
-        function ($scope, retrospectiveEntryService, $window, programService,
+        function ($rootScope, $scope, retrospectiveEntryService, $window, programService,
                   spinner, messagingService, $stateParams, $q, confirmBox) {
             var DateUtil = Bahmni.Common.Util.DateUtil;
             $scope.programSelected = {};
@@ -14,6 +14,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             $scope.outComesForProgram = [];
             $scope.configName = $stateParams.configName;
             $scope.today = DateUtil.getDateWithoutTime(DateUtil.now());
+            $rootScope.therapeutic = false;
             var id = "#programEnrollmentContainer";
             (function () {
                 $scope.getLang = localStorage.getItem("NG_TRANSLATE_LANG_KEY");
@@ -236,6 +237,11 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             };
 
             $scope.setWorkflowStates = function (program) {
+                if (program && program.name == 'HIV_PROGRAM_KEY') {
+                    $rootScope.therapeutic = true;
+                } else {
+                    $rootScope.therapeutic = false;
+                }
                 $scope.patientProgramAttributes = {};
                 $scope.programWorkflowStates = $scope.getStates(program);
             };

@@ -300,5 +300,6 @@
   "VISIT_TYPE_RHEUMATOLOGY": "Rhumatologie",
   "VISIT_TYPE_FAMILYPLANNING": "Planning familial",
   "VISIT_TYPE_PHYSIOTHERAPY": "Physiothérapie",
-  "VISIT_TYPE_ART_DISPENSATION": "UPEC Dispensation"
+  "VISIT_TYPE_ART_DISPENSATION": "UPEC Dispensation",
+  "PROGRAM_MANAGEMENT_LABEL_THERAPEUTIC_LINE":"Ligne thérapeutique"
 }
