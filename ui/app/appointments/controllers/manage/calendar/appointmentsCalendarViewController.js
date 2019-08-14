@@ -23,7 +23,7 @@ angular.module('bahmni.appointments')
                 event.color = appointment.service.color;
                 event.serviceName = appointment.service.name;
                 var existingEvent = _.find(eventList, event);
-                var patientName = appointment.patient.name.split(" ")[1] + " " + appointment.patient.name.split(" ")[0] + " (" + appointment.patient.identifier + ")";
+                var patientName = appointment.patient.name + " (" + appointment.patient.identifier + ")";
                 var isBedAssigned = appointment.additionalInfo && appointment.additionalInfo.BED_NUMBER_KEY;
                 if (existingEvent) {
                     existingEvent.title = [existingEvent.title, patientName].join(', ');

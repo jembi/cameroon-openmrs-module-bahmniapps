@@ -272,7 +272,6 @@ angular.module('bahmni.appointments')
             };
 
             $scope.onSelectPatient = function (data) {
-                $scope.appointment.patient.label = data.label.split(" ")[1] + " " + data.label.split(" ")[0] + " (" + data.label.split(" ")[2] + ")";
                 $scope.appointment.patient = data;
                 return spinner.forPromise(appointmentsService.search({patientUuid: data.uuid}).then(function (oldAppointments) {
                     $scope.patientAppointments = oldAppointments.data;
