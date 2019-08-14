@@ -9,9 +9,9 @@ angular.module('bahmni.clinical')
 
             $scope.getFullname = function () {
                 if ($scope.isTarvReport) {
-                    return $scope.data.patientInfo.firstName.substring(0, 3) + ' ' + $scope.data.patientInfo.lastName.substring(0, 3);
+                    return $scope.data.patientInfo.lastName.substring(0, 3) + ' ' + $scope.data.patientInfo.firstName.substring(0, 3);
                 } else {
-                    return $scope.data.patientInfo.firstName + ' ' + $scope.data.patientInfo.lastName;
+                    return $scope.data.patientInfo.lastName + ' ' + $scope.data.patientInfo.firstName;
                 }
             };
         };

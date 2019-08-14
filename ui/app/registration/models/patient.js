@@ -19,7 +19,7 @@ angular.module('bahmni.registration')
                 var givenNameLocal = this.givenNameLocal || this.givenName || "";
                 var middleNameLocal = this.middleNameLocal || this.middleName || "";
                 var familyNameLocal = this.familyNameLocal || this.familyName || "";
-                return (givenNameLocal.trim() + " " + (middleNameLocal ? middleNameLocal + " " : "") + familyNameLocal.trim()).trim();
+                return (familyNameLocal.trim() + " " + (middleNameLocal ? middleNameLocal + " " : "") + givenNameLocal.trim()).trim();
             };
 
             var getImageData = function () {

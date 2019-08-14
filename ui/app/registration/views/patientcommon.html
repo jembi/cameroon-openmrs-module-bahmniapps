@@ -28,7 +28,7 @@
                          type="text" id="familyName" ng-model="$parent.patient.familyName"  pattern-validate
                          my-autocomplete source="getAutoCompleteList" response-map="getDataResults"
                          data-item-type="personName"
-                         placeholder="{{ ::'REGISTRATION_LABEL_PATIENT_LAST_NAME' | translate}}"
+                         placeholder="{{ ::'REGISTRATION_LABEL_PATIENT_LAST_NAME' | translate}}" focus-me="true"
                          title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_LAST_NAME' | translate}}" ng-required="::isLastNameMandatory"
                          ng-change="checkDuplicatePatients()">
 
@@ -62,13 +62,13 @@
                          my-autocomplete source="getAutoCompleteList" response-map="getDataResults"
                          data-item-type="personName"
                          placeholder="{{ ::'REGISTRATION_LABEL_PATIENT_FIRSTNAME' | translate}}"
-                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" focus-me="true"
+                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" 
                          ng-change="checkDuplicatePatients()">
 
                   <input data-ng-switch-default
                          type="text" id="givenName" ng-model="patient.givenName" non-blank pattern-validate
                          placeholder="{{ ::'REGISTRATION_LABEL_PATIENT_FIRSTNAME' | translate}}"
-                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" focus-me="true"
+                         title="{{::'REGISTRATION_LABEL_PATIENT_ENTER_NAME' | translate}}" 
                          ng-change="checkDuplicatePatients()">
               </span>
 

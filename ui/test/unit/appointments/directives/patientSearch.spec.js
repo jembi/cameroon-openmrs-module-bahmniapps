@@ -56,8 +56,8 @@ describe("Patient Search", function () {
         var compiledScope = element.isolateScope();
         var patients = [{givenName: 'test', familyName: 'patient', identifier: 'GAN2016'}, {givenName: 'test', familyName: 'appointment', identifier: 'GAN2017'}];
         var response = compiledScope.responseMap(patients);
-        expect(response[0].label).toEqual(patients[0].givenName + " " + patients[0].familyName + " " + "(" + patients[0].identifier + ")");
-        expect(response[1].label).toEqual(patients[1].givenName + " " + patients[1].familyName + " " + "(" + patients[1].identifier + ")");
+        expect(response[0].label).toEqual(patients[0].familyName + " " + patients[0].givenName + " " + "(" + patients[0].identifier + ")");
+        expect(response[1].label).toEqual(patients[1].familyName + " " + patients[1].givenName + " " + "(" + patients[1].identifier + ")");
     });
 
     it('should get appointments for a patient on select of patient', function () {
@@ -87,7 +87,7 @@ describe("Patient Search", function () {
         state.params.patient = patient;
         var element = createElement();
         var compiledScope = element.isolateScope();
-        expect(compiledScope.patient).toBe(patient.givenName + " " + patient.familyName + " " + "(" + patient.identifier + ")");
+        expect(compiledScope.patient).toBe(patient.familyName + " " + patient.givenName + " " + "(" + patient.identifier + ")");
         expect(appointmentsService.search).toHaveBeenCalledWith({patientUuid: patient.uuid});
         expect(scope.displaySearchedPatient).toHaveBeenCalled();
     });
@@ -97,7 +97,7 @@ describe("Patient Search", function () {
             var compiledScope = element.isolateScope();
             var patients = [{givenName: 'testOne', familyName: null, identifier: 'GAN2018'}, {givenName: 'testTwo', familyName: null, identifier: 'GAN2017'}];
             var response = compiledScope.responseMap(patients);
-            expect(response[0].label).toEqual("testOne (GAN2018)");
-            expect(response[1].label).toEqual("testTwo (GAN2017)");
+            expect(response[0].label).toEqual(" testOne (GAN2018)");
+            expect(response[1].label).toEqual(" testTwo (GAN2017)");
      });
 });

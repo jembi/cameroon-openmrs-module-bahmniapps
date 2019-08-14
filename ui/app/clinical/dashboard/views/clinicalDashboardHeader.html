@@ -9,10 +9,10 @@
                title="{{adtNavigationConfig.title}}">
                 <i class="fa fa-bed fa-white"></i>
             </a>
-            <a class="back-btn-link" id="dashboard-link" accesskey="d" ng-click="gotoPatientDashboard()" title="Back to {{patient.name}} Dashboard">
+            <a class="back-btn-link" id="dashboard-link" accesskey="d" ng-click="gotoPatientDashboard()" title="Back to {{patient.familyName}} {{patient.givenName}} Dashboard">
                 <img class="patient-image" ng-src="{{::patient.image}}" fallback-src="../images/blank-user.gif">
               <span class="patient-info">
-                <span class="patient-name" >{{patient.name}} </span>
+                <span class="patient-name" >{{patient.familyName}} {{patient.givenName}}</span>
                 <span class="patient-id">{{patient.identifier}}</span>
             </span>
             </a>
