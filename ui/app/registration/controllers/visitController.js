@@ -19,6 +19,8 @@ angular.module('bahmni.registration')
                     deferred.resolve(openMRSPatient);
                     $scope.patient = openmrsPatientMapper.map(openMRSPatient);
                     $scope.patient.name = openMRSPatient.patient.person.names[0].display;
+                    $scope.patient.familyName = openMRSPatient.patient.person.names[0].familyName;
+                    $scope.patient.givenName = openMRSPatient.patient.person.names[0].givenName;
                     $scope.patient.uuid = openMRSPatient.patient.uuid;
                 });
                 return deferred.promise;
