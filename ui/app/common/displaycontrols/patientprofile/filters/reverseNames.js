@@ -7,7 +7,7 @@ angular.module('bahmni.common.displaycontrol.patientprofile')
                 var names = input.split(" ");
                 return names[1] + " " + names[0];
             } else {
-                return "";
+                return input;
             }
         };
     });
