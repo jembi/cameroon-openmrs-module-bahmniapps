@@ -23,7 +23,7 @@ angular.module('bahmni.appointments')
                 event.color = appointment.service.color;
                 event.serviceName = appointment.service.name;
                 var existingEvent = _.find(eventList, event);
-                var patientName = appointment.patient.name + " (" + appointment.patient.identifier + ")";
+                var patientName = reverseNames(appointment.patient.name) + " (" + appointment.patient.identifier + ")";
                 var isBedAssigned = appointment.additionalInfo && appointment.additionalInfo.BED_NUMBER_KEY;
                 if (existingEvent) {
                     existingEvent.title = [existingEvent.title, patientName].join(', ');
@@ -152,6 +152,14 @@ angular.module('bahmni.appointments')
                 }
                 var viewDate = $state.params.viewDate || moment().startOf('day').toDate();
                 setAppointments({forDate: viewDate});
+            };
+            var reverseNames = function (input) {
+                if (input.length > 0 && input.indexOf(" ") >= 0) {
+                    var names = input.split(" ");
+                    return names[1] + " " + names[0];
+                } else {
+                    return input;
+                }
             };
 
             var autoRefresh = (function () {
