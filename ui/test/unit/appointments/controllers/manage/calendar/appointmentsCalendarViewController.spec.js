@@ -3,6 +3,15 @@
 describe('AppointmentsCalendarViewController', function () {
     var controller, scope, spinner, appointmentsService, translate, stateParams, state, interval, appService, appDescriptor;
 
+    var reverseNames = function (input) {
+        if (input.length > 0 && input.indexOf(" ") >= 0) {
+            var names = input.split(" ");
+            return names[1] + " " + names[0];
+        } else {
+            return input;
+        }
+    };
+    
     beforeEach(function () {
         module('bahmni.appointments');
         inject(function ($controller, $rootScope, $stateParams, $state, $interval) {
@@ -42,7 +51,7 @@ describe('AppointmentsCalendarViewController', function () {
     beforeEach(function () {
         createController();
     });
-
+    
     it('should not fetch appointments when doFetchAppointmentsData is set to false', function () {
         state.params = {doFetchAppointmentsData: false};
         appointmentsService.getAllAppointments.and.returnValue(specUtil.simplePromise({}));
@@ -116,7 +125,7 @@ describe('AppointmentsCalendarViewController', function () {
                 "uuid": "e53c9655-d56f-4234-b9fd-46bbb74daffa",
                 "patient": {
                     "identifier": "GAN200000",
-                    "name": "ATest DrugDataOne",
+                    "name": "DrugDataOne ATest",
                     "uuid": "d95bf6c9-d1c6-41dc-aecf-1c06bd71386c"
                 },
                 "service": {
@@ -180,7 +189,7 @@ describe('AppointmentsCalendarViewController', function () {
         expect(events[0].end).toBe(allAppointments[0].endDateTime);
         expect(events[0].color).toBe(allAppointments[0].service.color);
         expect(events[0].serviceName).toBe(allAppointments[0].service.name);
-        expect(events[0].title).toBe(allAppointments[0].patient.name + " (" + allAppointments[0].patient.identifier + ")");
+        expect(events[0].title).toBe(reverseNames(allAppointments[0].patient.name) + " (" + allAppointments[0].patient.identifier + ")");
         expect(events[0].appointments).toEqual([allAppointments[0]]);
         expect(events[0].className).toEqual('appointmentIcons Scheduled bed-accom');
 
@@ -189,7 +198,7 @@ describe('AppointmentsCalendarViewController', function () {
         expect(events[1].end).toBe(allAppointments[1].endDateTime);
         expect(events[1].color).toBe(allAppointments[1].service.color);
         expect(events[1].serviceName).toBe(allAppointments[1].service.name);
-        expect(events[1].title).toBe(allAppointments[1].patient.name + " (" + allAppointments[1].patient.identifier + ")");
+        expect(events[1].title).toBe(reverseNames(allAppointments[1].patient.name) + " (" + allAppointments[1].patient.identifier + ")");
         expect(events[1].appointments).toEqual([allAppointments[1]]);
         expect(events[1].className).toEqual('appointmentIcons CheckedIn');
     });
@@ -259,8 +268,8 @@ describe('AppointmentsCalendarViewController', function () {
         expect(events[0].color).toBe(allAppointments[0].service.color);
         expect(events[0].serviceName).toBe(allAppointments[0].service.name);
         expect(events[0].className).toEqual('appointmentIcons multiplePatients bed-accom');
-        var mergedPatientNames = allAppointments[0].patient.name + " (" + allAppointments[0].patient.identifier + ")" + ', ' +
-            allAppointments[1].patient.name + " (" + allAppointments[1].patient.identifier + ")";
+        var mergedPatientNames = reverseNames(allAppointments[0].patient.name) + " (" + allAppointments[0].patient.identifier + ")" + ', ' +
+        reverseNames(allAppointments[1].patient.name) + " (" + allAppointments[1].patient.identifier + ")";
         expect(events[0].title).toBe(mergedPatientNames);
         expect(events[0].appointments).toEqual(allAppointments);
     });
@@ -329,7 +338,7 @@ describe('AppointmentsCalendarViewController', function () {
         expect(events[0].end).toBe(allAppointments[0].endDateTime);
         expect(events[0].color).toBe(allAppointments[0].service.color);
         expect(events[0].serviceName).toBe(allAppointments[0].service.name);
-        expect(events[0].title).toBe(allAppointments[0].patient.name + " (" + allAppointments[0].patient.identifier + ")");
+        expect(events[0].title).toBe(reverseNames(allAppointments[0].patient.name) + " (" + allAppointments[0].patient.identifier + ")");
         expect(events[0].className).toEqual('appointmentIcons Scheduled bed-accom');
         expect(events[0].appointments).toEqual([allAppointments[0]]);
 
@@ -338,7 +347,7 @@ describe('AppointmentsCalendarViewController', function () {
         expect(events[1].end).toBe(allAppointments[1].endDateTime);
         expect(events[1].color).toBe(allAppointments[1].service.color);
         expect(events[1].serviceName).toBe(allAppointments[1].service.name);
-        expect(events[1].title).toBe(allAppointments[1].patient.name + " (" + allAppointments[1].patient.identifier + ")");
+        expect(events[1].title).toBe(reverseNames(allAppointments[1].patient.name) + " (" + allAppointments[1].patient.identifier + ")");
         expect(events[1].className).toEqual('appointmentIcons CheckedIn');
         expect(events[1].appointments).toEqual([allAppointments[1]]);
     });
