@@ -686,7 +686,8 @@ Bahmni.Clinical.DrugOrderViewModel.createFromContract = function (drugOrderRespo
             doseUnits: drugOrderResponse.dosingInstructions.doseUnits,
             frequency: drugOrderResponse.dosingInstructions.frequency
         };
-    } else if (administrationInstructions.morningDose || administrationInstructions.afternoonDose || administrationInstructions.eveningDose) {
+    }
+    if (administrationInstructions.morningDose || administrationInstructions.afternoonDose || administrationInstructions.eveningDose) {
         viewModel.frequencyType = Bahmni.Clinical.Constants.dosingTypes.variable;
         viewModel.variableDosingType = {
             morningDose: administrationInstructions.morningDose,
