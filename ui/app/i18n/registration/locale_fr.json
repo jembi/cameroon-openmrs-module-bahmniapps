@@ -91,5 +91,8 @@
   "NOTES_LABEL": "Remarques",
   "REGISTRATON_LATEST_KEY" : "Dernier",
   "DISPLAY_CONTROL_ERROR_MESSAGE_KEY": "Aucune dernière pour ce patient",
-  "CONCEPT_NOT_FOUND_MESSAGE": "Concept non trouvé"
+  "CONCEPT_NOT_FOUND_MESSAGE": "Concept non trouvé",
+  "REGISTRATION_YEARS_TRANSLATION_KEY": "ans",
+  "REGISTRATION_MONTHS_TRANSLATION_KEY": "mois",
+  "REGISTRATION_DAYS_TRANSLATION_KEY":"jour(s)"
 }
