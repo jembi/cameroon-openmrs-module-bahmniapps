@@ -1,5 +1,5 @@
 <article class="consultation-page visit">
-    <section class="messages" ng-if="isConsultationTabEmpty()">
+    <section class="messages" ng-if="isConsultationTabEmpty()" style="display:none;"><!--Hiding this message-->
         <p class="null-data-message">{{ 'CONSULTATION_PAD_EMPTY_MESSAGE'|translate }}</p>
     </section>
     <div ng-if="!isConsultationTabEmpty()">
