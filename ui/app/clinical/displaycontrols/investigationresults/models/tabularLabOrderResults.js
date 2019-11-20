@@ -47,7 +47,7 @@ Bahmni.Clinical.TabularLabOrderResults = (function () {
         };
 
         this.hasRange = function (testOrderLabel) {
-            return testOrderLabel.minNormal && testOrderLabel.maxNormal;
+            return testOrderLabel.minNormal || testOrderLabel.maxNormal;
         };
 
         this.hasUnits = function (testOrderLabel) {
