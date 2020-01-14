@@ -14,7 +14,7 @@
         <div class="ProgramEnrollInfo clearfix">
             <div class="form-field">
                 <div class="field-attribute">
-                    <label>{{::'PROGRAM_MANAGEMENT_START_DATE_KEY' | translate}} : <span class="asterick"
+                    <label>{{::'PROGRAM_MANAGEMENT_START_DATE_KEY' | translate}} <span class="asterick"
                                                                                          ng-show="patientProgram.editing">*</span></label>
                 </div>
                 <div class="field-value" ng-show="!patientProgram.editing">
@@ -38,7 +38,7 @@
                 <div class="form-field program-state-container">
                     <div class="field-attribute">
                         <label>
-                            {{::'PROGRAM_MANAGEMENT_LABEL_PROGRAM_STATE' | translate}} :
+                            {{::'PROGRAM_MANAGEMENT_LABEL_PROGRAM_STATE' | translate}} <span class="asterick" ng-show="patientProgram.editing">*</span>
                         </label>
                     </div>
                     <div class="field-value" ng-show="!patientProgram.editing">
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="field-value" ng-show="patientProgram.editing">
-                        <select ng-model="patientProgram.selectedState"
+                        <select ng-model="patientProgram.selectedState" ng-required="true"
                             ng-options="state.concept.names[0].display for state in ::getStates(patientProgram.program) track by state.uuid">
                             <option value="">{{::'PROGRAM_MANAGEMENT_CHOOSE_STATE_KEY' | translate}}</option>
                         </select>
