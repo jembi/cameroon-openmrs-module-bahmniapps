@@ -365,5 +365,5 @@
     "PRESCRIPTION_REPORT_PRINT_TARV_PRESCRIPTION_LABEL": "Print TARV Prescription",
     "NO_FORM_FOUND_FOR_PATIENT": "No Form found for this patient",
     "PRESCRIPTION_REPORT_LABEL_FOR": "for",
-    "VISIT_TYPE_OPD": "OPD"
+    "VISIT_TYPE_OPD": "Outpatient"
 }
