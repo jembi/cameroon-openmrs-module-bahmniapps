@@ -41,7 +41,7 @@ angular.module('bahmni.common.patientSearch')
                 var params = { q: searchType.handler, v: "full",
                     location_uuid: $bahmniCookieStore.get(Bahmni.Common.Constants.locationCookieName).uuid,
                     provider_uuid: $rootScope.currentProvider.uuid,
-                    language: $rootScope.currentUser.userProperties.defaultLocale };
+                    language: ($rootScope.currentUser && $rootScope.currentUser.userProperties)?$rootScope.currentUser.userProperties.defaultLocale:null };
                 if (searchType.additionalParams) {
                     params["additionalParams"] = searchType.additionalParams;
                 }
