@@ -60,6 +60,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                     $scope.allPrograms.showProgramSection = true;
                 }), id);
                 spinner.forPromise(programService.getProgramAttributeTypes().then(function (programAttributeTypes) {
+                    programAttributeTypes.sort((a, b) => (a.name > b.name) ? 1 : -1);
                     $scope.programAttributeTypes = programAttributeTypes;
                 }), id);
                 $scope.programSelected = null;
