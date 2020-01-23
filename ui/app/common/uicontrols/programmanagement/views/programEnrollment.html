@@ -48,9 +48,23 @@
                     </div>
                 </article>
 
-                <article class="fl" ng-repeat="attribute in programAttributeTypes" ng-if="isIncluded(attribute) && programSelected.name">
+                <article class="fl" ng-repeat="attribute in programAttributeTypes" ng-if="isIncluded(attribute) && programSelected.name && !attribute.name.includes('PROGRAM_MANAGEMENT_7')">
                     <attribute-types target-model="patientProgramAttributes" attribute="attribute"
                                      is-form="true"></attribute-types>
+                </article>
+
+                <article class="fl" ng-if="programSelected && programSelected.name === 'HIV_DEFAULTERS_PROGRAM_KEY'">
+                    <div class="field-attribute">
+                        <label>
+                            <b>{{'PROGRAM_MANAGEMENT_REASON_FOR_DEFAULTING' | translate}} :</b>
+                        </label>
+                    </div>
+                    <div class="field-value">
+                        <article class="fl" ng-repeat="attribute in programAttributeTypes" ng-if="isIncluded(attribute) && programSelected.name && attribute.name.includes('PROGRAM_MANAGEMENT_7')">
+                            <attribute-types target-model="patientProgramAttributes" attribute="attribute"
+                                             is-form="true"></attribute-types>
+                        </article>
+                    </div>
                 </article>
 
                 <input class="fr" type="submit" value="{{'PROGRAM_MANAGEMENT_ENROLL_KEY' | translate}}"/>
