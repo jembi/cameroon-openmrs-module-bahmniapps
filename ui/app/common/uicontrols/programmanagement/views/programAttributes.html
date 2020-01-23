@@ -1,4 +1,4 @@
-<div class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-show="!patientProgram.editing" ng-if="isIncluded(attributeType)">
+<div class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-show="!patientProgram.editing" ng-if="isIncluded(attributeType) && !attributeType.name.includes('PROGRAM_MANAGEMENT_7')">
     <div class="field-attribute">
         <label>{{attributeType.description | translate}} : </label>
     </div>
@@ -8,8 +8,29 @@
         </span>
     </div>
 </div>
-<div  ng-show="patientProgram.editing" class="programEditing">
-    <article class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-if="isIncluded(attributeType)">
+
+<div class="form-field" ng-show="!patientProgram.editing" ng-if="patientProgram.program.name === 'HIV_DEFAULTERS_PROGRAM_KEY'">
+    <div class="field-attribute">
+        <label>{{'PROGRAM_MANAGEMENT_REASON_FOR_DEFAULTING' | translate}} : </label>
+    </div>
+    <div style="width: 60%;" class="field-value">
+        <div ng-repeat="attributeType in programAttributeTypes" ng-if="isIncluded(attributeType) && attributeType.name.includes('PROGRAM_MANAGEMENT_7') && getValueForAttributeType(attributeType)" class="field-value">
+            <span ng-if="attributeType.name !== 'PROGRAM_MANAGEMENT_714_OTHER_DEFAULTING_REASON'">
+                {{ attributeType.description | translate }}, 
+            </span>
+            <span ng-if="attributeType.name === 'PROGRAM_MANAGEMENT_714_OTHER_DEFAULTING_REASON'">
+                {{ 'PROGRAM_MANAGEMENT_714_OTHER_DEFAULTING_REASON' | translate }}: {{ getValueForAttributeType(attributeType) }}
+            </span>
+        </div>
+    </div>
+</div>
+
+<div ng-show="patientProgram.editing" class="programEditing">
+    <article class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-if="isIncluded(attributeType) && !attributeType.name.includes('PROGRAM_MANAGEMENT_7')">
+        <attribute-types target-model="patientProgram.patientProgramAttributes" attribute="attributeType"></attribute-types>
+    </article>
+    <div ng-if="patientProgram.program.name === 'HIV_DEFAULTERS_PROGRAM_KEY'"><br><b>{{'PROGRAM_MANAGEMENT_REASON_FOR_DEFAULTING' | translate}} :</b></div>
+    <article class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-if="isIncluded(attributeType) && attributeType.name.includes('PROGRAM_MANAGEMENT_7')">
         <attribute-types target-model="patientProgram.patientProgramAttributes" attribute="attributeType"></attribute-types>
     </article>
 </div>
