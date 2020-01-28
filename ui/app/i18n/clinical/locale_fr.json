@@ -59,7 +59,7 @@
   "PROGRAM_MANAGEMENT_LABEL_CHOOSE_OUTCOME": "Choisissez le résultat du programme",
   "PROGRAM_MANAGEMENT_CHOOSE_STATE_KEY": "Choisissez le stade du programme",
   "PROGRAM_MANAGEMENT_CHANGE_STATE_KEY": "Change Program State",
-  "PROGRAM_MANAGEMENT_START_DATE_KEY": "Date d'enrôlement",
+  "PROGRAM_MANAGEMENT_START_DATE_KEY": "Date d'enrôlement (pour ce programme)",
   "PROGRAM_MANAGEMENT_STOP_DATE_KEY": "Date de fin",
   "PROGRAM_MANAGEMENT_STARTED_ON_KEY": "Commencé le",
   "PROGRAM_MANAGEMENT_SELECT_PROGRAM_MESSAGE_KEY": "Please select a Program to Enroll the patient",

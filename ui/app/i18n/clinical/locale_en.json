@@ -36,7 +36,7 @@
     "PROGRAM_MANAGEMENT_LABEL_CHOOSE_OUTCOME": "Choose Outcome",
     "PROGRAM_MANAGEMENT_CHOOSE_STATE_KEY": "Choose Program State",
     "PROGRAM_MANAGEMENT_CHANGE_STATE_KEY": "Change Program State",
-    "PROGRAM_MANAGEMENT_START_DATE_KEY": "Enrollment date",
+    "PROGRAM_MANAGEMENT_START_DATE_KEY": "Enrollment date (for this program)",
     "PROGRAM_MANAGEMENT_1_ART_NUMBER": "TARV code",
     "PROGRAM_MANAGEMENT_5_PATIENT_STAGE": "Reason for consultation",
     "PROGRAM_MANAGEMENT_2_PATIENT_TREATMENT_DATE": "Treatment Date",
