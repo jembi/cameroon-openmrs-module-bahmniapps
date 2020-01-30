@@ -60,6 +60,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                     $scope.allPrograms.showProgramSection = true;
                 }), id);
                 spinner.forPromise(programService.getProgramAttributeTypes().then(function (programAttributeTypes) {
+                    programAttributeTypes.sort(function (a, b) { return (a.name > b.name) ? 1 : -1; });
                     $scope.programAttributeTypes = programAttributeTypes;
                 }), id);
                 $scope.programSelected = null;
@@ -245,6 +246,15 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 if (program && program.allWorkflows && program.allWorkflows.length && program.allWorkflows[0].states.length) {
                     states = program.allWorkflows[0].states;
                 }
+                states.sort(function (record1, record2) {
+                    if (record1.concept && record2.concept && record1.concept.display > record2.concept.display) {
+                        return 1;
+                    } else if (record1.concept && record2.concept && record1.concept.display < record2.concept.display) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
+                });
                 return states;
             };
 

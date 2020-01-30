@@ -1,6 +1,6 @@
 <article class="consultation-page visit">
-    <section class="messages" ng-if="isConsultationTabEmpty()" style="display:none;"><!--Hiding this message-->
-        <p class="null-data-message">{{ 'CONSULTATION_PAD_EMPTY_MESSAGE'|translate }}</p>
+    <section class="messages" ng-if="isConsultationTabEmpty()">
+        <p class="null-data-message">{{ 'CONSULTATION_TAB_PAD_EMPTY_MESSAGE'|translate }}</p>
     </section>
     <div ng-if="!isConsultationTabEmpty()">
         <section class="block diagnosis section-grid"
@@ -178,7 +178,7 @@
 
             </div>
         </section>
-        <section class="block observation section-grid" ng-show="groupedObservations.length > 0">
+        <section class="block observation section-grid" ng-show="groupedObservations.length > 0" style="display:none;">
             <h2 class="section-title">{{ 'CONSULTATION_TAB_OBSERVATIONS_HEADER_LABEL'|translate }}</h2>
 
             <div ng-repeat="observationGroup in groupedObservations">
