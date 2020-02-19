@@ -287,13 +287,15 @@
           </span>
         </legend>
 
-        <div ng-show="patient.hasIndexInfo" ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
-            <article style="margin: 0" class="form-field" ng-repeat="attribute in ::attributeRow"
-                ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attribute.name == 'PERSON_ATTRIBUTE_TYPE_INDEX_KNOW_VIH_STATUS'">
-                <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
-                    is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
-                    get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
-            </article>
+        <div ng-show="patient.hasIndexInfo">
+            <span ng-repeat="attributeRow in ::patientConfiguration.attributeTypes">
+                <article style="margin-left: 40px; margin-top: 20px;" class="form-field"
+                    ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attributeRow.name === 'PERSON_ATTRIBUTE_TYPE_INDEX_KNOW_VIH_STATUS'">
+                    <attribute-types target-model="patient" attribute="::attributeRow" field-validation="::fieldValidation"
+                        is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
+                        get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
+                </article>
+            </span>
         </div>
     </div>
     <div class="box-container" ng-if="deathConceptExists">
