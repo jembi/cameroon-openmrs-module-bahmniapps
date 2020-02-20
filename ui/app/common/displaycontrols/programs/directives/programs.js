@@ -55,6 +55,15 @@ angular.module('bahmni.common.displaycontrol.programs')
                 var isCodedConceptFormat = function (format) {
                     return format == "org.bahmni.module.bahmnicore.customdatatype.datatype.CodedConceptDatatype";
                 };
+
+                $scope.showActive = false;
+                $scope.toggleActive = function () {
+                    $scope.showActive = !$scope.showActive;
+                };
+                $scope.showInactive = false;
+                $scope.toggleInactive = function () {
+                    $scope.showInactive = !$scope.showInactive;
+                };
             };
 
             var link = function ($scope, element) {
