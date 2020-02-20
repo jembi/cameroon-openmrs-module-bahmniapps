@@ -1,9 +1,12 @@
-<section class="program-dashboard">
+<section class="program-dashboard"> 
     <div>
         <div ng-if="hasPatientAnyActivePrograms()">
-            <div class="typeOfPrograms">{{::'PROGRAM_MANAGEMENT_ACTIVE_TREATMENT_KEY' | translate}}</div>
-
-            <div ng-repeat="program in activePrograms" ng-if="::hasPatientAnyActivePrograms()">
+            <h2 ng-click="toggleActive()" class="section-title row-click">
+                <i class="fa fa-caret-right" ng-hide="showActive"></i>
+                <i class="fa fa-caret-down" ng-show="showActive"></i>
+                <span>{{'PROGRAM_MANAGEMENT_ACTIVE_TREATMENT_KEY' | translate }}</span>
+            </h2>
+            <div ng-repeat="program in activePrograms" ng-if="showActive">
                 <div class="program-basic-details">
                     <span class="program-name fl">{{::program.display | translate}}</span>
                 <span class="program-dates fr">
@@ -46,9 +49,12 @@
             </div>
         </div>
         <div ng-if="hasPatientAnyPastPrograms()">
-            <div class="typeOfPrograms">{{::'PROGRAM_MANAGEMENT_INACTIVE_TREATMENT_KEY' | translate}}</div>
-
-            <div ng-repeat="program in pastPrograms" ng-if="::hasPatientAnyPastPrograms()">
+            <h2 ng-click="toggleInactive()" class="section-title row-click">
+                <i class="fa fa-caret-right" ng-hide="showInactive"></i>
+                <i class="fa fa-caret-down" ng-show="showInactive"></i>
+                <span>{{'PROGRAM_MANAGEMENT_INACTIVE_TREATMENT_KEY' | translate }}</span>
+            </h2>
+            <div ng-repeat="program in pastPrograms" ng-if="showInactive">
                 <div class="program-basic-details">
                     <div class="clearfix">
                         <span class="program-name fl">{{::program.display | translate}}</span>
