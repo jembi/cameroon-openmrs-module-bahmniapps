@@ -278,6 +278,26 @@
         <div patient-relationship patient="patient" ng-show="patient.hasRelationships"
              ng-if="::relationshipTypes"></div>
     </div>
+    <div class="box-container">
+        <legend class="additional-attribute" toggle="patient.hasIndexInfo">
+          <span>
+              <i class="fa fa-caret-right"></i>
+              <i class="fa fa-caret-down"></i>
+              <strong><a ng-bind-html="::'REGISTRATION_TITLE_INDEX_TESTING_CONTACT_INFO' | translate"></a></strong>
+          </span>
+        </legend>
+
+        <div ng-show="patient.hasIndexInfo">
+            <span ng-repeat="attributeRow in ::patientConfiguration.attributeTypes">
+                <article style="margin-left: 40px; margin-top: 20px;" class="form-field"
+                    ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attributeRow.name === 'PERSON_ATTRIBUTE_TYPE_INDEX_KNOW_VIH_STATUS'">
+                    <attribute-types target-model="patient" attribute="::attributeRow" field-validation="::fieldValidation"
+                        is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
+                        get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>
+                </article>
+            </span>
+        </div>
+    </div>
     <div class="box-container" ng-if="deathConceptExists">
         <legend class="additional-attribute" toggle="patient.isDead">
           <span>
