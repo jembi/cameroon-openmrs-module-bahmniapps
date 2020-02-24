@@ -62,7 +62,7 @@
                                 <i class="ipd-indication fa fa-bed" ng-if="::(row.hasBeenAdmitted===true||row.hasBeenAdmitted==='true')"></i>
                             </span>
                             <span ng-if="::(!isHeadingOfLinkColumn(heading) && !isHeadingOfName(heading))">
-                            {{::row[heading]}}
+                            {{::row[heading] | translate }}
                             </span>
                         </td>
                     </tr>
