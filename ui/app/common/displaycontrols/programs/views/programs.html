@@ -14,14 +14,27 @@
                 </span>
                 </div>
                 <div class="program-attributes">
-                    <div class="program-attribute clearfix" ng-repeat="attribute in program.attributes" ng-if="isIncluded(attribute.attributeType, program)">
-                    <span class="program-attribute-title fl">
-                        <strong>{{(attribute.attributeType.description || attribute.attributeType.display) | translate}}</strong> :
-                    </span>
+                    <div class="program-attribute clearfix" ng-repeat="attribute in program.attributes" ng-if="isIncluded(attribute.attributeType, program) && !attribute.attributeType.name.includes('PROGRAM_MANAGEMENT_7')">
+                        <span class="program-attribute-title fl">
+                            <strong>{{(attribute.attributeType.description || attribute.attributeType.display) | translate}}</strong> :
+                        </span>
                         <span class="program-attribute-value fl">{{::getAttributeValue(attribute)}}</span>
                     </div>
                     <div class="program-attribute" ng-if="::program.location">
                         <strong>{{::'PROGRAM_DISPLAY_CONTROL_FACILITY_OF_ENROLLMENT_KEY' | translate}}</strong> : {{::program.location}}
+                    </div>
+                    
+                    <!--Display Reasons for defaulting for HIV defaulters program -->
+                    <span class="program-attribute-title fl" ng-if="program.display === 'HIV_DEFAULTERS_PROGRAM_KEY'">
+                        <br><strong>{{'PROGRAM_MANAGEMENT_REASON_FOR_DEFAULTING' | translate}} : </strong><br><br>
+                    </span>
+                    <div class="program-attribute clearfix" ng-repeat="attribute in program.attributes" ng-if="attribute.attributeType.name.includes('PROGRAM_MANAGEMENT_7') && getAttributeValue(attribute)">
+                        <span class="program-attribute-value" ng-if="attribute.attributeType.name !== 'PROGRAM_MANAGEMENT_714_OTHER_DEFAULTING_REASON'">
+                            {{(attribute.attributeType.description || attribute.attributeType.display) | translate}}
+                        </span>
+                        <span class="program-attribute-value" ng-if="attribute.attributeType.name === 'PROGRAM_MANAGEMENT_714_OTHER_DEFAULTING_REASON'">
+                            {{'PROGRAM_MANAGEMENT_714_OTHER_DEFAULTING_REASON' | translate }}: {{::getAttributeValue(attribute)}}
+                        </span>
                     </div>
                 </div>
 
@@ -72,7 +85,7 @@
 
 
                 <div class="program-attributes">
-                    <div class="program-attribute clearfix" ng-repeat="attribute in program.attributes" ng-if="isIncluded(attribute.attributeType, program)">
+                    <div class="program-attribute clearfix" ng-repeat="attribute in program.attributes" ng-if="isIncluded(attribute.attributeType, program) && !attribute.attributeType.name.includes('PROGRAM_MANAGEMENT_7')">
                        <span class="program-attribute-title fl">
                             <strong>{{(attribute.attributeType.description || attribute.attributeType.display) | translate}}</strong> :
                        </span>
@@ -83,8 +96,20 @@
                     <div class="program-attribute" ng-if="::program.location">
                         <strong>{{::'PROGRAM_DISPLAY_CONTROL_FACILITY_OF_ENROLLMENT_KEY' | translate}}</strong> : {{::program.location}}
                     </div>
-                </div>
 
+                    <!--Display Reasons for defaulting for inactive HIV defaulters program -->
+                    <span class="program-attribute-title fl" ng-if="program.display === 'HIV_DEFAULTERS_PROGRAM_KEY'">
+                        <br><strong>{{'PROGRAM_MANAGEMENT_REASON_FOR_DEFAULTING' | translate}} : </strong><br><br>
+                    </span>
+                    <div class="program-attribute clearfix" ng-repeat="attribute in program.attributes" ng-if="attribute.attributeType.name.includes('PROGRAM_MANAGEMENT_7') && getAttributeValue(attribute)">
+                        <span class="program-attribute-value" ng-if="attribute.attributeType.name !== 'PROGRAM_MANAGEMENT_714_OTHER_DEFAULTING_REASON'">
+                            {{(attribute.attributeType.description || attribute.attributeType.display) | translate}}
+                        </span>
+                        <span class="program-attribute-value" ng-if="attribute.attributeType.name === 'PROGRAM_MANAGEMENT_714_OTHER_DEFAULTING_REASON'">
+                            {{'PROGRAM_MANAGEMENT_714_OTHER_DEFAULTING_REASON' | translate }}: {{::getAttributeValue(attribute)}}
+                        </span>
+                    </div>
+                </div>
 
                 <div class="program-table" ng-if="::!showProgramStateInTimeline() && hasStates(program)">
                     <table>
