@@ -20,6 +20,9 @@ angular.module('bahmni.registration').factory('openmrsPatientMapper', ['patient'
             },
             mapAttributes = function (patient, attributes) {
                 attributes.filter(whereAttributeTypeExists).forEach(function (attribute) {
+                    if (attribute.attributeType.display === 'PERSON_ATTRIBUTE_TYPE_INDEX_KNOW_VIH_STATUS') {
+                        patient.hasIndexInfo = true;
+                    }
                     addAttributeToPatient(patient, attribute);
                 });
             },
@@ -58,6 +61,7 @@ angular.module('bahmni.registration').factory('openmrsPatientMapper', ['patient'
                 patient.causeOfDeath = openmrsPerson.causeOfDeath;
                 patient.birthdateEstimated = openmrsPerson.birthdateEstimated;
                 patient.bloodGroup = openmrsPerson.bloodGroup;
+                patient.hasIndexInfo = false;
                 mapAttributes(patient, openmrsPerson.attributes);
                 mapRelationships(patient, relationships);
                 _.assign(patient, identifiers.mapIdentifiers(openmrsPatient.identifiers));
