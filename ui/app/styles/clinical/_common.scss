@@ -32,6 +32,16 @@ button.save-consultation {
     color: #fff;
 }
 
+.vitals fieldset.collapsible-set legend.important {
+    border-width: thick;
+    border-color: orange;
+}
+
+.form-horizontal fieldset label.important {
+    text-decoration: underline;
+    font-weight:bold;
+}
+
 .form-group legend strong {
     font-family: OpenSans !important;
 }  
