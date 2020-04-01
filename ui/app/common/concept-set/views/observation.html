@@ -44,7 +44,7 @@
                 </div>
 
 
-                <label class="control-label" ng-hide="observation.getControlType()== 'image'" ng-if="::showTitle" for="{{::observation.uniqueId}}">
+                <label ng-class="{'important': observation.conceptUIConfig.important}" class="control-label" ng-hide="observation.getControlType()== 'image'" ng-if="::showTitle" for="{{::observation.uniqueId}}">
                     <span ng-bind="::observation.label"></span>
                     <span ng-if="::getBooleanResult(observation.primaryObs.units)"
                           ng-bind-html="::'(' + observation.primaryObs.units + ')'"></span>
@@ -178,7 +178,7 @@
                     <span class="details" ng-bind-html="::observation.concept.description"></span>
                 </div>
 
-                <label class="control-label" ng-hide="observation.getControlType()== 'image'"  ng-if="::showTitle" for="{{::observation.uniqueId}}">
+                <label ng-class="{'important': observation.conceptUIConfig.important}" class="control-label" ng-hide="observation.getControlType()== 'image'"  ng-if="::showTitle" for="{{::observation.uniqueId}}">
                     <span ng-bind="::observation.label"></span>
                     <span ng-show="::getBooleanResult(observation.units)" ng-bind-html="::'(' + observation.units + ')'"></span>
                     <span ng-if="::observation.conceptUIConfig.required===true" class="asterick">*</span>
@@ -382,10 +382,9 @@
             </div>
         </fieldset>
 
-
         <fieldset ng-if="(!observation.isObservationNode && !observation.isFormElement() && observation.getControlType()!='tabular')" class="hasLegend"
                   ng-class="{'collapsible-set': isCollapsibleSet(), 'collapsed': collapse}" scroll-to-obs-element="{{ observation.scrollToElement }}">
-            <legend ng-if="::(showTitle && !observation.isComputed())" class="mylegend" ng-click="toggleSection()">
+            <legend ng-class="{'important': observation.conceptUIConfig.important}" ng-if="::(showTitle && !observation.isComputed())" class="mylegend" ng-click="toggleSection()">
                 <i ng-if="isCollapsibleSet() && collapse" class="fa fa-caret-right"></i>
                 <i ng-if="!(isCollapsibleSet() && collapse)" class="fa fa-caret-down"></i>
                 <strong>{{observation.label}}</strong>
