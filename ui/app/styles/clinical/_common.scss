@@ -67,6 +67,24 @@ button.save-consultation {
     font-family: OpenSans !important;
 }  
 
+/* Custom styles for important fields in program form */
+
+.select-program-container .select-program-option.form-field .field-attribute label.important::before {
+    display: inline;
+    font-family: FontAwesome;
+    color: #F79256;
+    -webkit-font-smoothing: antialiased;
+    content: "\f071"; 
+}
+
+.program-tiles .program-tile .form-field .field-attribute label.important::before {
+    display: inline;
+    font-family: FontAwesome;
+    color: #F79256;
+    -webkit-font-smoothing: antialiased;
+    content: "\f071"; 
+}
+
 /* Custom styles for medication report */
 .prescribe-report-logo {
     height: 80px;
