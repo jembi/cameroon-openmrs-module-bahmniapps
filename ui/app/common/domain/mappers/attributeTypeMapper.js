@@ -25,7 +25,7 @@ Bahmni.Common.Domain.AttributeTypeMapper = (function () {
                 required: isRequired(),
                 concept: mrsAttributeType.concept || {},
                 excludeFrom: (attributesConfig && attributesConfig[mrsAttributeType.name] && attributesConfig[mrsAttributeType.name].excludeFrom) || [],
-                important: attributesConfig[mrsAttributeType.name].important
+                important: (attributesConfig && attributesConfig[mrsAttributeType.name]) ? attributesConfig[mrsAttributeType.name].important : false
             };
             attributeType.concept.dataType = attributeType.concept.datatype && attributeType.concept.datatype.name;
 
