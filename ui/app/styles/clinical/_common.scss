@@ -32,9 +32,58 @@ button.save-consultation {
     color: #fff;
 }
 
+.vitals fieldset.collapsible-set.collapsed legend.important{
+	border-color: #F79256;
+	border-width: 2px;
+	background-color: #F79256!important;
+}
+.vitals fieldset.collapsible-set legend.mylegend.important{
+	border-color: #F79256;
+	border-width: 2px;
+}
+
+.vitals fieldset.collapsible-set legend.important::before,
+.vitals fieldset.collapsible-set.collapsed legend.important::before,
+.vitals fieldset .form-group .control-label.important::before {
+    display: inline;
+    font-family: FontAwesome;
+    color: #F79256;
+    -webkit-font-smoothing: antialiased;
+    content: "\f071";
+    margin-left: -1.3em;
+}
+
+.vitals fieldset.collapsible-set legend.important::before {
+    color: #F79256;
+}
+.vitals fieldset.collapsible-set.collapsed legend.important::before {
+    color: #FFF;
+}
+.vitals fieldset .form-group .control-label.important {
+    text-decoration: none;
+}
+
 .form-group legend strong {
     font-family: OpenSans !important;
 }  
+
+/* Custom styles for important fields in program form */
+
+.select-program-container .select-program-option.form-field .field-attribute label.important::before {
+    display: inline;
+    font-family: FontAwesome;
+    color: #F79256;
+    -webkit-font-smoothing: antialiased;
+    content: "\f071"; 
+}
+
+.program-tiles .program-tile .form-field .field-attribute label.important::before {
+    display: inline;
+    font-family: FontAwesome;
+    color: #F79256;
+    -webkit-font-smoothing: antialiased;
+    content: "\f071"; 
+}
 
 /* Custom styles for medication report */
 .prescribe-report-logo {

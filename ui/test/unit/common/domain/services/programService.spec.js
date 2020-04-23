@@ -403,7 +403,8 @@ describe('programService', function () {
                 answers: [],
                 required: false,
                 concept: {dataType: undefined},
-                excludeFrom: []
+                excludeFrom: [],
+                important: false
             }, {
                 uuid: '82325788-3f10-11es-adec-0800271c1b75',
                 sortWeight: 3,
@@ -414,7 +415,8 @@ describe('programService', function () {
                 answers: [],
                 required: false,
                 concept: {dataType: undefined},
-                excludeFrom: []
+                excludeFrom: [],
+                important: false
             }]);
 
         });

@@ -49,7 +49,7 @@
   "PROGRAM_MANAGEMENT_LABEL_PROGRAM_STATE": "Stade clinique du patient",
   "PROGRAM_MANAGEMENT_1_ART_NUMBER": "Code TARV",
   "PROGRAM_MANAGEMENT_5_PATIENT_STAGE": "Motif de consultation",
-  "PROGRAM_MANAGEMENT_2_PATIENT_TREATMENT_DATE": "Date d’initiation",
+  "PROGRAM_MANAGEMENT_2_PATIENT_TREATMENT_DATE": "Date de début du traitement",
   "PROGRAM_MANAGEMENT_3_PATIENT_COMORBIDITES": "Co-morbidités",
   "PROGRAM_MANAGEMENT_4_PATIENT_DOCTOR_IN_CHARGE": "Docteur en charge",
   "PROGRAM_MANAGEMENT_1_DURATION_ON_ART": "Durée dans ARV",
@@ -71,7 +71,7 @@
   "PROGRAM_MANAGEMENT_2_LAST_FAILED_APPOINTMENT_DATE": "Date de rendez-vous manqué",
   "PROGRAM_MANAGEMENT_DEFAULTING_OUTCOME": "Résultat du programme",
   "PROGRAM_MANAGEMENT_3_PRETRACKING_OUTCOME": "Situation du patient avant traçage",
-  "PROGRAM_MANAGEMENT_8_RETURNED_TO_TREATMENT_DATE": "Date de reprise du traitement",
+  "PROGRAM_MANAGEMENT_9_RETURNED_TO_TREATMENT_DATE": "Date de reprise du traitement",
   "PROGRAM_MANAGEMENT_4_TRACKING_DATE": "Date de suivi",
   "PROGRAM_MANAGEMENT_5_APS_NAME": "Nom de l'APS",
   "PROGRAM_MANAGEMENT_6_TRACKING_OUTCOME": "Résultat de l'appel",
@@ -82,6 +82,8 @@
   "PROGRAM_MANAGEMENT_5_COMMENTS": "Commentaires",
   "PROGRAM_MANAGEMENT_LABEL_PROGRAM_OUTCOME": "Résultat du programme",
   "PROGRAM_MANAGEMENT_LABEL_CHOOSE_OUTCOME": "Choisissez le résultat du programme",
+  "PROGRAM_MANAGEMENT_6_LABEL_THERAPEUTIC_LINE":"Ligne thérapeutique",
+  "PROGRAM_MANAGEMENT_8_LABEL_IS_BREASTFEEDING": "Allaitante?",
   "PROGRAM_MANAGEMENT_CHOOSE_STATE_KEY": "Choisissez le stade du programme",
   "PROGRAM_MANAGEMENT_CHANGE_STATE_KEY": "Change Program State",
   "PROGRAM_MANAGEMENT_START_DATE_KEY": "Date d'enrôlement (pour ce programme)",
@@ -327,6 +329,5 @@
   "PRESCRIPTION_REPORT_PRINT_TARV_PRESCRIPTION_LABEL": "Imprimer la prescription TARV",
   "CLINICAL_ADD_AS_CONDITION":"Ajouter comme condition",
   "PRESCRIPTION_REPORT_LABEL_FOR": "pour",
-  "VISIT_TYPE_OPD": "Consultation",
-  "PROGRAM_MANAGEMENT_6_LABEL_THERAPEUTIC_LINE":"Ligne thérapeutique"
+  "VISIT_TYPE_OPD": "Consultation"
 }
