@@ -388,7 +388,7 @@ describe("drugOrderViewModel", function () {
 
             treatment.durationUnit = "Mois";
             treatment.calculateDurationInDays();
-            expect(treatment.durationInDays >= 182 && treatment.durationInDays < 185).toBeTruthy();
+            expect(treatment.durationInDays >= 181 && treatment.durationInDays < 185).toBeTruthy();
 
             treatment.durationUnit = "Day(s)"
             treatment.calculateDurationInDays();
