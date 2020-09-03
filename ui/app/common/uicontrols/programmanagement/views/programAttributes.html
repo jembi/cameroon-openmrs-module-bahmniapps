@@ -1,4 +1,4 @@
-<div class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-show="!patientProgram.editing" ng-if="isIncluded(attributeType) && !attributeType.name.includes('PROGRAM_MANAGEMENT_7')">
+<div class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-show="!patientProgram.editing" ng-if="isIncluded(attributeType) && !attributeType.name.includes('PROGRAM_MANAGEMENT_7') && !attributeType.name.includes('PROGRAM_MANAGEMENT_OTHER_PROGRAM_OUTCOME')">
     <div class="field-attribute">
         <label>{{attributeType.description | translate}} : </label>
     </div>
@@ -26,7 +26,7 @@
 </div>
 
 <div ng-show="patientProgram.editing" class="programEditing">
-    <article class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-if="isIncluded(attributeType) && !attributeType.name.includes('PROGRAM_MANAGEMENT_7')">
+    <article class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-if="isIncluded(attributeType) && !attributeType.name.includes('PROGRAM_MANAGEMENT_7') && !attributeType.name.includes('PROGRAM_MANAGEMENT_OTHER_PROGRAM_OUTCOME')">
         <attribute-types target-model="patientProgram.patientProgramAttributes" attribute="attributeType"></attribute-types>
     </article>
     <div ng-if="patientProgram.program.name === 'HIV_DEFAULTERS_PROGRAM_KEY'"><br><b>{{'PROGRAM_MANAGEMENT_REASON_FOR_DEFAULTING' | translate}} :</b></div>
