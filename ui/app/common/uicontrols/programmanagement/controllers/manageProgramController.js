@@ -127,6 +127,12 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 return !_.isEmpty($scope.endedPrograms);
             };
 
+            $scope.programOutcomeChanged = function (_value) {
+                if (_value) {
+                    _value.PROGRAM_MANAGEMENT_OTHER_PROGRAM_OUTCOME = "";
+                }
+            };
+
             $scope.enrollPatient = function () {
                 if (!isProgramSelected()) {
                     messagingService.showMessage("error", "PROGRAM_MANAGEMENT_SELECT_PROGRAM_MESSAGE_KEY");

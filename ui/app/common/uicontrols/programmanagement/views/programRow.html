@@ -60,9 +60,15 @@
                 </div>
                 <div class="field-value">
                     <select ng-model="patientProgram.outcomeData"
+                            ng-change="programOutcomeChanged(patientProgram.patientProgramAttributes)"
                             ng-options="outcomeSelected.names[0].display for outcomeSelected in ::patientProgram.program.outcomesConcept.setMembers">
                         <option value="">{{::'PROGRAM_MANAGEMENT_LABEL_CHOOSE_OUTCOME' | translate}}</option>
                     </select>
+                </div>
+                <div class="field-value" ng-show="patientProgram.outcomeData.display==='Others'">
+                    <article class="form-field" ng-repeat="attributeType in programAttributeTypes" ng-if="isIncluded(attributeType) && attributeType.name.includes('PROGRAM_MANAGEMENT_OTHER_PROGRAM_OUTCOME')">
+                        <attribute-types target-model="patientProgram.patientProgramAttributes" attribute="attributeType"></attribute-types>
+                    </article>
                 </div>
             </div>
         </div>
