@@ -3,7 +3,7 @@ node_js: "6"
 
 before_install:
   # decrypting the encrypted SSH private key and adding the key to the current ssh-agent to make any SSH-based command agnostic to the private key location
-  - openssl aes-256-cbc -K $encrypted_c5f977eaf718_key -iv $encrypted_c5f977eaf718_iv -in .deploy_key.enc -out /tmp/deploy_key -d
+  - openssl aes-256-cbc -K $encrypted_8efaa96696d1_key -iv $encrypted_8efaa96696d1_iv -in .deploy_key.enc -out /tmp/deploy_key -d
   - eval "$(ssh-agent -s)"
   - chmod 600 /tmp/deploy_key
   - ssh-add /tmp/deploy_key
