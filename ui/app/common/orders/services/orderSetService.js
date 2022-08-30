@@ -1,3 +1,4 @@
+
 'use strict';
 
 angular.module('bahmni.common.orders')
@@ -11,7 +12,9 @@ angular.module('bahmni.common.orders')
                 }
             });
         };
-
+        this.getTotalQuantities = function (id) {
+            return $http.get(Bahmni.Common.Constants.getQuantity + id);
+        };
         this.getCalculatedDose = function (patientUuid, drugName, baseDose, doseUnit, orderSetName, dosingRule, visitUuid) {
             if (typeof dosingRule !== 'undefined' && dosingRule != '' && dosingRule != null) {
                 var requestString = JSON.stringify({

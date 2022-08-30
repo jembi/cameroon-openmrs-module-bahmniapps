@@ -433,7 +433,6 @@ Bahmni.Clinical.DrugOrderViewModel = function (config, proto, encounterDate) {
                 var dose = self.variableDosingType;
                 self.quantity = (dose.morningDose + dose.afternoonDose + dose.eveningDose) * self.durationInDays;
             }
-
             if (self.quantity % 1 !== 0) {
                 self.quantity = self.quantity - (self.quantity % 1) + 1;
             }

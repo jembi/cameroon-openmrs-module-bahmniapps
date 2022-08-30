@@ -123,6 +123,7 @@ Bahmni.Common = Bahmni.Common || {};
         relationshipTypesUrl: RESTWS_V1 + "/relationshiptype",
         personAttributeTypeUrl: RESTWS_V1 + "/personattributetype",
         diseaseSummaryPivotUrl: BAHMNI_CORE + "/diseaseSummaryData",
+        getQuantity: RESTWS_V1 + "/odooapi/getquantity/",
         allTestsAndPanelsConceptName: 'All_Tests_and_Panels',
         dosageFrequencyConceptName: 'Dosage Frequency',
         dosageInstructionConceptName: 'Dosage Instructions',
