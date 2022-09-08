@@ -1,29 +1,21 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .controller('AddTreatmentController', ['$rootScope', '$scope', 'contextChangeHandler', 'treatmentConfig', 'drugService',
-        '$timeout', 'clinicalAppConfigService', 'ngDialog', '$window', 'activeDrugOrders',
+    .controller('AddTreatmentController', ['$scope', '$rootScope', '$http', 'contextChangeHandler', 'treatmentConfig', 'drugService',
+        '$timeout', 'clinicalAppConfigService', 'ngDialog', '$window', 'messagingService', 'appService', 'activeDrugOrders',
         'orderSetService', '$q', 'locationService', 'spinner', '$translate',
-        function ($rootScope, $scope, contextChangeHandler, treatmentConfig, drugService, $timeout,
-            clinicalAppConfigService, ngDialog, $window, activeDrugOrders,
+        function ($scope, $rootScope, $http, contextChangeHandler, treatmentConfig, drugService, $timeout,
+            clinicalAppConfigService, ngDialog, $window, messagingService, appService, activeDrugOrders,
             orderSetService, $q, locationService, spinner, $translate) {
             var DateUtil = Bahmni.Common.Util.DateUtil;
             var DrugOrderViewModel = Bahmni.Clinical.DrugOrderViewModel;
             var scrollTop = _.partial($window.scrollTo, 0, 0);
-            var serverErrorMessages = Bahmni.Common.Constants.serverErrorMessages;
+
             $scope.showOrderSetDetails = true;
             $scope.addTreatment = true;
             $scope.canOrderSetBeAdded = true;
             $scope.isSearchDisabled = false;
-            $scope.warning = function () { alert('This is a warning'); };
-            var showError = function (errorMessage) {
-                var result = _.find(serverErrorMessages, function (listItem) {
-                    return listItem.serverMessage === errorMessage;
-                });
-                if (_.isEmpty(result)) {
-                    $rootScope.$broadcast('event:serverError', errorMessage);
-                }
-            };
+
             $scope.getFilteredOrderSets = function (searchTerm) {
                 if (searchTerm && searchTerm.length >= 3) {
                     orderSetService.getOrderSetsByQuery(searchTerm).then(function (response) {
@@ -502,28 +494,24 @@ angular.module('bahmni.clinical')
                 var selectedItem;
                 $scope.onSelect = function (item) {
                     selectedItem = item;
+                    $scope.id = selectedItem.drug.uuid;
+                    var id = $scope.id;
+                    $http.get(Bahmni.Common.Constants.getQuantity + id).then(function (response) {
+                        $scope.available_drug = response.data[0].qty_available;
+                        if ($scope.available_drug === 0) {
+                            var errorMessage = "Out Of Stock";
+                            $rootScope.$broadcast('event:serverError', errorMessage);
+                        }
+                    });
                     $scope.onChange();
                 };
                 $scope.onAccept = function () {
                     $scope.treatment.acceptedItem = $scope.treatment.drugNameDisplay;
                     $scope.onChange();
                 };
+
                 $scope.onChange = function () {
                     if (selectedItem) {
-                        $scope.id = selectedItem.drug.uuid;
-                        var id = $scope.id;
-                        orderSetService.getTotalQuantities(id).then(function successCallback (response) {
-                            $scope.available_drug = response.data[0].qty_available;
-                            if ($scope.available_drug === 0)
-                            {
-                                var errorMessage = "Out Of Stock";
-                                $rootScope.$broadcast('event:serverError', errorMessage);
-                            }
-                        }, function errorCallback (response) {
-                            var errorMessage = " OR Odoo server not running";
-                            showError(errorMessage);
-                        }
-                        );
                         $scope.treatment.isNonCodedDrug = false;
                         delete $scope.treatment.drugNonCoded;
                         $scope.treatment.changeDrug({

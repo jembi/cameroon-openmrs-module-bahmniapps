@@ -1,4 +1,3 @@
-
 <div class="treatment-data-container clearfix">
     <h2 class="section-title has-toggle" toggle="addTreatment">
         <i class="fa fa-caret-right" ng-hide="addTreatment"></i>
@@ -46,7 +45,7 @@
                     <div class="field-attribute">
                         <label class="dose-label">{{ ::treatmentConfig.translate('availableQuantities', 'MEDICATION_LABEL_AVAILABLE_QUANTITIES') }} </label>
                     </div>
-                    
+
                     <div class="field-value">
                         <input id="available-quantities"  type="text" ng-value="available_drug" ng-readonly="true"
                                ng-model="available_drug" ng-disabled="treatment.previousOrderUuid"/>
@@ -59,7 +58,6 @@
                     </button>
                     <div class="frequency-widget uniform-frequency" ng-show="treatment.isUniformFrequency">
                         <section class="form-field-inline">
-                            
                             <article class="form-field">
                                 <div class="field-attribute">
                                     <label class="dose-label">{{ ::treatmentConfig.translate('dose', 'MEDICATION_LABEL_DOSE') }} </label>
@@ -100,7 +98,6 @@
                                     </select>
                                 </div>
                             </article>
-                            
                         </section>
                         <article class="form-field clearfix">
                             <div class="field-attribute">
@@ -147,7 +144,18 @@
                                 </div>
                             </div>
                         </article>
-                        
+                        <article class="form-field ">
+                            <div class="field-attribute">
+                                <label class=" unit-text">{{ ::treatmentConfig.translate('units', 'MEDICATION_LABEL_UNITS') }} </label>
+                            </div>
+                            <div class="field-value">
+                                <select id="variable-dose-unit" class=" freq-dose-units" ng-model="treatment.variableDosingType.doseUnits"
+                                        ng-options="item.name as item.name for item in treatmentConfig.getDoseUnits()"
+                                        required="required">
+                                    <option value="">{{ ::treatmentConfig.translate('doseUnitsPlaceHolder', 'MEDICATION_DOSE_UNIT_PLACEHOLDER') }} </option>
+                                </select>
+                            </div>
+                        </article>
                         <article class="form-field clearfix">
                             <div class="field-attribute">
                                 <label>{{ ::treatmentConfig.translate('route', 'MEDICATION_LABEL_ROUTE') }} </label>
@@ -200,10 +208,10 @@
                     <div ng-show="!treatment.simpleDrugForm" class="quantity-widget ">
                         <article class="form-field ">
                             <div class="field-attribute">
-                                <label class="start-date-label ">{{ ::treatmentConfig.translate('c', 'MEDICATION_LABEL_TOTAL_QUANTITY') }} </label>
+                                <label class="start-date-label ">{{ ::treatmentConfig.translate('quantity', 'MEDICATION_LABEL_TOTAL_QUANTITY') }} </label>
                             </div>
                             <div class="field-value">
-                                <input id="quantity" class="quantity fl" type="text" min="0.1" step="any"
+                                <input id="quantity" class="quantity fl" type="number" min="0.1" step="any"
                                        ng-model="treatment.quantity" ng-change="treatment.setQuantityEnteredManually()"
                                        ng-required="treatment.isDurationRequired"/>
                             </div>
