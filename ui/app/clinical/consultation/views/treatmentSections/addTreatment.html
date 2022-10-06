@@ -41,6 +41,16 @@
                         </div>
                     </div>
                 </article>
+                <article class="form-field">
+                    <div class="field-attribute">
+                        <label class="dose-label">{{ ::treatmentConfig.translate('availableQuantities', 'MEDICATION_LABEL_AVAILABLE_QUANTITIES') }} </label>
+                    </div>
+
+                    <div class="field-value">
+                        <input id="available-quantities"  type="text" ng-value="available_drug" ng-readonly="true"
+                               ng-model="available_drug" ng-disabled="treatment.previousOrderUuid"/>
+                    </div>
+                </article>
                 <div class="unit-wrap clearfix">
                     <button ng-if="!treatmentConfig.isHiddenField('dosingTypeToggle')" type="button" class="icon-button exchange-btn fl"
                             tabindex="-1" ng-click="treatment.toggleFrequency()">
