@@ -343,5 +343,7 @@
   "PRESCRIPTION_REPORT_PRINT_TARV_PRESCRIPTION_LABEL": "Imprimer la prescription TARV",
   "CLINICAL_ADD_AS_CONDITION":"Ajouter comme condition",
   "PRESCRIPTION_REPORT_LABEL_FOR": "pour",
-  "VISIT_TYPE_OPD": "Consultation"
+  "VISIT_TYPE_OPD": "Consultation",
+  "DISPOSITION_TYPE_LABEL": "Type de Disposition",
+  "DISPOSITION_NOTE_LABEL": "Note de disposition"
 }
