@@ -4,11 +4,11 @@ angular.module('bahmni.clinical').controller('ConsultationController',
     ['$scope', '$rootScope', '$state', '$location', '$translate', 'clinicalAppConfigService', 'diagnosisService', 'urlHelper', 'contextChangeHandler',
         'spinner', 'encounterService', 'messagingService', 'sessionService', 'retrospectiveEntryService', 'patientContext', '$q',
         'patientVisitHistoryService', '$stateParams', '$window', 'visitHistory', 'clinicalDashboardConfig', 'appService',
-        'ngDialog', '$filter', 'configurations', 'visitConfig', 'conditionsService', 'configurationService', 'auditLogService', 'printer', 'printPrescriptionReportService',
+        'ngDialog', '$filter', 'configurations', 'visitConfig', 'conditionsService', 'configurationService', 'auditLogService', 'printer', 'printPrescriptionReportService','printLabTestsReportService',
         function ($scope, $rootScope, $state, $location, $translate, clinicalAppConfigService, diagnosisService, urlHelper, contextChangeHandler,
                   spinner, encounterService, messagingService, sessionService, retrospectiveEntryService, patientContext, $q,
                   patientVisitHistoryService, $stateParams, $window, visitHistory, clinicalDashboardConfig, appService,
-                  ngDialog, $filter, configurations, visitConfig, conditionsService, configurationService, auditLogService, printer, printPrescriptionReportService) {
+                  ngDialog, $filter, configurations, visitConfig, conditionsService, configurationService, auditLogService, printer, printPrescriptionReportService,printLabTestsReportService) {
             var DateUtil = Bahmni.Common.Util.DateUtil;
             var getPreviousActiveCondition = Bahmni.Common.Domain.Conditions.getPreviousActiveCondition;
             $scope.togglePrintList = false;
@@ -74,11 +74,13 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             var clinicalDashboardUuid = '0623e3b6-8701-4c07-8493-2930bd67f11a';
             var prescriptionReportUuid = '2c6c27b0-3eef-4010-bfbb-9133d0016d25';
             var tarvPrescriptionReportUuid = '31f15798-9983-4066-9b06-6868e1ba7210';
+            var labTestsReportUuid = 'ce9eb283-1852-47eb-8902-11c6dadf220e';
 
             $scope.printButtonDropdownOptions = [
                 {name: $translate.instant('PRINT_CLINICAL_DASHBOARD_LABEL'), uuid: clinicalDashboardUuid},
                 {name: $translate.instant('PRESCRIPTION_REPORT_PRINT_PRESCRIPTION_LABEL'), uuid: prescriptionReportUuid},
-                {name: $translate.instant('PRESCRIPTION_REPORT_PRINT_TARV_PRESCRIPTION_LABEL'), uuid: tarvPrescriptionReportUuid}];
+                {name: $translate.instant('PRESCRIPTION_REPORT_PRINT_TARV_PRESCRIPTION_LABEL'), uuid: tarvPrescriptionReportUuid},
+                {name: $translate.instant('PRINT_LAB_TESTS_LABEL'), uuid: labTestsReportUuid},];
 
             $scope.optionText = function (value) {
                 return value.name;
@@ -90,15 +92,31 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 } else {
                     if (option.uuid === prescriptionReportUuid) {
                         $rootScope.isTarvReport = false;
+                        $rootScope.isLabTestsReport = false;
                     } else if (option.uuid === tarvPrescriptionReportUuid) {
                         $rootScope.isTarvReport = true;
+                        $rootScope.isLabTestsReport = false;
+                    }else if (option.uuid === labTestsReportUuid) {
+                        $rootScope.isTarvReport = false;
+                        $rootScope.isLabTestsReport = true;
+                    }
+                    if ($rootScope.isLabTestsReport) {
+
+                        printLabTestsReportService.getReportModel($stateParams.patientUuid)
+                        .then(function (reportData) {
+                            $rootScope.labTestsReportData = reportData;
+                            printer.printFromScope("dashboard/views/printLabTestsReport.html", $scope, function () { });
+                        });
+                    }
+                    else {
+                        printPrescriptionReportService.getReportModel($stateParams.patientUuid)
+                        .then(function (reportData) {
+                            $rootScope.prescriptionReportData = reportData;
+                            printer.printFromScope("dashboard/views/printPrescriptionReport.html", $scope, function () { });
+                        });
+
                     }
 
-                    printPrescriptionReportService.getReportModel($stateParams.patientUuid)
-                    .then(function (reportData) {
-                        $rootScope.prescriptionReportData = reportData;
-                        printer.printFromScope("dashboard/views/printPrescriptionReport.html", $scope, function () { });
-                    });
                 }
             };
 
