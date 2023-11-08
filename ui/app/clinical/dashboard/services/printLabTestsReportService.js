@@ -27,7 +27,9 @@ angular.module('bahmni.clinical')
                     value_vl: '',
                     value_vl_log10: '',
                     resultsDate: '',
-                    collectionDate: ''
+                    collectionDate: '',
+                    natureOfCollection: '',
+                    sampleCode: ''
 
                 }
             };
@@ -43,7 +45,7 @@ angular.module('bahmni.clinical')
                     var p3 = populateTARVAndTBComorbidity();
                     var p4 = populateLocationAndDrugOrders();
                     var p5 = populateHospitalNameAndLogo();
-                    var p6 = populateProtocol();
+                    var p6 = populateVirologyResults();
 
                     Promise.all([p1, p2, p3, p4, p5, p6]).then(function () {
                         resolve(reportModel);
@@ -85,17 +87,16 @@ angular.module('bahmni.clinical')
                 });
             };
 
-            var populateProtocol = () => {
-                return new Promise((resolve, reject) => {
-                    const conceptNamesToExtract = ['Protocol', 'Therapeutic line', 'Value VL (cp/mL)', 'Value VL (log10 cp/mL)', 'Date of Results','Sample collection date' ];
-            
+            var populateVirologyResults = function () {
+                return new Promise(function (resolve, reject) {
+                    const conceptNamesToExtract = ['Protocol', 'Therapeutic line', 'Value VL (cp/mL)', 'Value VL (log10 cp/mL)', 'Date of Results', 'Sample collection date', 'Nature of collection', 'Sample Code'];
                     observationsService.fetch(patientUuid, conceptNamesToExtract)
-                        .then(response => {            
+                        .then(function (response) {
                             const concepts = response.data || [];
-                            
-            
-                            conceptNamesToExtract.forEach(conceptName => {
-                                const foundConcept = concepts.find(obs => obs.concept.name === conceptName);
+                            conceptNamesToExtract.forEach(function (conceptName) {
+                                const foundConcept = concepts.find(function (obs) {
+                                    return obs.concept.name === conceptName;
+                                });
                                 if (foundConcept) {
                                     if (conceptName === 'Protocol') {
                                         reportModel.labTestsInfo.protocol = foundConcept.valueAsString;
@@ -106,18 +107,19 @@ angular.module('bahmni.clinical')
                                     } else if (conceptName === 'Value VL (log10 cp/mL)') {
                                         reportModel.labTestsInfo.value_vl_log10 = foundConcept.valueAsString;
                                     } else if (conceptName === 'Date of Results') {
-                                        reportModel.labTestsInfo.resultsDate = foundConcept.valueAsString; 
+                                        reportModel.labTestsInfo.resultsDate = foundConcept.valueAsString;
                                     } else if (conceptName === 'Sample collection date') {
-                                        console.log("in the sample collection date");
                                         reportModel.labTestsInfo.collectionDate = foundConcept.valueAsString;
+                                    } else if (conceptName === 'Nature of collection') {
+                                        reportModel.labTestsInfo.natureOfCollection = foundConcept.valueAsString;
+                                    } else if (conceptName === 'Sample Code') {
+                                        reportModel.labTestsInfo.sampleCode = foundConcept.valueAsString;
                                     }
                                 }
                             });
-            
-            
                             resolve();
                         })
-                        .catch(error => {
+                        .catch(function (error) {
                             reject(error);
                         });
                 });

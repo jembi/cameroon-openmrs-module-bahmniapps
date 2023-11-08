@@ -348,5 +348,25 @@
   "PRESCRIPTION_REPORT_PRINT_TARV_PRESCRIPTION_LABEL": "Imprimer la prescription TARV",
   "CLINICAL_ADD_AS_CONDITION":"Ajouter comme condition",
   "PRESCRIPTION_REPORT_LABEL_FOR": "pour",
-  "VISIT_TYPE_OPD": "Consultation"
+  "VISIT_TYPE_OPD": "Consultation",
+  "PRINT_LAB_TESTS_LABEL": "Imprimer résultats virologie",
+  "LAB_TESTS_REPORT": "Charge virale VIH-1 ARN",
+  "LAB_TESTS_CODE_PLVT": "Code PLVT ",
+  "LAB_TESTS_COLLECTION_DATE": "Date de prélèvement",
+  "LAB_TESTS_PROTOCOL": "Protocole",
+  "LAB_TESTS_THEURAPETIC_LINE": "Ligne",
+  "LAB_TESTS_NATURE_PHISIO": "Nature physio",
+  "LAB_TESTS_VALUE_VL_(cp/mL)": "CV (Copies/mL)",
+  "LAB_TESTS_VALUE_VL_(log10 cp/mL)": "CV (log10)",
+  "LAB_TESTS_RESULTS_DATE": "Date résultats",
+  "LAB_TESTS_SAMPLE_COLLECTION_DATE": "Sample Collection Date",
+  "LAB_TESTS_SAMPLE_CODE": "Sample Code",
+  "LAB_TESTS_TECHNICIAN": "Lab Tech",
+  "LAB_TESTS_BIOCENTRIC": "Generic HIV CV (Biocentric) – Arrow-Lightcycler96",
+  "LAB_TESTS_COPIES/ML": "(250 copies/mL)",
+  "LAB_TESTS_CONCLUSION": "Charge virale VIH 1 Detectable et inférieur à 1000 copies/mL",
+  "LAB_TESTS_THRESHOLD": "Seuil de detection: 390 copies/ml",
+  "LAB_TESTS_RESULTS": "Results"
+
+
 }

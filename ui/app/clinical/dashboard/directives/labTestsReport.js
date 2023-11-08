@@ -21,7 +21,7 @@ angular.module('bahmni.clinical')
             controller: controller,
             scope: {
                 data: "=",
-                // isLabTestsReport: "="
+                isLabTestsReport: "="
             },
             templateUrl: "dashboard/views/labTestsReport.html"
         };

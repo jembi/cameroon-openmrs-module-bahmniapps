@@ -150,3 +150,35 @@ button.save-consultation {
     color:blue;
     background-color: yellow;
 }
+.results-box {
+    border: 2px solid #ccc; /* Border for the box */
+    padding: 10px; /* Add padding for spacing */
+    text-align: center; /* Center the text horizontally */
+}
+
+.heading-box {
+    background-color: #f2f2f2; /* Grey background for the heading */
+    padding: 20px; /* Increase padding for a larger grey section */
+}
+
+.results-heading {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold */
+}
+
+.content-box {
+    border: 1px solid #ccc; /* Border for the content box */
+    padding: 10px; /* Add padding for spacing */
+    background-color: #fff; /* Background color for the content box */
+}
+
+.table-heading {
+    background-color: #f2f2f2; /* Grey background for table headings */
+    font-weight: bold; /* Make the text bold */
+}
+
+.custom-text {
+    color: black; /* Set the text color to black */
+    padding: 10px 0;
+    font-weight: bold;
+}

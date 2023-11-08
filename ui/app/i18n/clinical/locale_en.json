@@ -394,7 +394,6 @@
     "PRESCRIPTION_REPORT_PRESCRIPTION_DATE": "Prescription Date",
     "PRESCRIPTION_REPORT_LOCATION": "Location",
     "PRESCRIPTION_REPORT_MEDICATION_ORDER": "Medication Order",
-    "LAB_TESTS_REPORT": "HIV-1 RNA Viral Load",
     "PRESCRIPTION_REPORT_DOSE": "Dose",
     "PRESCRIPTION_REPORT_START_DATE": "Start Date",
     "PRESCRIPTION_REPORT_INSTRUCTIONS": "Instructions",
@@ -404,10 +403,11 @@
     "PRINT_CLINICAL_DASHBOARD_LABEL": "Print Dashboard",
     "PRESCRIPTION_REPORT_PRINT_PRESCRIPTION_LABEL": "Print Prescription",
     "PRESCRIPTION_REPORT_PRINT_TARV_PRESCRIPTION_LABEL": "Print TARV Prescription",
-    "PRINT_LAB_TESTS_LABEL": "Print Lab Tests Order",
     "NO_FORM_FOUND_FOR_PATIENT": "No Form found for this patient",
     "PRESCRIPTION_REPORT_LABEL_FOR": "for",
     "VISIT_TYPE_OPD": "Outpatient",
+    "PRINT_LAB_TESTS_LABEL": "Print Virology Test Results",
+    "LAB_TESTS_REPORT": "HIV-1 RNA Viral Load",
     "LAB_TESTS_CODE_PLVT": "Code PLVT ",
     "LAB_TESTS_COLLECTION_DATE": "Sample Collection Date",
     "LAB_TESTS_PROTOCOL": "Protocol",
@@ -415,5 +415,17 @@
     "LAB_TESTS_NATURE_PHISIO": "Nature physio",
     "LAB_TESTS_VALUE_VL_(cp/mL)": "Value VL (cp/mL)",
     "LAB_TESTS_VALUE_VL_(log10 cp/mL)": "CV (log10)",
-    "LAB_TESTS_RESULTS_DATE": "Date of Results"
+    "LAB_TESTS_RESULTS_DATE": "Date of Results",
+    "LAB_TESTS_SAMPLE_COLLECTION_DATE": "Sample Collection Date",
+    "LAB_TESTS_SAMPLE_CODE": "Sample Code",
+    "LAB_TESTS_TECHNICIAN": "Lab Tech",
+    "LAB_TESTS_BIOCENTRIC": "Generic HIV CV (Biocentric) – Arrow-Lightcycler96",
+    "LAB_TESTS_COPIES/ML": "Detection threshold: 390 copies/ml",
+    "LAB_TESTS_CONCLUSION": "HIV-1 Viral Load Detectable and Less than 1000 copies/mL",
+    "LAB_TESTS_THRESHOLD": "Detection threshold: 390 copies/ml",
+    "LAB_TESTS_RESULTS": "Results"
+
+
+
+
 }

@@ -4,11 +4,11 @@ angular.module('bahmni.clinical').controller('ConsultationController',
     ['$scope', '$rootScope', '$state', '$location', '$translate', 'clinicalAppConfigService', 'diagnosisService', 'urlHelper', 'contextChangeHandler',
         'spinner', 'encounterService', 'messagingService', 'sessionService', 'retrospectiveEntryService', 'patientContext', '$q',
         'patientVisitHistoryService', '$stateParams', '$window', 'visitHistory', 'clinicalDashboardConfig', 'appService',
-        'ngDialog', '$filter', 'configurations', 'visitConfig', 'conditionsService', 'configurationService', 'auditLogService', 'printer', 'printPrescriptionReportService','printLabTestsReportService',
+        'ngDialog', '$filter', 'configurations', 'visitConfig', 'conditionsService', 'configurationService', 'auditLogService', 'printer', 'printPrescriptionReportService', 'printLabTestsReportService',
         function ($scope, $rootScope, $state, $location, $translate, clinicalAppConfigService, diagnosisService, urlHelper, contextChangeHandler,
                   spinner, encounterService, messagingService, sessionService, retrospectiveEntryService, patientContext, $q,
                   patientVisitHistoryService, $stateParams, $window, visitHistory, clinicalDashboardConfig, appService,
-                  ngDialog, $filter, configurations, visitConfig, conditionsService, configurationService, auditLogService, printer, printPrescriptionReportService,printLabTestsReportService) {
+                  ngDialog, $filter, configurations, visitConfig, conditionsService, configurationService, auditLogService, printer, printPrescriptionReportService, printLabTestsReportService) {
             var DateUtil = Bahmni.Common.Util.DateUtil;
             var getPreviousActiveCondition = Bahmni.Common.Domain.Conditions.getPreviousActiveCondition;
             $scope.togglePrintList = false;
@@ -19,7 +19,6 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             };
             $scope.showComment = true;
             $scope.showSaveAndContinueButton = true;
-
             $scope.visitHistory = visitHistory;
             $scope.consultationBoardLink = clinicalAppConfigService.getConsultationBoardLink();
             $scope.showControlPanel = false;
@@ -80,7 +79,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 {name: $translate.instant('PRINT_CLINICAL_DASHBOARD_LABEL'), uuid: clinicalDashboardUuid},
                 {name: $translate.instant('PRESCRIPTION_REPORT_PRINT_PRESCRIPTION_LABEL'), uuid: prescriptionReportUuid},
                 {name: $translate.instant('PRESCRIPTION_REPORT_PRINT_TARV_PRESCRIPTION_LABEL'), uuid: tarvPrescriptionReportUuid},
-                {name: $translate.instant('PRINT_LAB_TESTS_LABEL'), uuid: labTestsReportUuid},];
+                {name: $translate.instant('PRINT_LAB_TESTS_LABEL'), uuid: labTestsReportUuid} ];
 
             $scope.optionText = function (value) {
                 return value.name;
@@ -96,12 +95,11 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                     } else if (option.uuid === tarvPrescriptionReportUuid) {
                         $rootScope.isTarvReport = true;
                         $rootScope.isLabTestsReport = false;
-                    }else if (option.uuid === labTestsReportUuid) {
+                    } else if (option.uuid === labTestsReportUuid) {
                         $rootScope.isTarvReport = false;
                         $rootScope.isLabTestsReport = true;
                     }
                     if ($rootScope.isLabTestsReport) {
-
                         printLabTestsReportService.getReportModel($stateParams.patientUuid)
                         .then(function (reportData) {
                             $rootScope.labTestsReportData = reportData;
@@ -114,9 +112,7 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                             $rootScope.prescriptionReportData = reportData;
                             printer.printFromScope("dashboard/views/printPrescriptionReport.html", $scope, function () { });
                         });
-
                     }
-
                 }
             };
 
