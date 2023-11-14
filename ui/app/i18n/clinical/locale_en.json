@@ -420,7 +420,7 @@
     "LAB_TESTS_SAMPLE_CODE": "Sample Code",
     "LAB_TESTS_TECHNICIAN": "Lab Tech",
     "LAB_TESTS_BIOCENTRIC": "Generic HIV CV (Biocentric) – Arrow-Lightcycler96",
-    "LAB_TESTS_COPIES/ML": "Detection threshold: 390 copies/ml",
+    "LAB_TESTS_COPIES/ML": "Copies/mL",
     "LAB_TESTS_CONCLUSION": "HIV-1 Viral Load Detectable and Less than 1000 copies/mL",
     "LAB_TESTS_THRESHOLD": "Detection threshold: 390 copies/ml",
     "LAB_TESTS_RESULTS": "Results"
