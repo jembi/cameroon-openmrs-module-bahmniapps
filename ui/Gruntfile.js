@@ -222,7 +222,8 @@ module.exports = function (grunt) {
                 '<%= yeoman.dist %>/clinical/common/views/visitTabPrint.html',
                 '<%= yeoman.dist %>/clinical/dashboard/views/dashboardPrint.html',
                 '<%= yeoman.dist %>/clinical/dashboard/views/printPrescriptionReport.html',
-                '<%= yeoman.dist %>/common/displaycontrols/prescription/views/prescription.html'
+                '<%= yeoman.dist %>/common/displaycontrols/prescription/views/prescription.html',
+                '<%= yeoman.dist %>/clinical/dashboard/views/printLabTestsReport.html'
             ],
             css: '<%= yeoman.dist %>/styles/**/*.css',
             options: {
