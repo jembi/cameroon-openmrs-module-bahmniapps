@@ -8,11 +8,7 @@ angular.module('bahmni.clinical')
             };
 
             $scope.getFullname = function () {
-                if ($scope.isLabTestsReport) {
-                    return $scope.data.patientInfo.lastName.substring(0, 3) + ' ' + $scope.data.patientInfo.firstName.substring(0, 3);
-                } else {
-                    return $scope.data.patientInfo.lastName + ' ' + $scope.data.patientInfo.firstName;
-                }
+                return $scope.data.patientInfo.lastName + ' ' + $scope.data.patientInfo.firstName;
             };
         };
 

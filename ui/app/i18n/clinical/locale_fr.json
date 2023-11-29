@@ -368,5 +368,9 @@
   "LAB_TESTS_COPIES/ML": "Copies/mL",
   "LAB_TESTS_CONCLUSION": "Charge virale VIH 1 Detectable et inférieur à 1000 copies/mL",
   "LAB_TESTS_THRESHOLD": "Seuil de detection: 390 copies/ml",
-  "LAB_TESTS_RESULTS": "Results"
+  "LAB_TESTS_RESULTS": "RESULTATS",
+  "LAB_TESTS_CURRENT_DATE": "Date: ",
+  "LAB_TESTS_ANALYZER": "Analysé par: ",
+  "LAB_TESTS_VALIDATOR": "Validé par: ",
+  "LAB_TESTS_SIGNATURE": "Signature: "
 }
