@@ -106,6 +106,11 @@
     "PMTCT_PROGRAM_MANAGEMENT_FP_METHOD": "Family Planning Method",
     "PMTCT_PROGRAM_MANAGEMENT_APS_NAME": "APS Name",
     "PMTCT_PROGRAM_MANAGEMENT_TRACKING_OUTCOME": "Tracking outcome",
+    "IPT_PROGRAM_MANAGEMENT_CLINICAL_STAGE": "IPT Clinical Stage",
+    "IPT_PROGRAM_KEY": "IPT Program",
+    "IPT_PROGRAM_MANAGEMENT_PROTOCOL": "IPT Protocol",
+    "IPT_PROGRAM_MANAGEMENT_REASON_FOR_INITIATION": "Reason for Initiation",
+    "IPT_PROGRAM_MANAGEMENT_OUTCOME": "Outcome",
     "TREATMENTS_SUMMARY_PRESCRIPTION_KEY": "Prescriptions",
     "INVESTIGATION_CHART_KEY": "Investigation Chart",
     "ALL_VISITS_KEY": "All Visits",
@@ -400,5 +405,34 @@
     "PRESCRIPTION_REPORT_PRINT_TARV_PRESCRIPTION_LABEL": "Print TARV Prescription",
     "NO_FORM_FOUND_FOR_PATIENT": "No Form found for this patient",
     "PRESCRIPTION_REPORT_LABEL_FOR": "for",
-    "VISIT_TYPE_OPD": "Outpatient"
+    "VISIT_TYPE_OPD": "Outpatient",
+    "PRINT_LAB_TESTS_LABEL": "Print Virology Test Results",
+    "LAB_TESTS_REPORT": "HIV-1 RNA Viral Load",
+    "LAB_TESTS_CODE_PLVT": "Code PLVT ",
+    "LAB_TESTS_COLLECTION_DATE": "Sample Collection Date",
+    "LAB_TESTS_PROTOCOL": "Protocol",
+    "LAB_TESTS_THEURAPETIC_LINE": "Theurapetic Line",
+    "LAB_TESTS_NATURE_PHISIO": "Nature physio",
+    "LAB_TESTS_VALUE_VL_(cp/mL)": "Value VL (cp/mL)",
+    "LAB_TESTS_VALUE_VL_(log10 cp/mL)": "CV (log10)",
+    "LAB_TESTS_RESULTS_DATE": "Date of Results",
+    "LAB_TESTS_SAMPLE_COLLECTION_DATE": "Sample Collection Date",
+    "LAB_TESTS_SAMPLE_CODE": "Sample Code",
+    "LAB_TESTS_TECHNICIAN": "Lab Tech",
+    "LAB_TESTS_BIOCENTRIC": "Generic HIV CV (Biocentric) – Arrow-Lightcycler96",
+    "LAB_TESTS_COPIES/ML": "Copies/mL",
+    "LAB_TESTS_CONCLUSION": "HIV-1 Viral Load Detectable and Less than 1000 copies/mL",
+    "LAB_TESTS_THRESHOLD": "Detection threshold: 390 copies/ml",
+    "LAB_TESTS_RESULTS": "Results",
+    "LAB_TESTS_CURRENT_DATE": "Date: ",
+    "LAB_TESTS_ANALYZER": "Analyzed By: ",
+    "LAB_TESTS_VALIDATOR": "Validated By: ",
+    "LAB_TESTS_SIGNATURE": "Signature: "
+
+
+
+
+
+
+
 }

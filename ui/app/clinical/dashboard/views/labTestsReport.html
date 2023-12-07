@@ -1,0 +1,76 @@
+<div ng-if="data">
+    <center><img ng-if="data.hospitalLogo" src="{{ data.hospitalLogo }}" class="prescribe-report-logo"></center>
+    <center><div class="prescribe-report-hospital-name">{{ data.hospitalName }}</div></center>
+    <br />
+    <table class="prescribe-report-table">
+        <tr class="prescribe-report-table">
+            <td class="prescribe-report-td">
+                <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_PATIENT_NAME' | translate }}</span>: <span class="prescribe-report-value">{{ getFullname() }}</span><br />
+                <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_PATIENT_AGE_AND_SEX' | translate }}</span>: <span class="prescribe-report-value">{{ data.patientInfo.age }} / {{ data.patientInfo.sex }}</span><br />
+                <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_PATIENT_WEIGHT' | translate }}</span>: <span class="prescribe-report-value">{{ data.patientInfo.weight }}</span><br />
+                <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_PATIENT_ID' | translate }}</span>: <span class="prescribe-report-value">{{ data.patientInfo.patientId }}</span><br />
+                <span class="prescribe-report-label">{{ 'LAB_TESTS_SAMPLE_CODE' | translate }}</span>: <span class="prescribe-report-value">{{ data.labTestsInfo.sampleCode}}</span><br />
+                <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_TARV_NUMBER' | translate }}</span>: <span class="prescribe-report-value">{{ data.tarvNumber }}</span><br />
+            </td>
+            <td class="prescribe-report-td" >    
+                <span class="prescribe-report-label">{{ 'LAB_TESTS_TECHNICIAN' | translate }}</span>: <span class="prescribe-report-value">{{ data.prescriber }}</span><br />
+                <span class="prescribe-report-label">{{ 'LAB_TESTS_SAMPLE_COLLECTION_DATE' | translate }}</span>: <span class="prescribe-report-value">{{data.labTestsInfo.collectionDate}}</span><br />
+                <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_LOCATION' | translate }}</span>: <span class="prescribe-report-value">{{ data.location | translate}}</span><br />
+            </td>
+        </tr>
+    </table>
+
+    <h1 class="prescribe-report-title">{{ 'LAB_TESTS_REPORT' | translate }}</h1>
+    <div style="text-align: center; font-size: 1.6em; font-weight: bold; padding-bottom: 20px;">{{ 'LAB_TESTS_BIOCENTRIC' | translate }}</div>
+    <div style="text-align: center; font-size: 1.2em; padding-bottom: 20px;">{{ 'LAB_TESTS_THRESHOLD' | translate }}</div>
+
+        <div class="results-box">
+        <div class="heading-box">
+            <div class="results-heading">{{'LAB_TESTS_RESULTS' | translate }}</div>
+        </div>
+        <div>
+            <h2 class="custom-text">({{data.labTestsInfo.value_vl}} {{'LAB_TESTS_COPIES/ML' | translate }} )</h2>
+            <h2 class="custom-text">{{data.labTestsInfo.value_vl_log10}} (log10)</h2>
+            <h2 class="custom-text">{{data.labTestsInfo.viralLoadResult | translate}}</h2>
+            <h3 class="custom-text">{{data.labTestsInfo.viralLoadResultComment}}</h3> 
+        </div>
+        <!-- <div class="content-box"> -->
+            <table>
+                <tr>
+                    <th class="table-heading">{{ 'LAB_TESTS_CODE_PLVT' | translate }}</th>
+                    <th class="table-heading">{{ 'LAB_TESTS_COLLECTION_DATE' | translate }}</th>
+                    <th class="table-heading">{{ 'LAB_TESTS_PROTOCOL' | translate }}</th>
+                    <th class="table-heading">{{ 'LAB_TESTS_THEURAPETIC_LINE' | translate }}</th>
+                    <th class="table-heading">{{ 'LAB_TESTS_NATURE_PHISIO' | translate }}</th>
+                    <th class="table-heading">{{ 'LAB_TESTS_VALUE_VL_(cp/mL)' | translate }}</th>
+                    <th class="table-heading">{{ 'LAB_TESTS_VALUE_VL_(log10 cp/mL)' | translate }}</th>
+                    <th class="table-heading">{{ 'LAB_TESTS_RESULTS_DATE' | translate }}</th>
+                </tr>
+                <tr>
+                    <td>{{ data.labTestsInfo.sampleCode}}</td>
+                    <td>{{data.labTestsInfo.collectionDate}}</td>
+                    <td>{{data.labTestsInfo.protocol}}</td>
+                    <td>{{data.labTestsInfo.theurapeuticLine}}</td>
+                    <td>{{data.labTestsInfo.natureOfCollection}}</td>
+                    <td>{{data.labTestsInfo.value_vl}}</td>
+                    <td>{{data.labTestsInfo.value_vl_log10}}</td>
+                    <td>{{data.labTestsInfo.resultsDate}}</td>
+                </tr>
+            </table>
+        <!-- </div> -->
+        
+    </div>
+    <br />
+    <table class="prescribe-report-table">
+        <tr class="prescribe-report-table">
+            <td class="prescribe-report-td">
+                <span class="prescribe-report-label">{{'LAB_TESTS_ANALYZER' | translate}}</span>: <span class="prescribe-report-value">{{ data.analyzer}}</span><br />
+                <span class="prescribe-report-label">{{'LAB_TESTS_VALIDATOR' | translate}}</span>: <span class="prescribe-report-value">{{ data.validator}}</span><br />
+            </td>
+            <td class="prescribe-report-td" >    
+                <span class="prescribe-report-label">{{'LAB_TESTS_CURRENT_DATE' | translate}} </span>: <span class="prescribe-report-value">{{getCurrentDate()}}</span><br />
+                <span class="prescribe-report-label">{{'LAB_TESTS_SIGNATURE' | translate}} </span>: <span class="prescribe-report-value">_______________________</span><br />
+            </td>
+        </tr>
+    </table>
+</div>

@@ -4,7 +4,7 @@ describe("ConsultationController", function () {
     var scope, rootScope, state, contextChangeHandler, urlHelper, location, clinicalAppConfigService,
         stateParams, appService, ngDialog, q, appDescriptor, controller, visitConfig, _window_, clinicalDashboardConfig,
         sessionService, conditionsService, encounterService, configurations, diagnosisService, messagingService, spinnerMock,
-        auditLogService, printer, printPrescriptionReportService;
+        auditLogService, printer, printPrescriptionReportService, printLabTestsReportService;
 
     var encounterData = {
         "bahmniDiagnoses": [],
@@ -92,6 +92,7 @@ describe("ConsultationController", function () {
     appService = jasmine.createSpyObj('appService', ['getAppDescriptor', 'getConfigValue']);
     printer = jasmine.createSpyObj('printer',['printFromScope']);
     printPrescriptionReportService = jasmine.createSpyObj('printPrescriptionReportService', ['getReportModel']);
+    printLabTestsReportService = jasmine.createSpyObj('printLabTestsReportService', ['getReportModel']);
     var boards = [
         {
             default: true,
@@ -147,7 +148,8 @@ describe("ConsultationController", function () {
             spinner: spinnerMock,
             auditLogService: auditLogService,
             printer: printer,
-            printPrescriptionReportService: printPrescriptionReportService
+            printPrescriptionReportService: printPrescriptionReportService,
+            printLabTestsReportService: printLabTestsReportService
         });
     };
     var setUpServiceMocks = function () {

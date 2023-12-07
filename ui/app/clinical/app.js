@@ -161,6 +161,10 @@ angular.module('consultation')
                     'print-prescription': {
                         templateUrl: 'dashboard/views/printPrescriptionReport.html',
                         controller: 'PrintPrescriptionReportController'
+                    },
+                    'print-lab-tests': {
+                        templateUrl: 'dashboard/views/printLabTestsReport.html',
+                        controller: 'PrintLabTestsReportController'
                     }
                 }
             })
