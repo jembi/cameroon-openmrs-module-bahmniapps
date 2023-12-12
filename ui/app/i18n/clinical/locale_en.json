@@ -427,7 +427,10 @@
     "LAB_TESTS_CURRENT_DATE": "Date: ",
     "LAB_TESTS_ANALYZER": "Analyzed By: ",
     "LAB_TESTS_VALIDATOR": "Validated By: ",
-    "LAB_TESTS_SIGNATURE": "Signature: "
+    "LAB_TESTS_SIGNATURE": "Signature: ",
+    "PROGRAM_MANAGEMENT_OUTCOME_DATE": "Outcome Date: ",
+    "PROGRAM_MANAGEMENT_REASON_FOR_OUTCOME": "Reason For Outcome ",
+    "PROGRAM_MANAGEMENT_FACILITY_TRANSFERED_TO": "Facility Transfered To "
 
 
 
