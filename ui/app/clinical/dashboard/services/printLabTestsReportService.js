@@ -35,7 +35,8 @@ angular.module('bahmni.clinical')
 
                 },
                 analyzer: '',
-                validator: ''
+                validator: '',
+                facility: ''
             };
 
             var patientUuid = '';
@@ -54,6 +55,7 @@ angular.module('bahmni.clinical')
                     var p8 = populateVLReultsComment();
                     var p9 = populateResultsAnalyzer();
                     var p10 = populateResultsValidator();
+                    var p11 = populateFacilityName();
 
                     Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]).then(function () {
                         resolve(reportModel);
@@ -127,6 +129,21 @@ angular.module('bahmni.clinical')
                     observationsService.fetch(patientUuid, [conceptName]).then(function (response) {
                         if (response.data && response.data.length > 0) {
                             reportModel.analyzer = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+
+            var populateFacilityName = function () {
+                return new Promise(function (resolve, reject) {
+                    var conceptName = 'Health Facility';
+
+                    observationsService.fetch(patientUuid, [conceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.facility = response.data[0].value;
                         }
                         resolve();
                     }).catch(function (error) {
