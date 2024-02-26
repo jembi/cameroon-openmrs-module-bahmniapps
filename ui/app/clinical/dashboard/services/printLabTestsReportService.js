@@ -31,9 +31,14 @@ angular.module('bahmni.clinical')
                     natureOfCollection: '',
                     sampleCode: '',
                     technique: '',
-                    machineUsed: ''
+                    machineUsed: '',
+                    viralLoadResult: '',
+                    viralLoadResultComment: ''
 
-                }
+                },
+                analyzer: '',
+                validator: '',
+                facility: ''
             };
 
             var patientUuid = '';
@@ -48,15 +53,45 @@ angular.module('bahmni.clinical')
                     var p4 = populateLocationAndDrugOrders();
                     var p5 = populateHospitalNameAndLogo();
                     var p6 = populateVirologyResults();
+                    var p7 = populateVLReults();
+                    var p8 = populateVLReultsComment();
+                    var p9 = populateResultsAnalyzer();
+                    var p10 = populateResultsValidator();
+                    var p11 = populateFacilityName();
 
-                    Promise.all([p1, p2, p3, p4, p5, p6]).then(function () {
+                    Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]).then(function () {
                         resolve(reportModel);
                     }).catch(function (error) {
                         reject(error);
                     });
                 });
             };
-
+            var populateVLReults = function () {
+                return new Promise(function (resolve, reject) {
+                    var patientVLConceptName = 'VL Result';
+                    observationsService.fetch(patientUuid, [patientVLConceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.labTestsInfo.viralLoadResult = response.data[0].value.name;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+            var populateVLReultsComment = function () {
+                return new Promise(function (resolve, reject) {
+                    var patientVLCommentConceptName = 'Comments';
+                    observationsService.fetch(patientUuid, [patientVLCommentConceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.labTestsInfo.viralLoadResultComment = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
             var populatePatientDemographics = function () {
                 return new Promise(function (resolve, reject) {
                     patientService.getPatient(patientUuid).then(function (response) {
@@ -81,6 +116,50 @@ angular.module('bahmni.clinical')
                     observationsService.fetch(patientUuid, [patientWeightConceptName]).then(function (response) {
                         if (response.data && response.data.length > 0) {
                             reportModel.patientInfo.weight = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+
+            var populateResultsAnalyzer = function () {
+                return new Promise(function (resolve, reject) {
+                    var conceptName = 'Processed by';
+
+                    observationsService.fetch(patientUuid, [conceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.analyzer = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+
+            var populateFacilityName = function () {
+                return new Promise(function (resolve, reject) {
+                    var conceptName = 'Health Facility';
+
+                    observationsService.fetch(patientUuid, [conceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.facility = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+            var populateResultsValidator = function () {
+                return new Promise(function (resolve, reject) {
+                    var conceptName = 'Verified by';
+
+                    observationsService.fetch(patientUuid, [conceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.validator = response.data[0].value;
                         }
                         resolve();
                     }).catch(function (error) {
