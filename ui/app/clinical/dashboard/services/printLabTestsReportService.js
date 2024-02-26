@@ -30,6 +30,8 @@ angular.module('bahmni.clinical')
                     collectionDate: '',
                     natureOfCollection: '',
                     sampleCode: '',
+                    technique: '',
+                    machineUsed: '',
                     viralLoadResult: '',
                     viralLoadResultComment: ''
 
@@ -168,7 +170,7 @@ angular.module('bahmni.clinical')
 
             var populateVirologyResults = function () {
                 return new Promise(function (resolve, reject) {
-                    const conceptNamesToExtract = ['Protocol', 'Therapeutic line', 'Value VL (cp/mL)', 'Value VL (log10 cp/mL)', 'Date of Results', 'Sample collection date', 'Nature of collection', 'Sample Code'];
+                    const conceptNamesToExtract = ['Protocol', 'Therapeutic line', 'Value VL (cp/mL)', 'Value VL (log10 cp/mL)', 'Date of Results', 'Sample collection date', 'Nature of collection', 'Sample Code', 'Technique', 'Machine used'];
                     observationsService.fetch(patientUuid, conceptNamesToExtract)
                         .then(function (response) {
                             const concepts = response.data || [];
@@ -193,6 +195,10 @@ angular.module('bahmni.clinical')
                                         reportModel.labTestsInfo.natureOfCollection = foundConcept.valueAsString;
                                     } else if (conceptName === 'Sample Code') {
                                         reportModel.labTestsInfo.sampleCode = foundConcept.valueAsString;
+                                    } else if (conceptName === 'Technique') {
+                                        reportModel.labTestsInfo.technique = foundConcept.valueAsString;
+                                    } else if (conceptName === 'Machine used') {
+                                        reportModel.labTestsInfo.machineUsed = foundConcept.valueAsString;
                                     }
                                 }
                             });
