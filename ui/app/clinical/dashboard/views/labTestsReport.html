@@ -11,18 +11,30 @@
                 <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_PATIENT_ID' | translate }}</span>: <span class="prescribe-report-value">{{ data.patientInfo.patientId }}</span><br />
                 <span class="prescribe-report-label">{{ 'LAB_TESTS_SAMPLE_CODE' | translate }}</span>: <span class="prescribe-report-value">{{ data.labTestsInfo.sampleCode}}</span><br />
                 <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_TARV_NUMBER' | translate }}</span>: <span class="prescribe-report-value">{{ data.tarvNumber }}</span><br />
+                <span class="prescribe-report-label">{{ 'CONTACT ' | translate}}</span>: <span class="prescribe-report-value">59713551</span><br />
             </td>
             <td class="prescribe-report-td" >    
                 <span class="prescribe-report-label">{{ 'LAB_TESTS_TECHNICIAN' | translate }}</span>: <span class="prescribe-report-value">{{ data.prescriber }}</span><br />
                 <span class="prescribe-report-label">{{ 'LAB_TESTS_SAMPLE_COLLECTION_DATE' | translate }}</span>: <span class="prescribe-report-value">{{data.labTestsInfo.collectionDate}}</span><br />
+                <span class="prescribe-report-label">{{ 'RECEPTION_DATE' | translate }}</span>: <span class="prescribe-report-value">{{data.receptionDate}}</span><br />
                 <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_LOCATION' | translate }}</span>: <span class="prescribe-report-value">{{ data.facility}}</span><br />
+                <span class="prescribe-report-label">{{ 'PRESCRIBER' | translate }}</span>: <span class="prescribe-report-value">{{ data.prescriber }}</span><br />
             </td>
         </tr>
     </table>
 
     <h1 class="prescribe-report-title">{{ 'LAB_TESTS_REPORT' | translate }}</h1>
     <div style="text-align: center; font-size: 1.6em; font-weight: bold; padding-bottom: 20px;">{{data.labTestsInfo.technique}} - {{data.labTestsInfo.machineUsed}}</div>
-    <div style="text-align: center; font-size: 1.2em; padding-bottom: 20px;">{{ 'LAB_TESTS_THRESHOLD' | translate }}</div>
+    <div style="text-align: center; font-size: 1.2em; padding-bottom: 20px;">
+    <span ng-switch=data.testType>
+        <span ng-switch-when="Generic HIV CV (Biocentric)">Detection threshold: 390 copies/mL</span>
+        <span ng-switch-when="Real-Time HIV-1 (Abbott)">Detection threshold: 40 copies/mL</span>
+        <span ng-switch-when="Alinity">Detection threshold: 20 copies/mL</span>
+        <span ng-switch-when="Cobras 5800">Detection threshold: 20 copies/mL</span>
+        <span ng-switch-default>{{ 'LAB_TESTS_THRESHOLD' | translate }}</span>
+    </span>
+    </div>
+</div>
 
         <div class="results-box">
         <div class="heading-box">
@@ -57,6 +69,22 @@
                     <td>{{data.labTestsInfo.resultsDate}}</td>
                 </tr>
             </table>
+            <br/>
+            <div style="text-align: center; font-size: 1.4em; padding-bottom: 20px;">History of Viral Loads</div>
+            <table>
+                <tr>
+                    <th class="table-heading">Dates</th>
+                    <th class="table-heading">{{data.labTestsInfo.dateOne}}</th>
+                    <th class="table-heading">{{data.labTestsInfo.dateTwo}}</th>
+                    <th class="table-heading">{{data.labTestsInfo.dateThree}}</th>
+                </tr>
+                <tr>
+                    <td>Value (cp/mL)</td>
+                    <td>{{ data.labTestsInfo.vlResultsOne}}</td>
+                    <td>{{ data.labTestsInfo.vlResultsTwo}}</td>
+                    <td>{{ data.labTestsInfo.vlResultsThree}}</td>
+                </tr>
+            </table>
         <!-- </div> -->
         
     </div>
@@ -65,6 +93,7 @@
         <tr class="prescribe-report-table">
             <td class="prescribe-report-td">
                 <span class="prescribe-report-label">{{'LAB_TESTS_ANALYZER' | translate}}</span>: <span class="prescribe-report-value">{{ data.analyzer}}</span><br />
+                <span class="prescribe-report-label">{{'LAB_TESTS_VERIFIER' | translate}}</span>: <span class="prescribe-report-value">{{ data.verifier}}</span><br />
                 <span class="prescribe-report-label">{{'LAB_TESTS_VALIDATOR' | translate}}</span>: <span class="prescribe-report-value">{{ data.validator}}</span><br />
             </td>
             <td class="prescribe-report-td" >    

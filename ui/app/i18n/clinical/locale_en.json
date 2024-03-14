@@ -430,7 +430,11 @@
     "LAB_TESTS_SIGNATURE": "Signature: ",
     "PROGRAM_MANAGEMENT_OUTCOME_DATE": "Outcome Date: ",
     "PROGRAM_MANAGEMENT_REASON_FOR_OUTCOME": "Reason For Outcome ",
-    "PROGRAM_MANAGEMENT_FACILITY_TRANSFERED_TO": "Facility Transfered To "
+    "PROGRAM_MANAGEMENT_FACILITY_TRANSFERED_TO": "Facility Transfered To ",
+    "RECEPTION_DATE": "Reception date",
+    "PRESCRIBER": "Prescriber",
+    "CONTACT": "Contact",
+    "LAB_TESTS_VERIFIER": "Verified By"
 
 
 
