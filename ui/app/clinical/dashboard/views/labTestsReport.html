@@ -11,7 +11,7 @@
                 <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_PATIENT_ID' | translate }}</span>: <span class="prescribe-report-value">{{ data.patientInfo.patientId }}</span><br />
                 <span class="prescribe-report-label">{{ 'LAB_TESTS_SAMPLE_CODE' | translate }}</span>: <span class="prescribe-report-value">{{ data.labTestsInfo.sampleCode}}</span><br />
                 <span class="prescribe-report-label">{{ 'PRESCRIPTION_REPORT_TARV_NUMBER' | translate }}</span>: <span class="prescribe-report-value">{{ data.tarvNumber }}</span><br />
-                <span class="prescribe-report-label">{{ 'CONTACT ' | translate}}</span>: <span class="prescribe-report-value">59713551</span><br />
+                <span class="prescribe-report-label">{{ 'CONTACT ' | translate}}</span>: <span class="prescribe-report-value">{{data.patientInfo.phoneNumber}}</span><br />
             </td>
             <td class="prescribe-report-td" >    
                 <span class="prescribe-report-label">{{ 'LAB_TESTS_TECHNICIAN' | translate }}</span>: <span class="prescribe-report-value">{{ data.prescriber }}</span><br />
