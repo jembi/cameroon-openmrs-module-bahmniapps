@@ -13,13 +13,13 @@ angular.module('bahmni.clinical')
                     age: '',
                     sex: '',
                     weight: '',
-                    patientId: ''
+                    patientId: '',
+                    phoneNumber: ''
                 },
                 tbComorbidity: '',
                 tarvNumber: '',
                 prescriber: '',
                 prescriptionDate: '',
-                location: '',
                 orders: [],
                 labTestsInfo: {
                     protocol: '',
@@ -33,12 +33,23 @@ angular.module('bahmni.clinical')
                     technique: '',
                     machineUsed: '',
                     viralLoadResult: '',
-                    viralLoadResultComment: ''
+                    viralLoadResultComment: '',
+                    dateOne: '',
+                    dateTwo: '',
+                    dateThree: '',
+                    vlResultsOne: '',
+                    vlResultsTwo: '',
+                    vlResultsThree: '',
+
+
 
                 },
                 analyzer: '',
                 validator: '',
-                facility: ''
+                facility: '',
+                receptionDate: '',
+                verifier: '',
+                testType: 'Generic HIV CV (Biocentric)'
             };
 
             var patientUuid = '';
@@ -50,7 +61,7 @@ angular.module('bahmni.clinical')
                     var p1 = populatePatientDemographics();
                     var p2 = populatePatientWeight();
                     var p3 = populateTARVAndTBComorbidity();
-                    var p4 = populateLocationAndDrugOrders();
+                    var p4 = populatePrescriber();
                     var p5 = populateHospitalNameAndLogo();
                     var p6 = populateVirologyResults();
                     var p7 = populateVLReults();
@@ -58,8 +69,10 @@ angular.module('bahmni.clinical')
                     var p9 = populateResultsAnalyzer();
                     var p10 = populateResultsValidator();
                     var p11 = populateFacilityName();
+                    var p12 = populateResultsReceptionDate();
+                    var p13 = populateResultsverifier();
 
-                    Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]).then(function () {
+                    Promise.all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p12, p13]).then(function () {
                         resolve(reportModel);
                     }).catch(function (error) {
                         reject(error);
@@ -94,7 +107,17 @@ angular.module('bahmni.clinical')
             };
             var populatePatientDemographics = function () {
                 return new Promise(function (resolve, reject) {
+                   
                     patientService.getPatient(patientUuid).then(function (response) {
+                        response.data.person.attributes.forEach(function(attribute) {
+                            if (attribute.display.includes("PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER")) {
+                                var phoneNumber = attribute.display.split('=')[1].trim();
+                                reportModel.patientInfo.phoneNumber = phoneNumber;
+                                console.log(phoneNumber);
+                                return;
+                            }
+                        });
+
                         var patientMapper = new Bahmni.PatientMapper($rootScope.patientConfig, $rootScope, $translate);
                         var patient = patientMapper.map(response.data);
                         reportModel.patientInfo.firstName = patient.givenName;
@@ -102,6 +125,7 @@ angular.module('bahmni.clinical')
                         reportModel.patientInfo.sex = patient.gender;
                         reportModel.patientInfo.age = patient.age;
                         reportModel.patientInfo.patientId = patient.identifier;
+
                         resolve();
                     }).catch(function (error) {
                         reject(error);
@@ -155,7 +179,7 @@ angular.module('bahmni.clinical')
             };
             var populateResultsValidator = function () {
                 return new Promise(function (resolve, reject) {
-                    var conceptName = 'Verified by';
+                    var conceptName = 'Approved by';
 
                     observationsService.fetch(patientUuid, [conceptName]).then(function (response) {
                         if (response.data && response.data.length > 0) {
@@ -168,46 +192,122 @@ angular.module('bahmni.clinical')
                 });
             };
 
-            var populateVirologyResults = function () {
+            var populateResultsReceptionDate = function () {
                 return new Promise(function (resolve, reject) {
-                    const conceptNamesToExtract = ['Protocol', 'Therapeutic line', 'Value VL (cp/mL)', 'Value VL (log10 cp/mL)', 'Date of Results', 'Sample collection date', 'Nature of collection', 'Sample Code', 'Technique', 'Machine used'];
-                    observationsService.fetch(patientUuid, conceptNamesToExtract)
-                        .then(function (response) {
-                            const concepts = response.data || [];
-                            conceptNamesToExtract.forEach(function (conceptName) {
-                                const foundConcept = concepts.find(function (obs) {
-                                    return obs.concept.name === conceptName;
-                                });
-                                if (foundConcept) {
-                                    if (conceptName === 'Protocol') {
-                                        reportModel.labTestsInfo.protocol = foundConcept.valueAsString;
-                                    } else if (conceptName === 'Therapeutic line') {
-                                        reportModel.labTestsInfo.theurapeuticLine = foundConcept.valueAsString;
-                                    } else if (conceptName === 'Value VL (cp/mL)') {
-                                        reportModel.labTestsInfo.value_vl = foundConcept.valueAsString;
-                                    } else if (conceptName === 'Value VL (log10 cp/mL)') {
-                                        reportModel.labTestsInfo.value_vl_log10 = foundConcept.valueAsString;
-                                    } else if (conceptName === 'Date of Results') {
-                                        reportModel.labTestsInfo.resultsDate = foundConcept.valueAsString;
-                                    } else if (conceptName === 'Sample collection date') {
-                                        reportModel.labTestsInfo.collectionDate = foundConcept.valueAsString;
-                                    } else if (conceptName === 'Nature of collection') {
-                                        reportModel.labTestsInfo.natureOfCollection = foundConcept.valueAsString;
-                                    } else if (conceptName === 'Sample Code') {
-                                        reportModel.labTestsInfo.sampleCode = foundConcept.valueAsString;
-                                    } else if (conceptName === 'Technique') {
-                                        reportModel.labTestsInfo.technique = foundConcept.valueAsString;
-                                    } else if (conceptName === 'Machine used') {
-                                        reportModel.labTestsInfo.machineUsed = foundConcept.valueAsString;
-                                    }
-                                }
-                            });
-                            resolve();
-                        })
-                        .catch(function (error) {
-                            reject(error);
-                        });
+                    var conceptName = 'Reception date';
+
+                    observationsService.fetch(patientUuid, [conceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.receptionDate = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
                 });
+            };
+            
+            var populateResultsverifier = function () {
+                return new Promise(function (resolve, reject) {
+                    var conceptName = 'Verified by';
+
+                    observationsService.fetch(patientUuid, [conceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.verifier = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+
+            var populatePrescriber = function () {
+                return new Promise(function (resolve, reject) {
+                    var conceptName = 'Prescriber';
+
+                    observationsService.fetch(patientUuid, [conceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.prescriber = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+
+            const populateVirologyResults = async () => {
+                const conceptNamesToExtract = [
+                    'Protocol', 'Therapeutic line', 'Value VL (cp/mL)', 'Value VL (log10 cp/mL)',
+                    'Date of Results', 'Sample collection date', 'Nature of collection',
+                    'Sample Code', 'Technique', 'Machine used', 'Date of Results 1',
+                    'Date of Results 2', 'Date of Results 3', 'Value VL (cp/mL) 1',
+                    'Value VL (cp/mL) 2', 'Value VL (cp/mL) 3'
+                ];
+            
+                try {
+                    const response = await observationsService.fetch(patientUuid, conceptNamesToExtract);
+                    const concepts = response.data || [];
+            
+                    concepts.forEach(({ concept: { name }, valueAsString }) => {
+                        switch (name) {
+                            case 'Protocol':
+                                reportModel.labTestsInfo.protocol = valueAsString;
+                                break;
+                            case 'Therapeutic line':
+                                reportModel.labTestsInfo.therapeuticLine = valueAsString;
+                                break;
+                            case 'Value VL (cp/mL)':
+                                reportModel.labTestsInfo.value_vl = valueAsString;
+                                reportModel.labTestsInfo.value_vl_log10 = Math.log10(Number(valueAsString));
+                                break;
+                            case 'Date of Results':
+                                reportModel.labTestsInfo.resultsDate = valueAsString;
+                                break;
+                            case 'Sample collection date':
+                                reportModel.labTestsInfo.collectionDate = valueAsString;
+                                break;
+                            case 'Nature of collection':
+                                reportModel.labTestsInfo.natureOfCollection = valueAsString;
+                                break;
+                            case 'Sample Code':
+                                reportModel.labTestsInfo.sampleCode = valueAsString;
+                                break;
+                            case 'Technique':
+                                reportModel.labTestsInfo.technique = valueAsString;
+                                reportModel.testType = reportModel.labTestsInfo.technique;
+                                break;
+                            case 'Machine used':
+                                reportModel.labTestsInfo.machineUsed = valueAsString;
+                                break;
+                            case 'Date of Results 1':
+                                reportModel.labTestsInfo.dateOne = valueAsString;
+                                break;
+                            case 'Date of Results 2':
+                                reportModel.labTestsInfo.dateTwo = valueAsString;
+                                break;
+                            case 'Date of Results 3':
+                                reportModel.labTestsInfo.dateThree = valueAsString;
+                                break;
+                            case 'Value VL (cp/mL) 1':
+                                reportModel.labTestsInfo.vlResultsOne = valueAsString;
+                                break;
+                            case 'Value VL (cp/mL) 2':
+                                reportModel.labTestsInfo.vlResultsTwo = valueAsString;
+                                break;
+                            case 'Value VL (cp/mL) 3':
+                                reportModel.labTestsInfo.vlResultsThree = valueAsString;
+                                break;
+                            default:
+                                break;
+                        }
+                    });
+            
+                    return Promise.resolve();
+                } catch (error) {
+                    return Promise.reject(error);
+                }
             };
 
             var populateTARVAndTBComorbidity = function () {
@@ -243,63 +343,6 @@ angular.module('bahmni.clinical')
                             } else {
                                 reportModel.tbComorbidity = 'OBS_BOOLEAN_NO_KEY';
                             }
-                        }
-                        resolve();
-                    }).catch(function (error) {
-                        reject(error);
-                    });
-                });
-            };
-
-            var populateDrugOrders = function (visitUuid) {
-                return new Promise(function (resolve, reject) {
-                    treatmentService.getPrescribedDrugOrders(patientUuid, true).then(function (response) {
-                        var currentVisitOrders = response.filter(function (order) {
-                            return order.visit.uuid === visitUuid;
-                        });
-
-                        reportModel.orders = [];
-                        currentVisitOrders.forEach(function (order) {
-                            var drug = order.drugNonCoded;
-                            if (order.drug) {
-                                drug = order.drug.name;
-                            }
-                            var instructions = '';
-                            if (order.dosingInstructions.administrationInstructions) {
-                                instructions = JSON.parse(order.dosingInstructions.administrationInstructions).instructions;
-                                if (JSON.parse(order.dosingInstructions.administrationInstructions).additionalInstructions) {
-                                    instructions += '. ' + JSON.parse(order.dosingInstructions.administrationInstructions).additionalInstructions;
-                                }
-                            }
-                            var newOrder = {
-                                drugName: drug,
-                                dosage: order.dosingInstructions.dose,
-                                drugUnit: order.dosingInstructions.doseUnits,
-                                frequency: order.dosingInstructions.frequency,
-                                duration: order.duration,
-                                route: order.dosingInstructions.route,
-                                durationUnit: order.durationUnits,
-                                startDate: moment(order.scheduledDate).format('DD/MM/YYYY'),
-                                instructions: instructions
-                            };
-
-                            reportModel.orders.push(newOrder);
-                            reportModel.prescriber = order.provider.name;
-                            reportModel.prescriptionDate = moment(order.dateActivated).format('DD/MM/YYYY');
-                        });
-                        resolve();
-                    }).catch(function (error) {
-                        reject(error);
-                    });
-                });
-            };
-
-            var populateLocationAndDrugOrders = function () {
-                return new Promise(function (resolve, reject) {
-                    patientVisitHistoryService.getVisitHistory(patientUuid, null).then(function (response) {
-                        if (response.visits && response.visits.length > 0) {
-                            reportModel.location = response.visits[0].location.display;
-                            populateDrugOrders(response.visits[0].uuid);
                         }
                         resolve();
                     }).catch(function (error) {
