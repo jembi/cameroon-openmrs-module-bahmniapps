@@ -48,6 +48,15 @@
                                             <i class="fa fa-plus-circle" ng-hide="drugOrder.showAdditionalInstructions"></i>
                                             <i class="fa fa-minus-circle" ng-show="drugOrder.showAdditionalInstructions"></i>
                                         </button>
+                                        <article class="form-field">
+                                            <div class="field-attribute">
+                                                <label class="start-date-label ">{{ ::treatmentConfig.translate('startDate', 'MEDICATION_LABEL_DISPENSE_DATE') }} </label>
+                                            </div>
+                                            <div class="field-value">
+                                                <input id="dispense-date" type="date" ng-model="dispenseDate.date" required>
+                                            </div>
+                                            <button ng-click="getDispenseDate(dispenseDate.date)">save</button>
+                                        </article>
                                     </div>
 								</div>
                                 <div class="start-date fr">

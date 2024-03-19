@@ -2,9 +2,9 @@
 
 angular.module('bahmni.clinical')
     .controller('DrugOrderHistoryController', ['$scope', '$filter', '$stateParams', 'activeDrugOrders',
-        'treatmentConfig', 'treatmentService', 'spinner', 'drugOrderHistoryHelper', 'visitHistory', '$translate', '$rootScope',
+        'treatmentConfig', 'treatmentService', 'spinner', 'drugOrderHistoryHelper', 'visitHistory', '$translate', '$rootScope','$http',
         function ($scope, $filter, $stateParams, activeDrugOrders, treatmentConfig, treatmentService, spinner,
-                   drugOrderHistoryHelper, visitHistory, $translate, $rootScope) {
+                   drugOrderHistoryHelper, visitHistory, $translate, $rootScope, $http) {
             var DrugOrderViewModel = Bahmni.Clinical.DrugOrderViewModel;
             var DateUtil = Bahmni.Common.Util.DateUtil;
             var currentVisit = visitHistory.activeVisit;
@@ -12,6 +12,18 @@ angular.module('bahmni.clinical')
             var prescribedDrugOrders = [];
             $scope.dispensePrivilege = Bahmni.Clinical.Constants.dispensePrivilege;
             $scope.scheduledDate = DateUtil.getDateWithoutTime(DateUtil.addDays(DateUtil.now(), 1));
+
+            $scope.getDispenseDate = function(date) {
+                console.log('Button clicked');
+                console.log("Dispense Date:", DateUtil.getDateWithoutTime(date));
+                console.log("Dispense Date:", date);
+                // console.log("uuid:", drugOrder.getDisplayName());
+                // $http.post('/api/endpoint', DateUtil.getDateWithoutTime(date),{
+                //     headers: { 'Content-Type': 'application/json'}
+                // }).then(function(res){
+                //     console.log('POST request successful', res.data);
+                // }
+            };
 
             var createPrescriptionGroups = function (activeAndScheduledDrugOrders) {
                 $scope.consultation.drugOrderGroups = [];
