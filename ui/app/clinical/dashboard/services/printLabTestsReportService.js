@@ -39,10 +39,7 @@ angular.module('bahmni.clinical')
                     dateThree: '',
                     vlResultsOne: '',
                     vlResultsTwo: '',
-                    vlResultsThree: '',
-
-
-
+                    vlResultsThree: ''
                 },
                 analyzer: '',
                 validator: '',
@@ -99,33 +96,6 @@ angular.module('bahmni.clinical')
                         if (response.data && response.data.length > 0) {
                             reportModel.labTestsInfo.viralLoadResultComment = response.data[0].value;
                         }
-                        resolve();
-                    }).catch(function (error) {
-                        reject(error);
-                    });
-                });
-            };
-            var populatePatientDemographics = function () {
-                return new Promise(function (resolve, reject) {
-                   
-                    patientService.getPatient(patientUuid).then(function (response) {
-                        response.data.person.attributes.forEach(function(attribute) {
-                            if (attribute.display.includes("PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER")) {
-                                var phoneNumber = attribute.display.split('=')[1].trim();
-                                reportModel.patientInfo.phoneNumber = phoneNumber;
-                                console.log(phoneNumber);
-                                return;
-                            }
-                        });
-
-                        var patientMapper = new Bahmni.PatientMapper($rootScope.patientConfig, $rootScope, $translate);
-                        var patient = patientMapper.map(response.data);
-                        reportModel.patientInfo.firstName = patient.givenName;
-                        reportModel.patientInfo.lastName = patient.familyName;
-                        reportModel.patientInfo.sex = patient.gender;
-                        reportModel.patientInfo.age = patient.age;
-                        reportModel.patientInfo.patientId = patient.identifier;
-
                         resolve();
                     }).catch(function (error) {
                         reject(error);
@@ -206,7 +176,6 @@ angular.module('bahmni.clinical')
                     });
                 });
             };
-            
             var populateResultsverifier = function () {
                 return new Promise(function (resolve, reject) {
                     var conceptName = 'Verified by';
@@ -236,8 +205,32 @@ angular.module('bahmni.clinical')
                     });
                 });
             };
+            var populatePatientDemographics = function () {
+                return new Promise(function (resolve, reject) {
+                    patientService.getPatient(patientUuid).then(function (response) {
+                        response.data.person.attributes.forEach(function (attribute) {
+                            if (attribute.display.includes("PERSON_ATTRIBUTE_TYPE_PHONE_NUMBER")) {
+                                var phoneNumber = attribute.display.split('=')[1].trim();
+                                reportModel.patientInfo.phoneNumber = phoneNumber;
+                                return;
+                            }
+                        });
 
-            const populateVirologyResults = async () => {
+                        var patientMapper = new Bahmni.PatientMapper($rootScope.patientConfig, $rootScope, $translate);
+                        var patient = patientMapper.map(response.data);
+                        reportModel.patientInfo.firstName = patient.givenName;
+                        reportModel.patientInfo.lastName = patient.familyName;
+                        reportModel.patientInfo.sex = patient.gender;
+                        reportModel.patientInfo.age = patient.age;
+                        reportModel.patientInfo.patientId = patient.identifier;
+
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+            function populateVirologyResults () {
                 const conceptNamesToExtract = [
                     'Protocol', 'Therapeutic line', 'Value VL (cp/mL)', 'Value VL (log10 cp/mL)',
                     'Date of Results', 'Sample collection date', 'Nature of collection',
@@ -245,13 +238,14 @@ angular.module('bahmni.clinical')
                     'Date of Results 2', 'Date of Results 3', 'Value VL (cp/mL) 1',
                     'Value VL (cp/mL) 2', 'Value VL (cp/mL) 3'
                 ];
-            
                 try {
-                    const response = await observationsService.fetch(patientUuid, conceptNamesToExtract);
-                    const concepts = response.data || [];
-            
-                    concepts.forEach(({ concept: { name }, valueAsString }) => {
-                        switch (name) {
+                    observationsService.fetch(patientUuid, conceptNamesToExtract)
+                    .then(function (response) {
+                        const concepts = response.data || [];
+                        concepts.forEach(function (item) {
+                            const conceptName = item.concept.name;
+                            const valueAsString = item.valueAsString;
+                            switch (conceptName) {
                             case 'Protocol':
                                 reportModel.labTestsInfo.protocol = valueAsString;
                                 break;
@@ -301,15 +295,17 @@ angular.module('bahmni.clinical')
                                 break;
                             default:
                                 break;
-                        }
+                            }
+                        });
+                        return Promise.resolve();
+                    })
+                    .catch(function (error) {
+                        return Promise.reject(error);
                     });
-            
-                    return Promise.resolve();
                 } catch (error) {
                     return Promise.reject(error);
                 }
-            };
-
+            }
             var populateTARVAndTBComorbidity = function () {
                 return new Promise(function (resolve, reject) {
                     programService.getPatientPrograms(patientUuid).then(function (response) {
