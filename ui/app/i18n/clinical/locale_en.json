@@ -218,6 +218,8 @@
     "MEDICATION_STOPPED_ON": "Stopped on",
     "MEDICATION_DUE_TO": "due to",
     "MEDICATION_LABEL_DISPENSE_DATE": "Dispense Date",
+    "MEDICATION_DISPENSED_ON": "Dispensed on",
+
 
     "REMOVE_CONFIRMATION_KEY": "Are you sure you want to remove?",
     "CLEAR_CONFIRMATION_KEY": "Are you sure you want to clear?",
