@@ -18,12 +18,12 @@ angular.module('bahmni.clinical')
                 createPrescribedDrugOrderGroups();
                 createRecentDrugOrderGroup(activeAndScheduledDrugOrders);
 
-                //Added exsiting Dispense date to orders
+                // Added exsiting Dispense date to orders
                 $scope.consultation.drugOrderGroups.forEach(function (item) {
                     if (item.hasOwnProperty('drugOrders')) {
                         item.drugOrders.forEach(function (order) {
                             if (order.hasOwnProperty('uuid')) {
-                                setDispenseDate(order)
+                                setDispenseDate(order);
                             }
                         });
                     }
@@ -237,7 +237,7 @@ angular.module('bahmni.clinical')
                     .then(function (dispenseDate) {
                         console.log("Dispense Date:", dispenseDate);
                         if (dispenseDate != null) {
-                            drugOrder.isDispenseDatePresent = true
+                            drugOrder.isDispenseDatePresent = true;
                             drugOrder.dispenseDate = new Date(dispenseDate);
                         }
                     })
@@ -253,7 +253,7 @@ angular.module('bahmni.clinical')
                     orderUuid: drugOrder.uuid
                     // Add more key-value pairs as needed
                 };
-                var url = Bahmni.Common.Constants.DispenseDate
+                var url = Bahmni.Common.Constants.DispenseDate;
                 $http.post(url, data)
                     .then(function (response) {
                         // Handle success
@@ -317,7 +317,6 @@ angular.module('bahmni.clinical')
             var getAttribute = function (drugOrder, attributeName) {
                 return _.find(drugOrder.orderAttributes, { name: attributeName });
             };
-
 
             init();
         }]);
