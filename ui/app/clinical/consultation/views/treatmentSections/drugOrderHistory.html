@@ -26,10 +26,6 @@
                                 </div>
 								<div class="button-group-wrapper" style="display: flex;">
                                     <div class="button-group">
-                                        <!-- <div class="field-value">
-                                            <input id="dispense-date" date-converter class="dispense-date " type="date"
-                                                   ng-model="drugOrder.dDispenseDate" required>
-                                        </div> -->
                                         <button ng-repeat="orderAttribute in drugOrder.orderAttributes" show-if-privilege="{{dispensePrivilege}}"
                                                 class="dispense-btn" ng-disabled="shouldBeDisabled(drugOrder,orderAttribute)"
                                                 ng-click="updateOrderAttribute(drugOrder,orderAttribute)">
@@ -46,7 +42,7 @@
                                         <button class="stop-drug-btn" ng-if="!drugOrder.isMarkedForDiscontinue" ng-disabled="!drugOrder.isActive() || !drugOrder.isDiscontinuedAllowed" ng-click="discontinue(drugOrder)">
                                             {{ ::'MEDICATION_STOP' | translate }}
                                         </button>
-                                        <button class="undo-btn" ng-if="drugOrder.isMarkedForDispenseDate" ng-disabled="!drugOrder.isActive() || !drugOrder.isDiscontinuedAllowed" ng-click="undoUpdateDispenseDateView(drugOrder)">
+                                        <button class="undo-btn" ng-if="drugOrder.isMarkedForDispenseDate"  ng-click="undoUpdateDispenseDateView(drugOrder)">
                                             <i class="fa fa-undo"></i>
                                         </button>
                                         <button class="stop-drug-btn" ng-disabled="isDispenseDatePresent(drugOrder)" ng-if="!drugOrder.isMarkedForDispenseDate" ng-click="showUpdateDispenseDateView(drugOrder)">
@@ -88,7 +84,7 @@
                                     <div class="form fl drug-stop-container">
                                         <article class="form-field">
                                             <div class="field-attribute stop-date-label">
-                                                <label class="control-label">{{ ::'DRUG_DETAILS_DATE' | translate }}</label>
+                                                <label class="control-label">{{ ::'DRUG_DETAILS_STOP_DATE' | translate }}</label>
                                             </div>
                                             <div class="field-value">
                                                 <input id="date-stopped" type="date" min="{{getMinDateForDiscontinue(drugOrder)}}"
@@ -113,24 +109,15 @@
                                     <div class="form fl drug-stop-container">
                                         <article class="form-field">
                                             <div class="field-attribute stop-date-label">
-                                                <label class="control-label">{{ ::'Dispense Date' | translate }}</label>
+                                                <label class="control-label">{{ ::'MEDICATION_LABEL_DISPENSE_DATE' | translate }}</label>
                                             </div>
                                             <div class="field-value">
                                                 <input id="date-Start" type="date" min="{{getMinDateForDiscontinue(drugOrder)}}"
                                                        ng-model="drugOrder.dDispenseDate"
                                                        required="required">
                                             </div>
-                                            <!-- <div class="field-value">
-                                                <textarea ng-disabled="!drugOrder.orderReasonNotesEnabled" rows="1" id="stopped-reason-non-coded" class="form-field drug-order-notes" placeholder="{{ 'MEDICATION_RECENT_TAB_STOP_NOTES' | translate}}"
-                                                          ng-model="drugOrder.orderReasonText"></textarea>
-                                            </div> -->
-                                            <!-- <div class="field-value">
-                                            <span class="time-stamp">
-                                                <span class="time">{{drugOrder.dateActivated | bahmniDate}}</span>
-                                            </span>
-                                        </div> -->
                                             <button class="stop-drug-btn"   ng-click="updateDispenseDate(drugOrder)">
-                                                {{ ::'Save' | translate }}
+                                                {{ ::'CLINICAL_SAVE_TRANSLATION_KEY' | translate }}
                                             </button>
                                         </article>
                                     </div>
