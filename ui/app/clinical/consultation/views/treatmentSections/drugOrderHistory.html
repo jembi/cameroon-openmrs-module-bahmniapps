@@ -45,8 +45,8 @@
                                         <button class="undo-btn" ng-if="drugOrder.isMarkedForDispenseDate"  ng-click="undoUpdateDispenseDateView(drugOrder)">
                                             <i class="fa fa-undo"></i>
                                         </button>
-                                        <button class="stop-drug-btn" ng-disabled="isDispenseDatePresent(drugOrder)" ng-if="!drugOrder.isMarkedForDispenseDate" ng-click="showUpdateDispenseDateView(drugOrder)">
-                                            {{ ::'Dispense Date' | translate }}
+                                        <button class="stop-drug-btn" ng-click="showUpdateDispenseDateView(drugOrder)">
+                                            {{ ::'MEDICATION_LABEL_DISPENSE_DATE' | translate }}
                                         </button>
                                         <button class="refill-btn" ng-disabled="!drugOrder.effectiveStopDate || drugOrder.isDrugRetired" ng-click="refill(drugOrder)">
                                             {{ ::'MEDICATION_REFILL' | translate }}
@@ -60,8 +60,8 @@
                                 
                                 <div class="start-date fr">
                                     <span ng-if="showEffectiveFromDate(drugOrderGroup.visitStartDate, drugOrder.effectiveStartDate)"> {{ ::'MEDICATION_STARTED_ON' | translate }} {{drugOrder.effectiveStartDate | bahmniDate}}</span>
-                                    <span ng-if="drugOrder.dDispenseDate"> {{ ::'MEDICATION_DISPENSED_ON' | translate }} {{drugOrder.dDispenseDate | bahmniDate}}</span>
-                                    <span class="red-text" ng-if="!drugOrder.dDispenseDate">{{ ::'MEDICATION_DISPENSED_ON' | translate }} : Empty</span>
+                                    <span ng-if="drugOrder.dispenseDate"> {{ ::'MEDICATION_DISPENSED_ON' | translate }} {{drugOrder.dispenseDate | bahmniDate}}</span>
+                                    <span class="red-text" ng-if="!drugOrder.dispenseDate">{{ ::'MEDICATION_DISPENSED_ON' | translate }} : Empty</span>
 
                                     <span class="stop-date">
                                         <div ng-if="drugOrder.isDiscontinuedOrStopped()">{{ ::'MEDICATION_STOPPED_ON' | translate }} {{drugOrder.dateStopped | bahmniDate}}</div>

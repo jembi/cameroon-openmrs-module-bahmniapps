@@ -12,11 +12,42 @@ angular.module('bahmni.clinical')
             var prescribedDrugOrders = [];
             $scope.dispensePrivilege = Bahmni.Clinical.Constants.dispensePrivilege;
             $scope.scheduledDate = DateUtil.getDateWithoutTime(DateUtil.addDays(DateUtil.now(), 1));
-            console.log("tttttttttttttttttttttttttttttttttttttttttttttttttttt");
+
+            var setDispenseDate = function (order) {
+                console.log("1234567890");
+                console.log(order.uuid);
+                $http.get('/openmrs/ws/rest/v1/cameroonbahmni/drugDispensedate/' + order.uuid)
+                    .then(function (response) {
+                        // Handle success
+                        console.log('GET request successful:', response.data.dispenseDate);
+                        var data = response.data;
+                        // Parse string to Date object
+                        var date = DateUtil.getDateWithoutTime(data.dispenseDate);
+                        if (date != null) {
+                            console.log(new Date(date));
+                            order.dispenseDate = new Date(date);
+                        }
+                    })
+                    .catch(function (error) {
+                        // Handle error
+                        console.error('Error making GET request:', error);
+                    });
+            };
             var createPrescriptionGroups = function (activeAndScheduledDrugOrders) {
                 $scope.consultation.drugOrderGroups = [];
                 createPrescribedDrugOrderGroups();
                 createRecentDrugOrderGroup(activeAndScheduledDrugOrders);
+
+                //Added exsiting Dispense date to orders
+                $scope.consultation.drugOrderGroups.forEach(function (item) {
+                    if (item.hasOwnProperty('drugOrders')) {
+                        item.drugOrders.forEach(function (order) {
+                            if (order.hasOwnProperty('uuid')) {
+                                setDispenseDate(order)
+                            }
+                        });
+                    }
+                });
             };
 
             var getPreviousVisitDrugOrders = function () {
@@ -184,7 +215,6 @@ angular.module('bahmni.clinical')
                 }
             };
             $scope.discontinue = function (drugOrder) {
-                console.log("vvvvvvvvvvvvvvvvvvvvvv");
                 if (drugOrder.isDiscontinuedAllowed) {
                     $rootScope.$broadcast("event:discontinueDrugOrder", drugOrder);
                     $scope.updateFormConditions(drugOrder);
@@ -193,32 +223,6 @@ angular.module('bahmni.clinical')
             $scope.undoUpdateDispenseDateView = function (drugOrder) {
                 drugOrder.isMarkedForDispenseDate = false;
             };
-
-            $scope.isDispenseDatePresent = function (drugOrder) {
-                console.log("1234567890");
-                // drugOrder.isDispenseDatePresent = true
-                //     $http.get('/openmrs/ws/rest/v1/cameroonbahmni/startdate/'+drugOrder.uuid)
-                //         .then(function(response) {
-                //             // Handle success
-                //             console.log('GET request successful:', response.data.startDate);
-                //             var data = response.data;
-                //             // Parse string to Date object
-                //             var date = DateUtil.getDateWithoutTime(data.startDate);
-                //             console.log(date);
-                //             if (date != null){
-                //                 drugOrder.isDispenseDatePresent = true
-                //                 drugOrder.dDispenseDate = new Date(date);
-                //             }
-
-                //         })
-                //         .catch(function(error) {
-                //             // Handle error
-                //             console.error('Error making GET request:', error);
-                // });
-                //     drugOrder.isMarkedForDispenseDate = true;
-
-            };
-
             $scope.showUpdateDispenseDateView = function (drugOrder) {
                 $http.get('/openmrs/ws/rest/v1/cameroonbahmni/drugDispensedate/' + drugOrder.uuid)
                     .then(function (response) {
@@ -230,7 +234,7 @@ angular.module('bahmni.clinical')
                         console.log(date);
                         if (date != null) {
                             drugOrder.isDispenseDatePresent = true
-                            drugOrder.dDispenseDate = new Date(date);
+                            drugOrder.dispenseDate = new Date(date);
                         }
 
                     })
@@ -310,6 +314,7 @@ angular.module('bahmni.clinical')
             var getAttribute = function (drugOrder, attributeName) {
                 return _.find(drugOrder.orderAttributes, { name: attributeName });
             };
+
 
             init();
         }]);
