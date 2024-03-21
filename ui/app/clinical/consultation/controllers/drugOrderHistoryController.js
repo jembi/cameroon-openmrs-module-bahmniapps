@@ -13,26 +13,6 @@ angular.module('bahmni.clinical')
             $scope.dispensePrivilege = Bahmni.Clinical.Constants.dispensePrivilege;
             $scope.scheduledDate = DateUtil.getDateWithoutTime(DateUtil.addDays(DateUtil.now(), 1));
 
-            var setDispenseDate = function (order) {
-                console.log("1234567890");
-                console.log(order.uuid);
-                $http.get('/openmrs/ws/rest/v1/cameroonbahmni/drugDispensedate/' + order.uuid)
-                    .then(function (response) {
-                        // Handle success
-                        console.log('GET request successful:', response.data.dispenseDate);
-                        var data = response.data;
-                        // Parse string to Date object
-                        var date = DateUtil.getDateWithoutTime(data.dispenseDate);
-                        if (date != null) {
-                            console.log(new Date(date));
-                            order.dispenseDate = new Date(date);
-                        }
-                    })
-                    .catch(function (error) {
-                        // Handle error
-                        console.error('Error making GET request:', error);
-                    });
-            };
             var createPrescriptionGroups = function (activeAndScheduledDrugOrders) {
                 $scope.consultation.drugOrderGroups = [];
                 createPrescribedDrugOrderGroups();
@@ -223,35 +203,58 @@ angular.module('bahmni.clinical')
             $scope.undoUpdateDispenseDateView = function (drugOrder) {
                 drugOrder.isMarkedForDispenseDate = false;
             };
-            $scope.showUpdateDispenseDateView = function (drugOrder) {
-                $http.get('/openmrs/ws/rest/v1/cameroonbahmni/drugDispensedate/' + drugOrder.uuid)
-                    .then(function (response) {
-                        // Handle success
-                        console.log('GET request successful:', response.data.dispenseDate);
-                        var data = response.data;
-                        // Parse string to Date object
-                        var date = DateUtil.getDateWithoutTime(data.dispenseDate);
-                        console.log(date);
-                        if (date != null) {
-                            drugOrder.isDispenseDatePresent = true
-                            drugOrder.dispenseDate = new Date(date);
-                        }
-
+            var getDispenseDate = function (order) {
+                return new Promise(function (resolve, reject) {
+                    $http.get(Bahmni.Common.Constants.DispenseDate + '/' + order.uuid)
+                        .then(function (response) {
+                            var data = response.data;
+                            var date = DateUtil.getDateWithoutTime(data.dispenseDate);
+                            if (date != null) {
+                                resolve(new Date(date));
+                            } else {
+                                resolve(null);
+                            }
+                        })
+                        .catch(function (error) {
+                            // Handle error
+                            console.error('Error making GET request:', error);
+                            reject(error);
+                        });
+                });
+            };
+            var setDispenseDate = function (order) {
+                getDispenseDate(order)
+                    .then(function (dispenseDate) {
+                        order.dispenseDate = dispenseDate;
                     })
                     .catch(function (error) {
                         // Handle error
-                        console.error('Error making GET request:', error);
+                        console.error("Error:", error);
+                    });
+            };
+            $scope.showUpdateDispenseDateView = function (drugOrder) {
+                getDispenseDate(drugOrder)
+                    .then(function (dispenseDate) {
+                        console.log("Dispense Date:", dispenseDate);
+                        if (dispenseDate != null) {
+                            drugOrder.isDispenseDatePresent = true
+                            drugOrder.dispenseDate = new Date(dispenseDate);
+                        }
+                    })
+                    .catch(function (error) {
+                        // Handle error
+                        console.error("Error:", error);
                     });
                 drugOrder.isMarkedForDispenseDate = true;
-
             };
             $scope.updateDispenseDate = function (drugOrder) {
                 var data = {
-                    dispenseDate: drugOrder.dDispenseDate,
+                    dispenseDate: drugOrder.dispenseDate,
                     orderUuid: drugOrder.uuid
                     // Add more key-value pairs as needed
                 };
-                $http.post('/openmrs/ws/rest/v1/cameroonbahmni/drugDispensedate', data)
+                var url = Bahmni.Common.Constants.DispenseDate
+                $http.post(url, data)
                     .then(function (response) {
                         // Handle success
                         console.log('POST request successful:', response.data);
