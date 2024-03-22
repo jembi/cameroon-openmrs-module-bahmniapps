@@ -45,7 +45,7 @@
                                         <button class="undo-btn" ng-if="drugOrder.isMarkedForDispenseDate"  ng-click="undoUpdateDispenseDateView(drugOrder)">
                                             <i class="fa fa-undo"></i>
                                         </button>
-                                        <button class="stop-drug-btn" ng-click="showUpdateDispenseDateView(drugOrder)">
+                                        <button class="stop-drug-btn" ng-click="showUpdateDispenseDateView(drugOrder)" required>
                                             {{ ::'MEDICATION_LABEL_DISPENSE_DATE' | translate }}
                                         </button>
                                         <button class="refill-btn" ng-disabled="!drugOrder.effectiveStopDate || drugOrder.isDrugRetired" ng-click="refill(drugOrder)">
@@ -62,7 +62,6 @@
                                     <span ng-if="showEffectiveFromDate(drugOrderGroup.visitStartDate, drugOrder.effectiveStartDate)"> {{ ::'MEDICATION_STARTED_ON' | translate }} {{drugOrder.effectiveStartDate | bahmniDate}}</span>
                                     <span ng-if="drugOrder.dispenseDate"> {{ ::'MEDICATION_DISPENSED_ON' | translate }} {{drugOrder.dispenseDate | bahmniDate}}</span>
                                     <span class="red-text" ng-if="!drugOrder.dispenseDate">{{ ::'MEDICATION_DISPENSED_ON' | translate }} : Empty</span>
-
                                     <span class="stop-date">
                                         <div ng-if="drugOrder.isDiscontinuedOrStopped()">{{ ::'MEDICATION_STOPPED_ON' | translate }} {{drugOrder.dateStopped | bahmniDate}}</div>
                                         <div ng-if="drugOrder.orderReasonText && drugOrder.isDiscontinuedOrStopped()">{{ ::'MEDICATION_DUE_TO' | translate }} {{drugOrder.orderReasonText}}</div>
@@ -114,10 +113,13 @@
                                             <div class="field-value">
                                                 <input id="date-Start" type="date" min="{{getMinDateForDiscontinue(drugOrder)}}"
                                                        ng-model="drugOrder.dispenseDate"
-                                                       required="required">
+                                                       required>
                                             </div>
-                                            <button class="stop-drug-btn"   ng-click="updateDispenseDate(drugOrder)">
+                                            <button class="stop-drug-btn"  ng-if="!drugOrder.dispenseDate" ng-click="updateDispenseDate(drugOrder)">
                                                 {{ ::'CLINICAL_SAVE_TRANSLATION_KEY' | translate }}
+                                            </button>
+                                            <button class="stop-drug-btn"  ng-if="drugOrder.dispenseDate" ng-click="updateDispenseDate(drugOrder)">
+                                                {{ ::'CLINICAL_UPDATE' | translate }}
                                             </button>
                                         </article>
                                     </div>
