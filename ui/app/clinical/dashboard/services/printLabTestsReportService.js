@@ -23,7 +23,7 @@ angular.module('bahmni.clinical')
                 orders: [],
                 labTestsInfo: {
                     protocol: '',
-                    theurapeuticLine: '',
+                    therapeuticLine: '',
                     value_vl: '',
                     value_vl_log10: '',
                     resultsDate: '',
@@ -39,7 +39,8 @@ angular.module('bahmni.clinical')
                     dateThree: '',
                     vlResultsOne: '',
                     vlResultsTwo: '',
-                    vlResultsThree: ''
+                    vlResultsThree: '',
+                    CodePLVT: ''
                 },
                 analyzer: '',
                 validator: '',
@@ -57,7 +58,7 @@ angular.module('bahmni.clinical')
                 return new Promise(function (resolve, reject) {
                     var p1 = populatePatientDemographics();
                     var p2 = populatePatientWeight();
-                    var p3 = populateTARVAndTBComorbidity();
+                    var p3 = populateTARV();
                     var p4 = populatePrescriber();
                     var p5 = populateHospitalNameAndLogo();
                     var p6 = populateVirologyResults();
@@ -234,9 +235,9 @@ angular.module('bahmni.clinical')
                 const conceptNamesToExtract = [
                     'Protocol', 'Therapeutic line', 'Value VL (cp/mL)', 'Value VL (log10 cp/mL)',
                     'Date of Results', 'Sample collection date', 'Nature of collection',
-                    'Sample Code', 'Technique', 'Machine used', 'Date of Results 1',
+                    'Ext Lab Sample Code', 'Technique', 'Machine used', 'Date of Results 1',
                     'Date of Results 2', 'Date of Results 3', 'Value VL (cp/mL) 1',
-                    'Value VL (cp/mL) 2', 'Value VL (cp/mL) 3'
+                    'Value VL (cp/mL) 2', 'Value VL (cp/mL) 3', 'Code PLVT'
                 ];
                 try {
                     observationsService.fetch(patientUuid, conceptNamesToExtract)
@@ -265,8 +266,11 @@ angular.module('bahmni.clinical')
                             case 'Nature of collection':
                                 reportModel.labTestsInfo.natureOfCollection = valueAsString;
                                 break;
-                            case 'Sample Code':
+                            case 'Ext Lab Sample Code':
                                 reportModel.labTestsInfo.sampleCode = valueAsString;
+                                break;
+                            case 'Code PLVT':
+                                reportModel.labTestsInfo.CodePLVT = valueAsString;
                                 break;
                             case 'Technique':
                                 reportModel.labTestsInfo.technique = valueAsString;
@@ -306,38 +310,25 @@ angular.module('bahmni.clinical')
                     return Promise.reject(error);
                 }
             }
-            var populateTARVAndTBComorbidity = function () {
+            var populateTARV = function () {
                 return new Promise(function (resolve, reject) {
                     programService.getPatientPrograms(patientUuid).then(function (response) {
                         if (response.activePrograms && response.activePrograms.length > 0) {
-                            var tarvNumber = response.activePrograms[0].attributes.map(function (item) {
-                                if (item.name === 'PROGRAM_MANAGEMENT_ART_NUMBER') {
-                                    return item.value;
-                                }
-                            }).filter(function (item) {
-                                return item;
+                            const hivProgram = response.activePrograms.find(function (program) {
+                                return program.display === 'HIV_PROGRAM_KEY';
                             });
+                            if (hivProgram) {
+                                var tarvNumber = hivProgram.attributes.map(function (item) {
+                                    if (item.name === 'PROGRAM_MANAGEMENT_1_ART_NUMBER') {
+                                        return item.value;
+                                    }
+                                }).filter(function (item) {
+                                    return item;
+                                });
 
-                            if (tarvNumber.length > 0) {
-                                reportModel.tarvNumber = tarvNumber[0];
-                            }
-
-                            var tbComorbidity = response.activePrograms[0].attributes.map(function (item) {
-                                if (item.name === 'PROGRAM_MANAGEMENT_PATIENT_COMORBIDITES') {
-                                    return item.value.display === 'TB';
+                                if (tarvNumber.length > 0) {
+                                    reportModel.tarvNumber = tarvNumber[0];
                                 }
-                            }).filter(function (item) {
-                                return item;
-                            });
-
-                            if (tbComorbidity.length > 0) {
-                                if (tbComorbidity[0]) {
-                                    reportModel.tbComorbidity = 'OBS_BOOLEAN_YES_KEY';
-                                } else {
-                                    reportModel.tbComorbidity = 'OBS_BOOLEAN_NO_KEY';
-                                }
-                            } else {
-                                reportModel.tbComorbidity = 'OBS_BOOLEAN_NO_KEY';
                             }
                         }
                         resolve();
