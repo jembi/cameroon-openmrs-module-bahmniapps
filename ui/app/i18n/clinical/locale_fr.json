@@ -375,5 +375,7 @@
   "LAB_TESTS_SIGNATURE": "Signature: ",
   "PROGRAM_MANAGEMENT_OUTCOME_DATE": "Date de résultat: ",
   "PROGRAM_MANAGEMENT_REASON_FOR_OUTCOME": "Raison de la conclusion ",
-  "PROGRAM_MANAGEMENT_FACILITY_TRANSFERED_TO": "Établissement transféré à "
+  "PROGRAM_MANAGEMENT_FACILITY_TRANSFERED_TO": "Établissement transféré à ",
+  "PRESCRIPTION_REPORT_USERNAME": "Modifié par"
+
 }
