@@ -2,9 +2,9 @@
 
 angular.module('bahmni.clinical')
     .controller('DrugOrderHistoryController', ['$scope', '$filter', '$stateParams', 'activeDrugOrders',
-        'treatmentConfig', 'treatmentService', 'spinner', 'drugOrderHistoryHelper', 'visitHistory', '$translate', '$rootScope',
+        'treatmentConfig', 'treatmentService', 'spinner', 'drugOrderHistoryHelper', 'visitHistory', '$translate', '$rootScope', '$http', 'messagingService',
         function ($scope, $filter, $stateParams, activeDrugOrders, treatmentConfig, treatmentService, spinner,
-                   drugOrderHistoryHelper, visitHistory, $translate, $rootScope) {
+            drugOrderHistoryHelper, visitHistory, $translate, $rootScope, $http, messagingService) {
             var DrugOrderViewModel = Bahmni.Clinical.DrugOrderViewModel;
             var DateUtil = Bahmni.Common.Util.DateUtil;
             var currentVisit = visitHistory.activeVisit;
@@ -17,6 +17,17 @@ angular.module('bahmni.clinical')
                 $scope.consultation.drugOrderGroups = [];
                 createPrescribedDrugOrderGroups();
                 createRecentDrugOrderGroup(activeAndScheduledDrugOrders);
+
+                // Added exsiting Dispense date to orders
+                $scope.consultation.drugOrderGroups.forEach(function (item) {
+                    if (item.hasOwnProperty('drugOrders')) {
+                        item.drugOrders.forEach(function (order) {
+                            if (order.hasOwnProperty('uuid')) {
+                                setDispenseDate(order);
+                            }
+                        });
+                    }
+                });
             };
 
             var getPreviousVisitDrugOrders = function () {
@@ -152,6 +163,13 @@ angular.module('bahmni.clinical')
                 drugOrder.orderReasonNotesEnabled = false;
             };
 
+            $scope.start = function (drugOrder) {
+                if (drugOrder.isDiscontinuedAllowed) {
+                    $rootScope.$broadcast("event:discontinueDrugOrder", drugOrder);
+                    $scope.updateFormConditions(drugOrder);
+                }
+            };
+
             $scope.discontinue = function (drugOrder) {
                 if (drugOrder.isDiscontinuedAllowed) {
                     $rootScope.$broadcast("event:discontinueDrugOrder", drugOrder);
@@ -174,6 +192,84 @@ angular.module('bahmni.clinical')
                 if (!$scope.shouldBeDisabled(drugOrder, orderAttribute)) {
                     $scope.toggleDrugOrderAttribute(orderAttribute, valueToSet);
                     $scope.consultation.drugOrdersWithUpdatedOrderAttributes[drugOrder.uuid] = drugOrder;
+                }
+            };
+            $scope.discontinue = function (drugOrder) {
+                if (drugOrder.isDiscontinuedAllowed) {
+                    $rootScope.$broadcast("event:discontinueDrugOrder", drugOrder);
+                    $scope.updateFormConditions(drugOrder);
+                }
+            };
+            $scope.undoUpdateDispenseDateView = function (drugOrder) {
+                drugOrder.isMarkedForDispenseDate = false;
+            };
+            var getDispenseDate = function (order) {
+                return new Promise(function (resolve, reject) {
+                    $http.get(Bahmni.Common.Constants.DispenseDate + '/' + order.uuid)
+                        .then(function (response) {
+                            var data = response.data;
+                            var date = DateUtil.getDateWithoutTime(data.dispenseDate);
+                            if (date != null) {
+                                resolve(new Date(date));
+                            } else {
+                                resolve(null);
+                            }
+                        })
+                        .catch(function (error) {
+                            // Handle error
+                            console.error('Error making GET request:', error);
+                            reject(error);
+                        });
+                });
+            };
+            var setDispenseDate = function (order) {
+                getDispenseDate(order)
+                    .then(function (dispenseDate) {
+                        order.dispenseDate = dispenseDate;
+                    })
+                    .catch(function (error) {
+                        // Handle error
+                        console.error("Error:", error);
+                    });
+            };
+            $scope.showUpdateDispenseDateView = function (drugOrder) {
+                getDispenseDate(drugOrder)
+                    .then(function (dispenseDate) {
+                        console.log("Dispense Date:", dispenseDate);
+                        if (dispenseDate != null) {
+                            drugOrder.isDispenseDatePresent = true;
+                            drugOrder.dispenseDate = new Date(dispenseDate);
+                        } else {
+                            console.log("The Dispense Date:", dispenseDate);
+                        }
+                    })
+                    .catch(function (error) {
+                        // Handle error
+                        console.error("Error:", error);
+                    });
+                drugOrder.isMarkedForDispenseDate = true;
+            };
+            $scope.updateDispenseDate = function (drugOrder) {
+                if (drugOrder.dispenseDate !== null) {
+                    var data = {
+                        dispenseDate: drugOrder.dispenseDate,
+                        orderUuid: drugOrder.uuid
+                        // Add more key-value pairs as needed
+                    };
+                    var url = Bahmni.Common.Constants.DispenseDate;
+                    $http.post(url, data)
+                        .then(function (response) {
+                            // Handle success
+                            console.log('POST request successful:', response.data);
+                            messagingService.showMessage('info', 'MEDICATION_DISPENSE_DATE_SUCCESSFULLY_SAVED');
+                        })
+                        .catch(function (error) {
+                            // Handle error
+                            console.error('Error making POST request:', error);
+                            messagingService.showMessage('error', 'MEDICATION_DISPENSE_DATE_ERROR_MESSAGE');
+                        });
+                } else {
+                    messagingService.showMessage('error', 'MEDICATION_DISPENSE_DATE_EMPTY');
                 }
             };
 
@@ -227,7 +323,7 @@ angular.module('bahmni.clinical')
             };
 
             var getAttribute = function (drugOrder, attributeName) {
-                return _.find(drugOrder.orderAttributes, {name: attributeName});
+                return _.find(drugOrder.orderAttributes, { name: attributeName });
             };
 
             init();

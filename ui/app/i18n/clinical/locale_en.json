@@ -217,6 +217,13 @@
     "MEDICATION_STARTED_ON": "Started on",
     "MEDICATION_STOPPED_ON": "Stopped on",
     "MEDICATION_DUE_TO": "due to",
+    "MEDICATION_LABEL_DISPENSE_DATE": "Dispense Date",
+    "MEDICATION_DISPENSED_ON": "Dispensed on",
+    "MEDICATION_DISPENSE_DATE_SUCCESSFULLY_SAVED": "Dispense date Saved Successfully",
+    "MEDICATION_DISPENSE_DATE_ERROR_MESSAGE": "Failed to Save Dispense Date",
+    "MEDICATION_DISPENSE_DATE_EMPTY": "Dispense Date Field Is Empty",
+    
+
 
     "REMOVE_CONFIRMATION_KEY": "Are you sure you want to remove?",
     "CLEAR_CONFIRMATION_KEY": "Are you sure you want to clear?",
