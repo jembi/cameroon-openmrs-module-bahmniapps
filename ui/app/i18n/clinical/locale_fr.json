@@ -381,6 +381,7 @@
   "PROGRAM_MANAGEMENT_OUTCOME_DATE": "Date de résultat: ",
   "PROGRAM_MANAGEMENT_REASON_FOR_OUTCOME": "Raison de la conclusion ",
   "PROGRAM_MANAGEMENT_FACILITY_TRANSFERED_TO": "Établissement transféré à ",
-  "PRESCRIPTION_REPORT_USERNAME": "Modifié par"
+  "PRESCRIPTION_REPORT_USERNAME": "Modifié par",
+  "LAB_TESTS_VERIFIER": "Modifié par"
 
 }
