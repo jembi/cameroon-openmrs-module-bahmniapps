@@ -442,7 +442,8 @@
     "RECEPTION_DATE": "Reception date",
     "PRESCRIBER": "Prescriber",
     "CONTACT": "Contact",
-    "LAB_TESTS_VERIFIER": "Verified By"
+    "LAB_TESTS_VERIFIER": "Verified By",
+    "LAB_TESTS_VIRAL_LOAD_HISTORY": "History of Viral Loads"
 
 
 
