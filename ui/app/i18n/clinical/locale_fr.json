@@ -367,7 +367,7 @@
   "LAB_TESTS_VALUE_VL_(log10 cp/mL)": "CV (log10)",
   "LAB_TESTS_RESULTS_DATE": "Date résultats",
   "LAB_TESTS_SAMPLE_COLLECTION_DATE": "Date collecte échantillon", 
-  "LAB_TESTS_SAMPLE_CODE": "Sample Code",
+  "LAB_TESTS_SAMPLE_CODE": "Code échantillon",
   "LAB_TESTS_TECHNICIAN": "Lab Tech",
   "LAB_TESTS_BIOCENTRIC": "Generic HIV CV (Biocentric) – Arrow-Lightcycler96",
   "LAB_TESTS_COPIES/ML": "Copies/mL",
@@ -385,6 +385,7 @@
   "LAB_TESTS_VERIFIER": "Modifié par",
   "RECEPTION_DATE": "Date réception",
   "PRESCRIBER": "Prescripteur",
-  "LAB_TESTS_VIRAL_LOAD_HISTORY": "Historique Charges Virales"
+  "LAB_TESTS_VIRAL_LOAD_HISTORY": "Historique Charges Virales",
+  "CONTACT": "Contact"
 
 }

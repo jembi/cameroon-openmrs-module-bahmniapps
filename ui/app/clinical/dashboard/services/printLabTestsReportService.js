@@ -246,71 +246,77 @@ angular.module('bahmni.clinical')
                 ];
                 try {
                     observationsService.fetch(patientUuid, conceptNamesToExtract)
-                    .then(function (response) {
-                        const concepts = response.data || [];
-                        concepts.forEach(function (item) {
-                            const conceptName = item.concept.name;
-                            const valueAsString = item.valueAsString;
-                            switch (conceptName) {
-                            case 'Protocol':
-                                reportModel.labTestsInfo.protocol = valueAsString;
-                                break;
-                            case 'Therapeutic line':
-                                reportModel.labTestsInfo.therapeuticLine = valueAsString;
-                                break;
-                            case 'Value VL (cp/mL)':
-                                reportModel.labTestsInfo.value_vl = valueAsString;
-                                reportModel.labTestsInfo.value_vl_log10 = Math.log10(Number(valueAsString));
-                                break;
-                            case 'Date of Results':
-                                reportModel.labTestsInfo.resultsDate = valueAsString;
-                                break;
-                            case 'Sample collection date':
-                                reportModel.labTestsInfo.collectionDate = valueAsString;
-                                break;
-                            case 'Nature of collection':
-                                reportModel.labTestsInfo.natureOfCollection = valueAsString;
-                                break;
-                            case 'Ext Lab Sample Code':
-                                reportModel.labTestsInfo.sampleCode = valueAsString;
-                                break;
-                            case 'Code PLVT':
-                                reportModel.labTestsInfo.CodePLVT = valueAsString;
-                                break;
-                            case 'Technique':
-                                reportModel.labTestsInfo.technique = valueAsString;
-                                reportModel.testType = reportModel.labTestsInfo.technique;
-                                break;
-                            case 'Machine used':
-                                reportModel.labTestsInfo.machineUsed = valueAsString;
-                                break;
-                            case 'Date of Results 1':
-                                reportModel.labTestsInfo.dateOne = valueAsString;
-                                break;
-                            case 'Date of Results 2':
-                                reportModel.labTestsInfo.dateTwo = valueAsString;
-                                break;
-                            case 'Date of Results 3':
-                                reportModel.labTestsInfo.dateThree = valueAsString;
-                                break;
-                            case 'Value VL (cp/mL) 1':
-                                reportModel.labTestsInfo.vlResultsOne = valueAsString;
-                                break;
-                            case 'Value VL (cp/mL) 2':
-                                reportModel.labTestsInfo.vlResultsTwo = valueAsString;
-                                break;
-                            case 'Value VL (cp/mL) 3':
-                                reportModel.labTestsInfo.vlResultsThree = valueAsString;
-                                break;
-                            default:
-                                break;
-                            }
+                        .then(function (response) {
+                            const concepts = response.data || [];
+                            concepts.sort(function (a, b) {
+                                return new Date(b.obsDatetime) - new Date(a.obsDatetime);
+                            });
+                            const processedConcepts = new Set();
+                            concepts.forEach(function (item) {
+                                const conceptName = item.concept.name;
+                                const valueAsString = item.valueAsString;
+                                if (processedConcepts.has(conceptName) || !valueAsString) return;
+                                processedConcepts.add(conceptName);
+                                switch (conceptName) {
+                                case 'Protocol':
+                                    reportModel.labTestsInfo.protocol = valueAsString;
+                                    break;
+                                case 'Therapeutic line':
+                                    reportModel.labTestsInfo.therapeuticLine = valueAsString;
+                                    break;
+                                case 'Value VL (cp/mL)':
+                                    reportModel.labTestsInfo.value_vl = valueAsString;
+                                    reportModel.labTestsInfo.value_vl_log10 = Math.log10(Number(valueAsString));
+                                    break;
+                                case 'Date of Results':
+                                    reportModel.labTestsInfo.resultsDate = valueAsString;
+                                    break;
+                                case 'Sample collection date':
+                                    reportModel.labTestsInfo.collectionDate = valueAsString;
+                                    break;
+                                case 'Nature of collection':
+                                    reportModel.labTestsInfo.natureOfCollection = valueAsString;
+                                    break;
+                                case 'Ext Lab Sample Code':
+                                    reportModel.labTestsInfo.sampleCode = valueAsString;
+                                    break;
+                                case 'Code PLVT':
+                                    reportModel.labTestsInfo.CodePLVT = valueAsString;
+                                    break;
+                                case 'Technique':
+                                    reportModel.labTestsInfo.technique = valueAsString;
+                                    reportModel.testType = reportModel.labTestsInfo.technique;
+                                    break;
+                                case 'Machine used':
+                                    reportModel.labTestsInfo.machineUsed = valueAsString;
+                                    break;
+                                case 'Date of Results 1':
+                                    reportModel.labTestsInfo.dateOne = valueAsString;
+                                    break;
+                                case 'Date of Results 2':
+                                    reportModel.labTestsInfo.dateTwo = valueAsString;
+                                    break;
+                                case 'Date of Results 3':
+                                    reportModel.labTestsInfo.dateThree = valueAsString;
+                                    break;
+                                case 'Value VL (cp/mL) 1':
+                                    reportModel.labTestsInfo.vlResultsOne = valueAsString;
+                                    break;
+                                case 'Value VL (cp/mL) 2':
+                                    reportModel.labTestsInfo.vlResultsTwo = valueAsString;
+                                    break;
+                                case 'Value VL (cp/mL) 3':
+                                    reportModel.labTestsInfo.vlResultsThree = valueAsString;
+                                    break;
+                                default:
+                                    break;
+                                }
+                            });
+                            return Promise.resolve();
+                        })
+                        .catch(function (error) {
+                            return Promise.reject(error);
                         });
-                        return Promise.resolve();
-                    })
-                    .catch(function (error) {
-                        return Promise.reject(error);
-                    });
                 } catch (error) {
                     return Promise.reject(error);
                 }
