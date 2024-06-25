@@ -266,7 +266,8 @@ angular.module('bahmni.clinical')
                                     break;
                                 case 'Value VL (cp/mL)':
                                     reportModel.labTestsInfo.value_vl = valueAsString;
-                                    reportModel.labTestsInfo.value_vl_log10 = Math.log10(Number(valueAsString));
+                                    reportModel.labTestsInfo.value_vl_log10 = Math.log10(Number(valueAsString)).toFixed(2);
+
                                     break;
                                 case 'Date of Results':
                                     reportModel.labTestsInfo.resultsDate = valueAsString;
