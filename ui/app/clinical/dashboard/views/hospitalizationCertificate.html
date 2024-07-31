@@ -1,0 +1,16 @@
+<div class="certificate-container" ng-if="certificateData">
+
+        <center><img ng-if="certificateData.hospitalLogo" src="{{ certificateData.hospitalLogo }}" class="prescribe-report-logo"></center>
+        <div class="certificate-header">Hospitalization Certificate</div>
+        <div class="certificate-body">
+            <div class="certificate-section"><span class="certificate-label">I, the undersigned:</span> <span class="certificate-value">{{certificateData.username}}</span></div>
+            <div class="certificate-section"><span class="certificate-label">Certified that:</span> <span class="certificate-value">{{ getFullname() }}</span></div>
+            <div class="certificate-section"><span class="certificate-label">Age:</span> <span class="certificate-value">{{ certificateData.patientInfo.age }}</span></div>
+            <div class="certificate-section"><span class="certificate-label">Profession:</span> <span class="certificate-value">{{ certificateData.patientInfo.occupation }}</span></div>
+            <div class="certificate-section"><span class="certificate-label">Is admitted at</span> <span class="certificate-value">{{ certificateData.hospitalName }}</span></div>
+            <div class="certificate-section"><span class="certificate-label">Village</span> <span class="certificate-value">{{ certificateData.hospitalVillage }}</span></div>
+        </div>
+        <div class="certificate-statement">In witness whereof this certificate is issued for all legal purposes.</div>
+    </div>
+    <div class="certificate-footer">Date: {{ getCurrentDate() }}</div>
+</div>

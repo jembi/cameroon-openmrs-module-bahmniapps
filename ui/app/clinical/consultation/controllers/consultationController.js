@@ -4,11 +4,11 @@ angular.module('bahmni.clinical').controller('ConsultationController',
     ['$scope', '$rootScope', '$state', '$location', '$translate', 'clinicalAppConfigService', 'diagnosisService', 'urlHelper', 'contextChangeHandler',
         'spinner', 'encounterService', 'messagingService', 'sessionService', 'retrospectiveEntryService', 'patientContext', '$q',
         'patientVisitHistoryService', '$stateParams', '$window', 'visitHistory', 'clinicalDashboardConfig', 'appService',
-        'ngDialog', '$filter', 'configurations', 'visitConfig', 'conditionsService', 'configurationService', 'auditLogService', 'printer', 'printPrescriptionReportService', 'printLabTestsReportService',
+        'ngDialog', '$filter', 'configurations', 'visitConfig', 'conditionsService', 'configurationService', 'auditLogService', 'printer', 'printPrescriptionReportService', 'printLabTestsReportService', 'printHospitalizationCertificateService',
         function ($scope, $rootScope, $state, $location, $translate, clinicalAppConfigService, diagnosisService, urlHelper, contextChangeHandler,
                   spinner, encounterService, messagingService, sessionService, retrospectiveEntryService, patientContext, $q,
                   patientVisitHistoryService, $stateParams, $window, visitHistory, clinicalDashboardConfig, appService,
-                  ngDialog, $filter, configurations, visitConfig, conditionsService, configurationService, auditLogService, printer, printPrescriptionReportService, printLabTestsReportService) {
+                  ngDialog, $filter, configurations, visitConfig, conditionsService, configurationService, auditLogService, printer, printPrescriptionReportService, printLabTestsReportService, printHospitalizationCertificateService) {
             var DateUtil = Bahmni.Common.Util.DateUtil;
             var getPreviousActiveCondition = Bahmni.Common.Domain.Conditions.getPreviousActiveCondition;
             $scope.togglePrintList = false;
@@ -74,12 +74,13 @@ angular.module('bahmni.clinical').controller('ConsultationController',
             var prescriptionReportUuid = '2c6c27b0-3eef-4010-bfbb-9133d0016d25';
             var tarvPrescriptionReportUuid = '31f15798-9983-4066-9b06-6868e1ba7210';
             var labTestsReportUuid = 'ce9eb283-1852-47eb-8902-11c6dadf220e';
-
+            var hospitalizationCertificateUuid = '23c9b86c-893a-4941-86ca-d17fdbe4c10f';
             $scope.printButtonDropdownOptions = [
                 {name: $translate.instant('PRINT_CLINICAL_DASHBOARD_LABEL'), uuid: clinicalDashboardUuid},
                 {name: $translate.instant('PRESCRIPTION_REPORT_PRINT_PRESCRIPTION_LABEL'), uuid: prescriptionReportUuid},
                 {name: $translate.instant('PRESCRIPTION_REPORT_PRINT_TARV_PRESCRIPTION_LABEL'), uuid: tarvPrescriptionReportUuid},
-                {name: $translate.instant('PRINT_LAB_TESTS_LABEL'), uuid: labTestsReportUuid} ];
+                {name: $translate.instant('PRINT_LAB_TESTS_LABEL'), uuid: labTestsReportUuid},
+                {name: $translate.instant('PRINT_HOSPITALIZATION_CERTIFICATE_LABEL'), uuid: hospitalizationCertificateUuid} ];
 
             $scope.optionText = function (value) {
                 return value.name;
@@ -92,12 +93,19 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                     if (option.uuid === prescriptionReportUuid) {
                         $rootScope.isTarvReport = false;
                         $rootScope.isLabTestsReport = false;
+                        $rootScope.isHospitalizationCertificate = false;
                     } else if (option.uuid === tarvPrescriptionReportUuid) {
                         $rootScope.isTarvReport = true;
                         $rootScope.isLabTestsReport = false;
+                        $rootScope.isHospitalizationCertificate = false;
                     } else if (option.uuid === labTestsReportUuid) {
                         $rootScope.isTarvReport = false;
+                        $rootScope.isHospitalizationCertificate = false;
                         $rootScope.isLabTestsReport = true;
+                    } else if (option.uuid === hospitalizationCertificateUuid) {
+                        $rootScope.isTarvReport = false;
+                        $rootScope.isHospitalizationCertificate = true;
+                        $rootScope.isLabTestsReport = false;
                     }
                     if ($rootScope.isLabTestsReport) {
                         printLabTestsReportService.getReportModel($stateParams.patientUuid)
@@ -105,13 +113,20 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                             $rootScope.labTestsReportData = reportData;
                             printer.printFromScope("dashboard/views/printLabTestsReport.html", $scope, function () { });
                         });
-                    }
-                    else {
+                    } else if ($rootScope.isHospitalizationCertificate) {
+                        
+                        printHospitalizationCertificateService.getReportModel($stateParams.patientUuid)
+                        .then(function (reportData) {
+                            $rootScope.certificateData = reportData;
+                            printer.printFromScope("dashboard/views/printHospitalizationCertificate.html", $scope, function () { });
+                        });
+                    } else {
                         printPrescriptionReportService.getReportModel($stateParams.patientUuid)
                         .then(function (reportData) {
                             $rootScope.prescriptionReportData = reportData;
                             printer.printFromScope("dashboard/views/printPrescriptionReport.html", $scope, function () { });
                         });
+
                     }
                 }
             };
