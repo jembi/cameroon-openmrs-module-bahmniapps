@@ -1,21 +1,23 @@
 'use strict';
 
 angular.module('bahmni.clinical')
-    .service('printHospitalizationCertificateService', ['$rootScope', '$translate', 'patientService', 'observationsService', 'programService', 'treatmentService', 'localeService', 'patientVisitHistoryService', 'conceptSetService', 'locationService',
+    .service('printReplacementCertificateService', ['$rootScope', '$translate', 'patientService', 'observationsService', 'programService', 'treatmentService', 'localeService', 'patientVisitHistoryService', 'conceptSetService', 'locationService',
         function ($rootScope, $translate, patientService, observationsService, programService, treatmentService, localeService, patientVisitHistoryService, conceptSetService, locationService) {
             var reportModel = {
                 username: $rootScope.currentUser.username,
                 hospitalLogo: '',
                 hospitalName: '',
                 hospitalVillage: '',
+                leaveDays: '',
+                doctor: '',
+                startDate: '',
                 patientInfo: {
                     firstName: '',
                     lastName: '',
                     age: '',
                     sex: '',
                     patientId: '',
-                    phoneNumber: '',
-                    occupation: ''
+                    phoneNumber: ''
                 }
             };
 
@@ -25,47 +27,74 @@ angular.module('bahmni.clinical')
                 patientUuid = _patientUuid;
 
                 return new Promise(function (resolve, reject) {
-                    var p1 = populatePatientDemographics();
+                    var p1 = populateStartDate();
                     var p2 = populateHospitalNameAndLogo();
-                    var p3 = populateHospitalVillage();
-                    var p4 = populatePatientOccupation();
+                    var p3 = populateDoctor();
+                    var p5 = populateNumberOfDays();
+                    var p6 = populatePatientNames();
 
-                    Promise.all([p1, p2, p3, p4]).then(function () {
+                    Promise.all([p1, p2, p3, p5, p6]).then(function () {
                         resolve(reportModel);
                     }).catch(function (error) {
                         reject(error);
                     });
                 });
             };
-
-            var populateHospitalVillage = function () {
-                locationService.getAllByTag('Visit Location')
-                    .then(function (response) {
-                        reportModel.hospitalVillage = response.data.results[0].cityVillage;
-                    })
-                    .catch(function (error) {
-                        reject(error);
-                    });
-            };
-
-            var populatePatientOccupation = function () {
+            var populatePatientNames = function () {
                 return new Promise(function (resolve, reject) {
                     patientService.getPatient(patientUuid).then(function (response) {
-                        var patientData = response.data;
-                        patientData.person.attributes.forEach(function (attribute) {
-                            if (attribute.attributeType.display === "occupation") {
-                                var occupation = attribute.value.display;
-                                reportModel.patientInfo.occupation = occupation;
-                                return;
-                            }
-                        });
-
+                        var patientMapper = new Bahmni.PatientMapper($rootScope.patientConfig, $rootScope, $translate);
+                        var patient = patientMapper.map(response.data);
+                        reportModel.patientInfo.firstName = patient.givenName;
+                        reportModel.patientInfo.lastName = patient.familyName;
                         resolve();
                     }).catch(function (error) {
                         reject(error);
                     });
                 });
             };
+
+            var populateNumberOfDays = function () {
+                return new Promise(function (resolve, reject) {
+                    var leaveDaysConceptName = 'Number of Days';
+                    observationsService.fetch(patientUuid, [leaveDaysConceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.leaveDays = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+
+            var populateDoctor = function () {
+                return new Promise(function (resolve, reject) {
+                    var leaveDaysConceptName = 'Physician’s name';
+                    observationsService.fetch(patientUuid, [leaveDaysConceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.doctor = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+            var populateStartDate = function () {
+                return new Promise(function (resolve, reject) {
+                    var startDayConceptName = 'Sick Leave Start';
+                    observationsService.fetch(patientUuid, [startDayConceptName]).then(function (response) {
+                        if (response.data && response.data.length > 0) {
+                            reportModel.startDate = response.data[0].value;
+                        }
+                        resolve();
+                    }).catch(function (error) {
+                        reject(error);
+                    });
+                });
+            };
+
             var populatePatientDemographics = function () {
                 return new Promise(function (resolve, reject) {
                     patientService.getPatient(patientUuid).then(function (response) {
