@@ -443,12 +443,38 @@
     "PRESCRIBER": "Prescriber",
     "CONTACT": "Contact",
     "LAB_TESTS_VERIFIER": "Verified By",
-    "LAB_TESTS_VIRAL_LOAD_HISTORY": "History of Viral Loads"
+    "LAB_TESTS_VIRAL_LOAD_HISTORY": "History of Viral Loads",
 
+    "PREGNANCY_CERTIFICATE_TITLE": "Pregnancy Certificate",
+    "PREGNANCY_CERTIFICATE_UNDERSIGNED": "I, the undersigned :",
+    "PREGNANCY_CERTIFICATE_CERTIFY": "hereby certify that on ",
+    "PREGNANCY_CERTIFICATE_TO_MRS": "to Mrs ",
+    "PREGNANCY_CERTIFICATE_GENERAL_EXAM": "the general and obstetrical examination required by law.",
+    "PREGNANCY_CERTIFICATE_PREGNANT_WITH": "I certify that she is pregnant with",
+    "PREGNANCY_CERTIFICATE_WEEKS": "Weeks",
+    "PREGNANCY_CERTIFICATE_DELIVERY_DATE": "and that she will give birth around",
+    "PREGNANCY_CERTIFICATE_LEGAL_PURPOSE": "In witness whereof this certificate is issued to her for all legal purposes",
+    "PREGNANCY_CERTIFICATE_PRACTITIONER": "Practitioner",
+    "PREGNANCY_CERTIFICATE_DATE": "Date",
 
+    "PRINT_MEDICAL_REPLACEMENT_CERTIFICATE_LABEL": "Medical Replacement",
+    "MEDICAL_REPLACEMENT_UNDERSIGNED_DOCTOR": "I, the undersigned Doctor:",
+    "MEDICAL_REPLACEMENT_CERTIFY_EXAMINED": "hereby certify that I have on this day examined the named",
+    "MEDICAL_REPLACEMENT_REST_REQUIRED": "Certifies that his or her state of health requires a medical rest of",
+    "MEDICAL_REPLACEMENT_DAYS": "days",
+    "MEDICAL_REPLACEMENT_STARTING_FROM": "starting from",
+    "MEDICAL_REPLACEMENT_BARRING_COMPLICATIONS": "Barring unforeseeable complications.",
+    "MEDICAL_REPLACEMENT_DATE": "Date",
+    "MEDICAL_REPLACEMENT_ATTENDING_DOCTOR": "The Attending Doctor",
 
-
-
-
+    "PRINT_HOSPITALIZATION_CERTIFICATE_LABEL": "Hospitalization Certificate",
+    "HOSPITALIZATION_CERTIFICATE_UNDERSIGNED": "I, the undersigned",
+    "HOSPITALIZATION_CERTIFICATE_CERTIFIED_THAT": "Certified that",
+    "HOSPITALIZATION_CERTIFICATE_AGE": "Age",
+    "HOSPITALIZATION_CERTIFICATE_PROFESSION": "Profession",
+    "HOSPITALIZATION_CERTIFICATE_ADMITTED_AT": "Is admitted at",
+    "HOSPITALIZATION_CERTIFICATE_VILLAGE": "Village",
+    "HOSPITALIZATION_CERTIFICATE_WITNESS": "In witness whereof this certificate is issued for all legal purposes.",
+    "HOSPITALIZATION_CERTIFICATE_DATE": "Date"
 
 }

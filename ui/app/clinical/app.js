@@ -165,6 +165,14 @@ angular.module('consultation')
                     'print-lab-tests': {
                         templateUrl: 'dashboard/views/printLabTestsReport.html',
                         controller: 'PrintLabTestsReportController'
+                    },
+                    'print-hospitalization-certificate': {
+                        templateUrl: 'dashboard/views/printHospitalizationCertificate.html',
+                        controller: 'PrintHospitalizationCertificate'
+                    },
+                    'print-replacement-certificate': {
+                        templateUrl: 'dashboard/views/printMedicalReplacementCertificate.html',
+                        controller: 'replacementCertificateController'
                     }
                 }
             })

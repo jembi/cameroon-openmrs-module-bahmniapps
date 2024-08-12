@@ -1,0 +1,34 @@
+<div class="certificate-container" ng-if="data">
+    <center><img ng-if="data.hospitalLogo" src="{{ data.hospitalLogo }}" class="prescribe-report-logo"></center>
+    <div class="certificate-header">{{ 'PREGNANCY_CERTIFICATE_TITLE' | translate }}</div>
+    <div class="certificate-body">
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'PREGNANCY_CERTIFICATE_UNDERSIGNED' | translate }}</span> 
+            <span class="certificate-value">{{ data.doctor }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'PREGNANCY_CERTIFICATE_CERTIFY' | translate }}</span> 
+            <span class="certificate-value">{{ data.dateOfExam }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'PREGNANCY_CERTIFICATE_TO_MRS' | translate }}</span> 
+            <span class="certificate-value">{{ getFullname() }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'PREGNANCY_CERTIFICATE_GENERAL_EXAM' | translate }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'PREGNANCY_CERTIFICATE_PREGNANT_WITH' | translate }}</span>
+            <span class="certificate-value">{{ data.gestationalAge }}</span> {{ 'PREGNANCY_CERTIFICATE_WEEKS' | translate }}
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'PREGNANCY_CERTIFICATE_DELIVERY_DATE' | translate }}</span>
+            <span class="certificate-value">{{ data.deliveryDate }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'PREGNANCY_CERTIFICATE_LEGAL_PURPOSE' | translate }}</span>
+        </div>
+    </div>
+    <div class="certificate-statement" style="text-align: center; font-weight: bold;">{{ 'PREGNANCY_CERTIFICATE_PRACTITIONER' | translate }}</div>
+</div>
+<div class="certificate-footer">{{ 'PREGNANCY_CERTIFICATE_DATE' | translate }}: {{ getCurrentDate() }}</div>

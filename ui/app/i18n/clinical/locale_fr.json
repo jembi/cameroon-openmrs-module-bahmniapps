@@ -386,6 +386,37 @@
   "RECEPTION_DATE": "Date réception",
   "PRESCRIBER": "Prescripteur",
   "LAB_TESTS_VIRAL_LOAD_HISTORY": "Historique Charges Virales",
-  "CONTACT": "Contact"
+  "CONTACT": "Contact",
 
+  "PREGNANCY_CERTIFICATE_TITLE": "Certificat de Grossesse",
+  "PREGNANCY_CERTIFICATE_UNDERSIGNED": "Je soussigné :",
+  "PREGNANCY_CERTIFICATE_CERTIFY": "certifie avoir fait subir le",
+  "PREGNANCY_CERTIFICATE_TO_MRS": "à Madame",
+  "PREGNANCY_CERTIFICATE_GENERAL_EXAM": "l'examen général et obstétrical prévue par la loi.",
+  "PREGNANCY_CERTIFICATE_PREGNANT_WITH": "Je certifie qu'elle est enceinte de",
+  "PREGNANCY_CERTIFICATE_WEEKS": "semaines",
+  "PREGNANCY_CERTIFICATE_DELIVERY_DATE": "et qu'elle accouche vers le",
+  "PREGNANCY_CERTIFICATE_LEGAL_PURPOSE": "En foi de quoi ce certificat lui est délivré pour servir et faire valoir ce que de droit.",
+  "PREGNANCY_CERTIFICATE_PRACTITIONER": "Le praticien",
+  "PREGNANCY_CERTIFICATE_DATE": "Date",
+
+  "PRINT_MEDICAL_REPLACEMENT_CERTIFICATE_LABEL": "Remplacement Médical",
+  "MEDICAL_REPLACEMENT_UNDERSIGNED_DOCTOR": "Je soussigné Docteur",
+  "MEDICAL_REPLACEMENT_CERTIFY_EXAMINED": "Certifie avoir examiné ce jour le (la) nommé(e)",
+  "MEDICAL_REPLACEMENT_HEALTH_STATUS": "Atteste que son état de santé nécessite un repos médical de",
+  "MEDICAL_REPLACEMENT_DAYS": "jours à compter",
+  "MEDICAL_REPLACEMENT_START_DATE": "Du",
+  "MEDICAL_REPLACEMENT_BARRING_COMPLICATIONS": "Sauf complication imprévisible.",
+  "MEDICAL_REPLACEMENT_ATTENDING_DOCTOR": "Le Praticien",
+  "MEDICAL_REPLACEMENT_DATE": "Date",
+
+  "PRINT_HOSPITALIZATION_CERTIFICATE_LABEL": "Certificat d'Hospitalisation",
+  "HOSPITALIZATION_CERTIFICATE_UNDERSIGNED": "Je soussigné",
+  "HOSPITALIZATION_CERTIFICATE_CERTIFIED_THAT": "Certifie que",
+  "HOSPITALIZATION_CERTIFICATE_AGE": "Âge",
+  "HOSPITALIZATION_CERTIFICATE_PROFESSION": "Profession",
+  "HOSPITALIZATION_CERTIFICATE_ADMITTED_AT": "Est hospitalisé(e)",
+  "HOSPITALIZATION_CERTIFICATE_VILLAGE": "Village",
+  "HOSPITALIZATION_CERTIFICATE_WITNESS": "En foi de quoi ce certificat est délivré pour servir et valoir ce que de droit.",
+  "HOSPITALIZATION_CERTIFICATE_DATE": "Date"
 }

@@ -1,0 +1,33 @@
+<div class="certificate-container" ng-if="data">
+    <center><img ng-if="data.hospitalLogo" src="{{ data.hospitalLogo }}" class="prescribe-report-logo"></center>
+    <div class="certificate-header">{{ 'PRINT_MEDICAL_REPLACEMENT_CERTIFICATE_LABEL' | translate }}</div>
+    <div class="certificate-body">
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'MEDICAL_REPLACEMENT_UNDERSIGNED_DOCTOR' | translate }}</span>
+            <span class="certificate-value">Docteur {{ data.doctor }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'MEDICAL_REPLACEMENT_CERTIFY_EXAMINED' | translate }}</span>
+            <span class="certificate-value">{{ getFullname() }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'MEDICAL_REPLACEMENT_HEALTH_STATUS' | translate }}</span>
+            <span class="certificate-value">{{ data.leaveDays }}</span> {{ 'MEDICAL_REPLACEMENT_DAYS' | translate }}
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'MEDICAL_REPLACEMENT_START_DATE' | translate }}</span>
+            <span class="certificate-value">{{ data.startDate }}</span>
+        </div>
+    </div>
+    
+    <div class="certificate-statement" style="text-align: center; margin-top: 20px;">
+        {{ 'MEDICAL_REPLACEMENT_BARRING_COMPLICATIONS' | translate }}
+    </div>
+    <br>
+    <div class="certificate-doctor" style="text-align: center; font-weight: bold; margin-top: 20px; font-size: 18px;">
+        {{ 'MEDICAL_REPLACEMENT_ATTENDING_DOCTOR' | translate }}
+    </div>
+    <br><br>
+
+</div>
+<div class="certificate-footer">{{ 'MEDICAL_REPLACEMENT_DATE' | translate }}: {{ getCurrentDate() }}</div>
