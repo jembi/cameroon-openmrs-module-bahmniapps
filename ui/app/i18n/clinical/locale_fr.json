@@ -98,6 +98,7 @@
   "PROGRAM_MANAGEMENT_START_DATE_KEY": "Date d'enrôlement (pour ce programme)",
   "PROGRAM_MANAGEMENT_STOP_DATE_KEY": "Date de fin",
   "PROGRAM_MANAGEMENT_STARTED_ON_KEY": "Commencé le",
+  "PROGRAM_MANAGEMENT_COUNTRY_TRANSFERRED_TO": "Pays transféré",
   "PROGRAM_MANAGEMENT_SELECT_PROGRAM_MESSAGE_KEY": "Please select a Program to Enroll the patient",
   "PROGRAM_MANAGEMENT_ALREADY_ENROLLED_PROGRAM_MESSAGE_KEY": "Patient already enrolled to the Program",
   "PROGRAM_MANAGEMENT_STATE_CANT_START_BEFORE_KEY": "State cannot be started earlier than current state",
