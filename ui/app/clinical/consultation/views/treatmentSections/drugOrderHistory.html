@@ -24,7 +24,7 @@
                                     <strong class="drug-name">{{drugOrder.getDisplayName()}}</strong>
                                     {{drugOrder.getDescriptionWithQuantity()}}
                                 </div>
-								<div class="button-group-wrapper">
+								<div class="button-group-wrapper" style="display: flex;">
                                     <div class="button-group">
                                         <button ng-repeat="orderAttribute in drugOrder.orderAttributes" show-if-privilege="{{dispensePrivilege}}"
                                                 class="dispense-btn" ng-disabled="shouldBeDisabled(drugOrder,orderAttribute)"
@@ -38,8 +38,15 @@
                                         <button class="undo-btn" ng-if="drugOrder.isMarkedForDiscontinue" ng-disabled="!drugOrder.isActive() || !drugOrder.isDiscontinuedAllowed" ng-click="undoDiscontinue(drugOrder)">
                                             <i class="fa fa-undo"></i>
                                         </button>
+                                        
                                         <button class="stop-drug-btn" ng-if="!drugOrder.isMarkedForDiscontinue" ng-disabled="!drugOrder.isActive() || !drugOrder.isDiscontinuedAllowed" ng-click="discontinue(drugOrder)">
                                             {{ ::'MEDICATION_STOP' | translate }}
+                                        </button>
+                                        <button class="undo-btn" ng-if="drugOrder.isMarkedForDispenseDate"  ng-click="undoUpdateDispenseDateView(drugOrder)">
+                                            <i class="fa fa-undo"></i>
+                                        </button>
+                                        <button class="stop-drug-btn" ng-click="showUpdateDispenseDateView(drugOrder)" required>
+                                            {{ ::'MEDICATION_LABEL_DISPENSE_DATE' | translate }}
                                         </button>
                                         <button class="refill-btn" ng-disabled="!drugOrder.effectiveStopDate || drugOrder.isDrugRetired" ng-click="refill(drugOrder)">
                                             {{ ::'MEDICATION_REFILL' | translate }}
@@ -50,8 +57,11 @@
                                         </button>
                                     </div>
 								</div>
+                                
                                 <div class="start-date fr">
                                     <span ng-if="showEffectiveFromDate(drugOrderGroup.visitStartDate, drugOrder.effectiveStartDate)"> {{ ::'MEDICATION_STARTED_ON' | translate }} {{drugOrder.effectiveStartDate | bahmniDate}}</span>
+                                    <span ng-if="drugOrder.dispenseDate"> {{ ::'MEDICATION_DISPENSED_ON' | translate }} {{drugOrder.dispenseDate | bahmniDate}}</span>
+                                    <span class="red-text" ng-if="!drugOrder.dispenseDate">{{ ::'MEDICATION_DISPENSED_ON' | translate }} : Empty</span>
                                     <span class="stop-date">
                                         <div ng-if="drugOrder.isDiscontinuedOrStopped()">{{ ::'MEDICATION_STOPPED_ON' | translate }} {{drugOrder.dateStopped | bahmniDate}}</div>
                                         <div ng-if="drugOrder.orderReasonText && drugOrder.isDiscontinuedOrStopped()">{{ ::'MEDICATION_DUE_TO' | translate }} {{drugOrder.orderReasonText}}</div>
@@ -66,7 +76,7 @@
                                         </span>
                                         <span class="provider">
                                             <provider-directive creator-name="{{drugOrder.creatorName}}" provider-name="{{drugOrder.provider.name}}"></provider-directive>
-                                        </span>
+                                         </span>
                                     </div>
                                 </div>
                                 <div ng-if="drugOrder.isMarkedForDiscontinue">
@@ -89,6 +99,28 @@
                                                 <textarea ng-disabled="!drugOrder.orderReasonNotesEnabled" rows="1" id="stopped-reason-non-coded" class="form-field drug-order-notes" placeholder="{{ 'MEDICATION_RECENT_TAB_STOP_NOTES' | translate}}"
                                                           ng-model="drugOrder.orderReasonText"></textarea>
                                             </div>
+                                        </article>
+                                    </div>
+                                </div>
+
+
+                                <div ng-if="drugOrder.isMarkedForDispenseDate">
+                                    <div class="form fl drug-stop-container">
+                                        <article class="form-field">
+                                            <div class="field-attribute stop-date-label">
+                                                <label class="control-label">{{ ::'MEDICATION_LABEL_DISPENSE_DATE' | translate }}</label>
+                                            </div>
+                                            <div class="field-value">
+                                                <input id="date-Start" type="date" min="{{getMinDateForDiscontinue(drugOrder)}}"
+                                                       ng-model="drugOrder.dispenseDate"
+                                                       required>
+                                            </div>
+                                            <button class="stop-drug-btn"  ng-if="!drugOrder.dispenseDate" ng-click="updateDispenseDate(drugOrder)">
+                                                {{ ::'CLINICAL_SAVE_TRANSLATION_KEY' | translate }}
+                                            </button>
+                                            <button class="stop-drug-btn"  ng-if="drugOrder.dispenseDate" ng-click="updateDispenseDate(drugOrder)">
+                                                {{ ::'CLINICAL_UPDATE' | translate }}
+                                            </button>
                                         </article>
                                     </div>
                                 </div>
