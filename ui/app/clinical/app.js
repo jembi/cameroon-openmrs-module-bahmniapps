@@ -173,6 +173,10 @@ angular.module('consultation')
                     'print-replacement-certificate': {
                         templateUrl: 'dashboard/views/printMedicalReplacementCertificate.html',
                         controller: 'replacementCertificateController'
+                    },
+                    'print-hospitalization-report': {
+                        templateUrl: 'dashboard/views/printHospitalizationReport.html',
+                        controller: 'PrintHospitalizationReport'
                     }
                 }
             })
