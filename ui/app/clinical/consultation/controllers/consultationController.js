@@ -132,12 +132,14 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                         $rootScope.isLabTestsReport = false;
                         $rootScope.isReplacementCertificate = true;
                         $rootScope.isPregnantCertificate = false;
+                        $rootScope.isHospitalizationReport = false;
                     } else if (option.uuid === pregnancyCertificateUuid) {
                         $rootScope.isTarvReport = false;
                         $rootScope.isHospitalizationCertificate = false;
                         $rootScope.isLabTestsReport = false;
                         $rootScope.isReplacementCertificate = false;
                         $rootScope.isPregnantCertificate = true;
+                        $rootScope.isHospitalizationReport = false;
                     } else if (option.uuid === hospitalizationReportUuid) {
                         $rootScope.isTarvReport = false;
                         $rootScope.isHospitalizationCertificate = false;

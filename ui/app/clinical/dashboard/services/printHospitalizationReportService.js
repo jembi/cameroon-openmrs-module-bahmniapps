@@ -12,6 +12,7 @@ angular.module('bahmni.clinical')
                     firstName: '',
                     lastName: '',
                     age: '',
+                    birthDate: '',
                     sex: '',
                     patientId: '',
                     phoneNumber: '',
@@ -84,12 +85,27 @@ angular.module('bahmni.clinical')
                         reportModel.patientInfo.sex = patient.gender;
                         reportModel.patientInfo.age = patient.age;
                         reportModel.patientInfo.patientId = patient.identifier;
+                        const birthdate = new Date(patient.birthdate);
+                        const formattedDate = formatDateToYMD(birthdate);
+                        reportModel.patientInfo.birthDate = formattedDate;
                         resolve();
                     }).catch(function (error) {
                         reject(error);
                     });
                 });
             };
+
+            function formatDateToYMD(date) {
+                if (!(date instanceof Date) || isNaN(date)) {
+                  throw new Error("Invalid Date object");
+                }
+                
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                const day = date.getDate().toString().padStart(2, '0');
+                
+                return `${year}/${month}/${day}`;
+              }
             var populateHospitalNameAndLogo = function () {
                 return new Promise(function (resolve, reject) {
                     localeService.getLoginText().then(function (response) {
