@@ -95,17 +95,15 @@ angular.module('bahmni.clinical')
                 });
             };
 
-            function formatDateToYMD(date) {
+            function formatDateToYMD (date) {
                 if (!(date instanceof Date) || isNaN(date)) {
-                  throw new Error("Invalid Date object");
+                    throw new Error("Invalid Date object");
                 }
-                
                 const year = date.getFullYear();
                 const month = (date.getMonth() + 1).toString().padStart(2, '0');
                 const day = date.getDate().toString().padStart(2, '0');
-                
-                return `${year}/${month}/${day}`;
-              }
+                return year + '/' + month + '/' + day;
+            }
             var populateHospitalNameAndLogo = function () {
                 return new Promise(function (resolve, reject) {
                     localeService.getLoginText().then(function (response) {
