@@ -1,0 +1,63 @@
+<div class="certificate-container" ng-if="certificateData" 
+     style="line-height: 1.5; font-family: Arial, sans-serif; font-size: 14px; margin: 0 20px;">
+    <center>
+        <img ng-if="certificateData.hospitalLogo" 
+             src="{{ certificateData.hospitalLogo }}" 
+             class="prescribe-report-logo" 
+             style="margin-bottom: 15px; max-width: 100px;">
+    </center>
+    <div class="certificate-header" 
+         style="font-weight: bold; font-size: 1.2em; margin-bottom: 15px; text-align: center;">
+        {{ 'AUTHORIZATION_TUBAL_LIGATION_HEADER' | translate }}
+    </div>
+    <div class="certificate-body">
+        <p style="margin-bottom: 15px;">
+            {{ 'AUTHORIZATION_TUBAL_LIGATION_UNDERSIGNED' | translate }}
+        </p>
+        <div class="certificate-section" style="margin-bottom: 15px;">
+            <span>{{ 'AUTHORIZATION_TUBAL_LIGATION_NIC_NUMBER' | translate }}</span>
+            ............................................... 
+            {{ 'AUTHORIZATION_TUBAL_LIGATION_ISSUED_ON' | translate }}
+            ................................................ 
+            {{ 'AUTHORIZATION_TUBAL_LIGATION_AT' | translate }}
+            ................................................
+        </div>
+        <p style="margin-bottom: 15px;">
+            {{ 'AUTHORIZATION_TUBAL_LIGATION_AUTHORIZE' | translate }}
+        </p>
+        <div class="certificate-section" style="margin-bottom: 15px;">
+            <span>{{ 'AUTHORIZATION_TUBAL_LIGATION_SELF' | translate }}</span>
+        </div>
+        <div class="certificate-section" style="margin-bottom: 15px;">
+            <span>{{ 'AUTHORIZATION_TUBAL_LIGATION_WIFE' | translate }}</span>
+            ................................................................................................................. 
+            {{ 'AUTHORIZATION_TUBAL_LIGATION_NIC' | translate }}
+            ...................................................................... 
+            {{ 'AUTHORIZATION_TUBAL_LIGATION_ISSUED_ON' | translate }}
+            ...................................................................... 
+            {{ 'AUTHORIZATION_TUBAL_LIGATION_AT' | translate }}
+            ......................................................................
+        </div>
+        <div class="certificate-section" style="margin-bottom: 15px;">
+            {{ 'AUTHORIZATION_TUBAL_LIGATION_CONSENT' | translate }}
+        </div>
+        <div class="certificate-section" style="margin-bottom: 15px;">
+            {{ 'AUTHORIZATION_TUBAL_LIGATION_SIGNATURE' | translate }}
+        </div>
+        <div class="certificate-section" style="margin-bottom: 15px;">
+            <span>{{ 'AUTHORIZATION_TUBAL_LIGATION_HUSBAND_SIGNATURE' | translate }}</span>
+            ......................................................................
+        </div>
+        <div class="certificate-section" style="margin-bottom: 15px;">
+            <span>{{ 'AUTHORIZATION_TUBAL_LIGATION_OTHER' | translate }}</span>
+            ......................................................................
+        </div>
+        <div class="certificate-section" style="margin-bottom: 15px;">
+            <span>{{ 'AUTHORIZATION_TUBAL_LIGATION_LOCATION_DATE' | translate }}</span>
+            Njombé, ......................................................................
+        </div>
+    </div>
+</div>
+<div class="certificate-footer" style="text-align: center; margin-top: 10px;">
+    {{ 'AUTHORIZATION_TUBAL_LIGATION_DATE' | translate }}: {{ getCurrentDate() }}
+</div>

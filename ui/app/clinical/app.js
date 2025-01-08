@@ -181,6 +181,10 @@ angular.module('consultation')
                     'print-delivery-certificate': {
                         templateUrl: 'dashboard/views/printDeliveryCertificate.html',
                         controller: 'PrintDeliveryCertificate'
+                    },
+                    'print-tubal-legation-report': {
+                        templateUrl: 'dashboard/views/printAuthorizationOfTubalLegation.html',
+                        controller: 'printAuthorizationOfTubalLegation'
                     }
 
                 }

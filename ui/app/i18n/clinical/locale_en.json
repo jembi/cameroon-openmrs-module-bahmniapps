@@ -490,6 +490,24 @@
     "DELIVERY_CERTIFICATE_FINAL_NOTE": "In witness whereof this certificate is delivered to serve and be worth what is right.",
     "DELIVERY_CERTIFICATE_LOCATION_AND_DATE": "Njombé, on",
     "DELIVERY_CERTIFICATE_SIGNATURE": "Stamp and Signature",
-    "DELIVERY_CERTIFICATE_CERTIFY": "certify that"
+    "DELIVERY_CERTIFICATE_CERTIFY": "certify that",
+    "PRINT_TUBAL_LEGATION_LABEL": "Tubal Legation",
+
+    "AUTHORIZATION_TUBAL_LIGATION_HEADER": "Authorization for Tubal Ligation",
+    "AUTHORIZATION_TUBAL_LIGATION_UNDERSIGNED": "I, the undersigned .........................",
+    "AUTHORIZATION_TUBAL_LIGATION_NIC_NUMBER": "NIC N° ",
+    "AUTHORIZATION_TUBAL_LIGATION_ISSUED_ON": "issued on ",
+    "AUTHORIZATION_TUBAL_LIGATION_AT": "at ",
+    "AUTHORIZATION_TUBAL_LIGATION_AUTHORIZE": "Authorize the physician to perform definitive sterilization by tubal ligation on:",
+    "AUTHORIZATION_TUBAL_LIGATION_SELF": "- Myself",
+    "AUTHORIZATION_TUBAL_LIGATION_WIFE": "- My wife named ",
+    "AUTHORIZATION_TUBAL_LIGATION_NIC": "NIC N° ",
+    "AUTHORIZATION_TUBAL_LIGATION_CONSENT": "With (her) full consent.",
+    "AUTHORIZATION_TUBAL_LIGATION_SIGNATURE": "Signature:",
+    "AUTHORIZATION_TUBAL_LIGATION_HUSBAND_SIGNATURE": "Husband ",
+    "AUTHORIZATION_TUBAL_LIGATION_OTHER": "Other (Please specify) ",
+    "AUTHORIZATION_TUBAL_LIGATION_LOCATION_DATE": "Njombé, the ",
+    "AUTHORIZATION_TUBAL_LIGATION_DATE": "Date"
+    
 
 }
