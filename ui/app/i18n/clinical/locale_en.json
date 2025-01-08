@@ -476,6 +476,20 @@
     "HOSPITALIZATION_REPORT_APPOINTMENT_DATE": "Appointment Date",
     "HOSPITALIZATION_REPORT_LOCATION": "Location",
     "HOSPITALIZATION_REPORT_SIGNATURE": "Signature",
-    "HOSPITALIZATION_REPORT_DATE": "Date"
+    "HOSPITALIZATION_REPORT_DATE": "Date",
+    "PRINT_DELIVERY_CERTIFICATE_LABEL": "Delivery Certificate",
+    "DELIVERY_CERTIFICATE_TITLE": "Delivery Certificate",
+    "DELIVERY_CERTIFICATE_INTRO": "I, the undersigned",
+    "DELIVERY_CERTIFICATE_NAME": "Certify that",
+    "DELIVERY_CERTIFICATE_AGE": "Age",
+    "DELIVERY_CERTIFICATE_PROFESSION": "Profession",
+    "DELIVERY_CERTIFICATE_DOMICILE": "Domicile",
+    "DELIVERY_CERTIFICATE_DELIVERY_DETAILS": "Gave birth at the Maternity Hospital Saint Jean de Malte on ...................................................",
+    "DELIVERY_CERTIFICATE_CHILD_STATUS": "Of a child*(living)(dead born)",
+    "DELIVERY_CERTIFICATE_CHILD_SEX": "of sex",
+    "DELIVERY_CERTIFICATE_FINAL_NOTE": "In witness whereof this certificate is delivered to serve and be worth what is right.",
+    "DELIVERY_CERTIFICATE_LOCATION_AND_DATE": "Njombé, on",
+    "DELIVERY_CERTIFICATE_SIGNATURE": "Stamp and Signature",
+    "DELIVERY_CERTIFICATE_CERTIFY": "certify that"
 
 }

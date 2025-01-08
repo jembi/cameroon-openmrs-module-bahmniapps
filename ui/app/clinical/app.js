@@ -177,7 +177,12 @@ angular.module('consultation')
                     'print-hospitalization-report': {
                         templateUrl: 'dashboard/views/printHospitalizationReport.html',
                         controller: 'PrintHospitalizationReport'
+                    },
+                    'print-delivery-certificate': {
+                        templateUrl: 'dashboard/views/printDeliveryCertificate.html',
+                        controller: 'PrintDeliveryCertificate'
                     }
+
                 }
             })
             .state('patient.dashboard.show.observations', {

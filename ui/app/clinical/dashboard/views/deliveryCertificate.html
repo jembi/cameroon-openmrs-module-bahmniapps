@@ -1,0 +1,50 @@
+<div class="certificate-container" ng-if="certificateData">
+    <center>
+        <img ng-if="certificateData.hospitalLogo" 
+             src="{{ certificateData.hospitalLogo }}" 
+             class="prescribe-report-logo">
+    </center>
+    <div class="certificate-header">{{ 'DELIVERY_CERTIFICATE_TITLE' | translate }}</div>
+    <div class="certificate-body">
+        <div class="certificate-section">
+            <b>{{ 'DELIVERY_CERTIFICATE_INTRO' | translate }}</b> {{ getFullname() }}
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label"><b>{{ 'DELIVERY_CERTIFICATE_CERTIFY' | translate }}</b></span>
+            <span class="certificate-value">------------------------------</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label"><b>{{ 'DELIVERY_CERTIFICATE_AGE' | translate }}</b></span>
+            <span class="certificate-value">{{ certificateData.patientInfo.age }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label"><b>{{ 'DELIVERY_CERTIFICATE_PROFESSION' | translate }}</b></span>
+            <span class="certificate-value">{{ certificateData.profession || '------------------------------' }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label"><b>{{ 'DELIVERY_CERTIFICATE_DOMICILE' | translate }}</b></span>
+            <span class="certificate-value">{{ certificateData.domicile || '------------------------------' }}</span>
+        </div>
+        <div class="certificate-section">
+            <b>{{ 'DELIVERY_CERTIFICATE_DELIVERY_DETAILS' | translate }}</b>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label"><b>{{ 'DELIVERY_CERTIFICATE_CHILD_STATUS' | translate }}</b></span>
+            <span class="certificate-value">{{ certificateData.childStatus || '------------------------------' }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label"><b>{{ 'DELIVERY_CERTIFICATE_CHILD_SEX' | translate }}</b></span>
+            <span class="certificate-value">{{ certificateData.childSex || '------------------------------' }}</span>
+        </div>
+        <div class="certificate-section spacing-before">
+            <b>{{ 'DELIVERY_CERTIFICATE_FINAL_NOTE' | translate }}</b>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label"><b>{{ 'DELIVERY_CERTIFICATE_LOCATION_AND_DATE' | translate }}</b></span>
+            <span class="certificate-value">Njombé, {{ getCurrentDate() }}</span>
+        </div>
+        <div class="certificate-section" style="text-align: center; font-weight: bold;">
+            {{ 'DELIVERY_CERTIFICATE_SIGNATURE' | translate }}
+        </div>
+    </div>
+</div>

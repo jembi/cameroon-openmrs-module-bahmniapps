@@ -399,7 +399,6 @@
   "PREGNANCY_CERTIFICATE_LEGAL_PURPOSE": "En foi de quoi ce certificat lui est délivré pour servir et faire valoir ce que de droit.",
   "PREGNANCY_CERTIFICATE_PRACTITIONER": "Le praticien",
   "PREGNANCY_CERTIFICATE_DATE": "Date",
-
   "PRINT_MEDICAL_REPLACEMENT_CERTIFICATE_LABEL": "Remplacement Médical",
   "MEDICAL_REPLACEMENT_UNDERSIGNED_DOCTOR": "Je soussigné Docteur",
   "MEDICAL_REPLACEMENT_CERTIFY_EXAMINED": "Certifie avoir examiné ce jour le (la) nommé(e)",
@@ -418,5 +417,19 @@
   "HOSPITALIZATION_CERTIFICATE_ADMITTED_AT": "Est hospitalisé(e)",
   "HOSPITALIZATION_CERTIFICATE_VILLAGE": "Village",
   "HOSPITALIZATION_CERTIFICATE_WITNESS": "En foi de quoi ce certificat est délivré pour servir et valoir ce que de droit.",
-  "HOSPITALIZATION_CERTIFICATE_DATE": "Date"
+  "HOSPITALIZATION_CERTIFICATE_DATE": "Date",
+  "DELIVERY_CERTIFICATE_TITLE": "Certificat de Naissance",
+  "DELIVERY_CERTIFICATE_INTRO": "Je, soussigné..........................................................................................................................................",
+  "DELIVERY_CERTIFICATE_NAME": "Certifie que",
+  "DELIVERY_CERTIFICATE_AGE": "Âge",
+  "DELIVERY_CERTIFICATE_PROFESSION": "Profession",
+  "DELIVERY_CERTIFICATE_DOMICILE": "Domicile",
+  "DELIVERY_CERTIFICATE_DELIVERY_DETAILS": "A accouché à la Maternité de l’Hôpital Saint Jean de Malte le ...................................................",
+  "DELIVERY_CERTIFICATE_CHILD_STATUS": "D’un enfant*(vivant)(mort-né)",
+  "DELIVERY_CERTIFICATE_CHILD_SEX": "de sexe",
+  "DELIVERY_CERTIFICATE_SIGNATURE_NOTE": "En foi de quoi ce certificat est délivré pour servir et valoir ce que de droit.",
+  "DELIVERY_CERTIFICATE_LOCATION_AND_DATE": "Njombé, le",
+  "DELIVERY_CERTIFICATE_SIGNATURE": "Cachet et Signature"
+
+
 }
