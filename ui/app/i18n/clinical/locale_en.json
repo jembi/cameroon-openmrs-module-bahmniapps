@@ -117,7 +117,6 @@
     "ALL_VISITS_KEY": "All Visits",
     "ALL_DIAGNOSES_KEY": "All Diagnoses",
     "ALL_KEY": "All",
-
     "SEARCH_NAME_PLACEHOLDER_KEY": "Search Name/{{ primaryIdentifier }}  ...",
     "SEARCH_KEY": "Search",
     "CLINICAL_YEARS_TRANSLATION_KEY": "Years",
@@ -132,8 +131,6 @@
     "EMPTY_TEMPLATE_MESSAGE": "Click on 'Add New Obs Form' button to add new forms here",
     "SCROLL_LEFT": "Scroll to Left",
     "SCROLL_RIGHT": "Scroll to Right",
-
-
     "VISIT_TITLE_PATIENT_INFORMATION":"PatientInformation",
     "VISIT_TITLE_DIAGNOSIS_KEY": "Diagnoses",
     "VISIT_TITLE_DISPOSITIONS_KEY": "Dispositions",
@@ -223,13 +220,9 @@
     "MEDICATION_DISPENSE_DATE_SUCCESSFULLY_SAVED": "Dispense date Saved Successfully",
     "MEDICATION_DISPENSE_DATE_ERROR_MESSAGE": "Failed to Save Dispense Date",
     "MEDICATION_DISPENSE_DATE_EMPTY": "Dispense Date Field Is Empty",
-    
-
-
     "REMOVE_CONFIRMATION_KEY": "Are you sure you want to remove?",
     "CLEAR_CONFIRMATION_KEY": "Are you sure you want to clear?",
     "REMOVE_DRUG_ORDER_KEY": "Are you sure you want to remove drug : {{ drugName }} ?",
-
     "DRUG_DETAILS_DRUG_NAME": "Drug",
     "DRUG_DETAILS_DOSE_INFO": "Dose",
     "DRUG_DETAILS_ROUTE": "Route",
@@ -241,11 +234,9 @@
     "DRUG_DETAILS_QUANTITY_TEXT": "Quantity",
     "DRUG_DETAILS_DURATION": "Duration",
     "DRUG_DETAILS_ADDITIONAL_INSTRUCTIONS": "Additional instructions",
-
     "MONTHS": "January, February, March, April, May, June, July, August, September, October, November, December",
     "CHOOSE_MONTH_KEY": "Choose month",
     "CHOOSE_YEAR_KEY": "Choose year",
-
     "HOME_DASHBOARD_KEY":"Home",
     "PATIENT_VISIT_PAGE_KEY":"Visit",
     "PATIENT_ADT_PAGE_KEY":"Inpatient",
@@ -261,13 +252,11 @@
     "POP_UP_CLOSE_DIALOG_MESSAGE_KEY":"You might lose unsaved data. Are you sure you want to leave this page?",
     "MESSAGE_DIALOG_OPTION_COPY" : "Copy Error",
     "MESSAGE_DIALOG_OPTION_OKAY": "OK",
-
     "OBS_BOOLEAN_YES_KEY":"Yes",
     "OBS_BOOLEAN_NO_KEY":"No",
     "CLINICAL_DUPLICATE_DIAGNOSIS_ERROR_MESSAGE" : "Please correct the duplicate diagnosis entered.",
     "CLINICAL_TEMPLATE_ADDED_SUCCESS_KEY": "{{label}} added successfully",
     "CLINICAL_TEMPLATE_REMOVED_SUCCESS_KEY": "{{label}} removed successfully",
-
     "CLINICAL_DIAGNOSIS_ORDER_PRIMARY":"PRIMARY",
     "CLINICAL_DIAGNOSIS_ORDER_SECONDARY":"SECONDARY",
     "CLINICAL_DIAGNOSIS_CERTAINTY_CONFIRMED":"CONFIRMED",
@@ -285,7 +274,6 @@
     "CLINICAL_UPDATE": "Update",
     "CANCEL": "Cancel",
     "CLINICAL_ADD_AS_CONDITION": "Add as condition",
-
     "CONDITION_LIST_DISPLAY_CONTROL_TITLE": "Chronic conditions",
     "CONDITION_LIST_ACTIVE":"Active",
     "CONDITION_LIST_INACTIVE":"Inactive",
@@ -445,7 +433,6 @@
     "CONTACT": "Contact",
     "LAB_TESTS_VERIFIER": "Verified By",
     "LAB_TESTS_VIRAL_LOAD_HISTORY": "History of Viral Loads",
-
     "PREGNANCY_CERTIFICATE_TITLE": "Pregnancy Certificate",
     "PREGNANCY_CERTIFICATE_UNDERSIGNED": "I, the undersigned :",
     "PREGNANCY_CERTIFICATE_CERTIFY": "hereby certify that on ",
@@ -457,17 +444,17 @@
     "PREGNANCY_CERTIFICATE_LEGAL_PURPOSE": "In witness whereof this certificate is issued to her for all legal purposes",
     "PREGNANCY_CERTIFICATE_PRACTITIONER": "Practitioner",
     "PREGNANCY_CERTIFICATE_DATE": "Date",
-
     "PRINT_MEDICAL_REPLACEMENT_CERTIFICATE_LABEL": "Medical Replacement",
     "MEDICAL_REPLACEMENT_UNDERSIGNED_DOCTOR": "I, the undersigned Doctor:",
     "MEDICAL_REPLACEMENT_CERTIFY_EXAMINED": "hereby certify that I have on this day examined the named",
     "MEDICAL_REPLACEMENT_REST_REQUIRED": "Certifies that his or her state of health requires a medical rest of",
     "MEDICAL_REPLACEMENT_DAYS": "days",
-    "MEDICAL_REPLACEMENT_STARTING_FROM": "starting from",
     "MEDICAL_REPLACEMENT_BARRING_COMPLICATIONS": "Barring unforeseeable complications.",
     "MEDICAL_REPLACEMENT_DATE": "Date",
     "MEDICAL_REPLACEMENT_ATTENDING_DOCTOR": "The Attending Doctor",
-
+    "MEDICAL_REPLACEMENT_HEALTH_STATUS": "Certifies that their health condition requires medical rest of",
+    "MEDICAL_REPLACEMENT_START_DATE": "Starting from",
+    "PRINT_HOSPITALIZATION_REPORT_LABEL": "Hospitalization Report",
     "PRINT_HOSPITALIZATION_CERTIFICATE_LABEL": "Hospitalization Certificate",
     "HOSPITALIZATION_CERTIFICATE_UNDERSIGNED": "I, the undersigned",
     "HOSPITALIZATION_CERTIFICATE_CERTIFIED_THAT": "Certified that",
@@ -476,6 +463,52 @@
     "HOSPITALIZATION_CERTIFICATE_ADMITTED_AT": "Is admitted at",
     "HOSPITALIZATION_CERTIFICATE_VILLAGE": "Village",
     "HOSPITALIZATION_CERTIFICATE_WITNESS": "In witness whereof this certificate is issued for all legal purposes.",
-    "HOSPITALIZATION_CERTIFICATE_DATE": "Date"
+    "HOSPITALIZATION_CERTIFICATE_DATE": "Date",
+    "HOSPITALIZATION_REPORT_NAME": "Name",
+    "HOSPITALIZATION_REPORT_AGE": "Age",
+    "HOSPITALIZATION_REPORT_BIRTH_DATE": "Birth Date",
+    "HOSPITALIZATION_REPORT_ADMISSION_DATE": "Admission Date",
+    "HOSPITALIZATION_REPORT_DOCTOR": "Doctor",
+    "HOSPITALIZATION_REPORT_ADMISSION_DIAGNOSTIC": "Admission Diagnostic",
+    "HOSPITALIZATION_REPORT_TREATMENT_EVOLUTION": "Report of Treatment and Evolution",
+    "HOSPITALIZATION_REPORT_RELEASE_DATE": "Release Date",
+    "HOSPITALIZATION_REPORT_DISCHARGE_DIAGNOSTIC": "Discharge Diagnostic",
+    "HOSPITALIZATION_REPORT_PRESCRIBE_TREATMENT": "Prescribe Treatment at Discharge",
+    "HOSPITALIZATION_REPORT_APPOINTMENT_DATE": "Appointment Date",
+    "HOSPITALIZATION_REPORT_LOCATION": "Location",
+    "HOSPITALIZATION_REPORT_SIGNATURE": "Signature",
+    "HOSPITALIZATION_REPORT_DATE": "Date",
+    "PRINT_DELIVERY_CERTIFICATE_LABEL": "Delivery Certificate",
+    "DELIVERY_CERTIFICATE_TITLE": "Delivery Certificate",
+    "DELIVERY_CERTIFICATE_INTRO": "I, the undersigned",
+    "DELIVERY_CERTIFICATE_NAME": "Certify that",
+    "DELIVERY_CERTIFICATE_AGE": "Age",
+    "DELIVERY_CERTIFICATE_PROFESSION": "Profession",
+    "DELIVERY_CERTIFICATE_DOMICILE": "Domicile",
+    "DELIVERY_CERTIFICATE_DELIVERY_DETAILS": "Gave birth at the Maternity Hospital Saint Jean de Malte on ...................................................",
+    "DELIVERY_CERTIFICATE_CHILD_STATUS": "Of a child*(living)(dead born)",
+    "DELIVERY_CERTIFICATE_CHILD_SEX": "of sex",
+    "DELIVERY_CERTIFICATE_FINAL_NOTE": "In witness whereof this certificate is delivered to serve and be worth what is right.",
+    "DELIVERY_CERTIFICATE_LOCATION_AND_DATE": "Njombé, on",
+    "DELIVERY_CERTIFICATE_SIGNATURE": "Stamp and Signature",
+    "DELIVERY_CERTIFICATE_CERTIFY": "certify that",
+    "PRINT_TUBAL_LEGATION_LABEL": "Tubal Legation",
+
+    "AUTHORIZATION_TUBAL_LIGATION_HEADER": "Authorization for Tubal Ligation",
+    "AUTHORIZATION_TUBAL_LIGATION_UNDERSIGNED": "I, the undersigned .........................",
+    "AUTHORIZATION_TUBAL_LIGATION_NIC_NUMBER": "NIC N° ",
+    "AUTHORIZATION_TUBAL_LIGATION_ISSUED_ON": "issued on ",
+    "AUTHORIZATION_TUBAL_LIGATION_AT": "at ",
+    "AUTHORIZATION_TUBAL_LIGATION_AUTHORIZE": "Authorize the physician to perform definitive sterilization by tubal ligation on:",
+    "AUTHORIZATION_TUBAL_LIGATION_SELF": "- Myself",
+    "AUTHORIZATION_TUBAL_LIGATION_WIFE": "- My wife named ",
+    "AUTHORIZATION_TUBAL_LIGATION_NIC": "NIC N° ",
+    "AUTHORIZATION_TUBAL_LIGATION_CONSENT": "With (her) full consent.",
+    "AUTHORIZATION_TUBAL_LIGATION_SIGNATURE": "Signature:",
+    "AUTHORIZATION_TUBAL_LIGATION_HUSBAND_SIGNATURE": "Husband ",
+    "AUTHORIZATION_TUBAL_LIGATION_OTHER": "Other (Please specify) ",
+    "AUTHORIZATION_TUBAL_LIGATION_LOCATION_DATE": "Njombé, the ",
+    "AUTHORIZATION_TUBAL_LIGATION_DATE": "Date"
+    
 
 }

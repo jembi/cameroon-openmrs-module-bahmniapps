@@ -173,7 +173,20 @@ angular.module('consultation')
                     'print-replacement-certificate': {
                         templateUrl: 'dashboard/views/printMedicalReplacementCertificate.html',
                         controller: 'replacementCertificateController'
+                    },
+                    'print-hospitalization-report': {
+                        templateUrl: 'dashboard/views/printHospitalizationReport.html',
+                        controller: 'PrintHospitalizationReport'
+                    },
+                    'print-delivery-certificate': {
+                        templateUrl: 'dashboard/views/printDeliveryCertificate.html',
+                        controller: 'PrintDeliveryCertificate'
+                    },
+                    'print-tubal-legation-report': {
+                        templateUrl: 'dashboard/views/printAuthorizationOfTubalLegation.html',
+                        controller: 'printAuthorizationOfTubalLegation'
                     }
+
                 }
             })
             .state('patient.dashboard.show.observations', {

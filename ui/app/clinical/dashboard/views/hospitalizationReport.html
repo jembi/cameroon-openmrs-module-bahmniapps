@@ -1,0 +1,64 @@
+<div class="certificate-container" ng-if="certificateData">
+    <center>
+        <img ng-if="certificateData.hospitalLogo" 
+             src="{{ certificateData.hospitalLogo }}" 
+             class="prescribe-report-logo">
+    </center>
+    <div class="certificate-header">{{ 'PRINT_HOSPITALIZATION_REPORT_LABEL' | translate }}</div>
+    <div class="certificate-body">
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_NAME' | translate }}</span>
+            <span class="certificate-value">{{ getFullname() }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_AGE' | translate }}</span>
+            <span class="certificate-value">{{ certificateData.patientInfo.age }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_BIRTH_DATE' | translate }}</span>
+            <span class="certificate-value">{{ certificateData.patientInfo.birthDate }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_ADMISSION_DATE' | translate }}</span>
+            <span class="certificate-value">{{ certificateData.admissionDate || '------------------------------' }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_DOCTOR' | translate }}</span>
+            <span class="certificate-value">{{ certificateData.username }}</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_ADMISSION_DIAGNOSTIC' | translate }}</span>
+            <span class="certificate-value">------------------------------</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_TREATMENT_EVOLUTION' | translate }}</span>
+            <span class="certificate-value">------------------------------</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_RELEASE_DATE' | translate }}</span>
+            <span class="certificate-value">------------------------------</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_DISCHARGE_DIAGNOSTIC' | translate }}</span>
+            <span class="certificate-value">------------------------------</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_PRESCRIBE_TREATMENT' | translate }}</span>
+            <span class="certificate-value">------------------------------</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_APPOINTMENT_DATE' | translate }}</span>
+            <span class="certificate-value">------------------------------</span>
+        </div>
+        <div class="certificate-section">
+            <span class="certificate-label">{{ 'HOSPITALIZATION_REPORT_LOCATION' | translate }}</span>
+            <span class="certificate-value">------------------------------</span>
+        </div>
+        <div class="certificate-section" style="text-align: center; font-weight: bold;">
+            {{ 'HOSPITALIZATION_REPORT_SIGNATURE' | translate }}
+        </div>
+    </div>
+</div>
+<div class="certificate-footer">
+    {{ 'HOSPITALIZATION_REPORT_DATE' | translate }}: {{ getCurrentDate() }}
+</div>
