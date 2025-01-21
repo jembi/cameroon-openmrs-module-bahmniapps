@@ -90,7 +90,8 @@ angular.module('bahmni.clinical').controller('ConsultationController',
                 {name: $translate.instant('PRINT_MEDICAL_REPLACEMENT_CERTIFICATE_LABEL'), uuid: replacementCertificateUuid},
                 {name: $translate.instant('PREGNANCY_CERTIFICATE_TITLE'), uuid: pregnancyCertificateUuid},
                 {name: $translate.instant('PRINT_DELIVERY_CERTIFICATE_LABEL'), uuid: deliveryCertificateUuid},
-                {name: $translate.instant('PRINT_TUBAL_LEGATION_LABEL'), uuid: authorizationOfTubalLegationUuid}];
+                {name: $translate.instant('PRINT_TUBAL_LEGATION_LABEL'), uuid: authorizationOfTubalLegationUuid},
+                {name: $translate.instant('PRINT_HOSPITALIZATION_REPORT_LABEL'), uuid: hospitalizationReportUuid}];
 
             $scope.optionText = function (value) {
                 return value.name;
